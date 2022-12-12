@@ -1,23 +1,23 @@
 import logo from './logo.svg';
 import './App.css';
+import Login from './components/Login';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import Index from './components/Index';
+import SignIn from './components/SignIn';
+import FilterTicket from './components/filter/filterTicket';
+
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <BrowserRouter>
+      <Routes>
+        <Route path='/' element={<Index />} />
+        <Route path='/login' element={<Login />} />
+        <Route path='/signin' element={<SignIn />} />
+        <Route path='/filter' element={<FilterTicket />} />
+      </Routes>
+      </BrowserRouter>
     </div>
   );
 }

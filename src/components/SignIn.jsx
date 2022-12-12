@@ -1,0 +1,146 @@
+import React, { useState } from 'react'
+import axios from 'axios'
+import { Link, useNavigate } from 'react-router-dom'
+import { Button, Form } from 'react-bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import styled from 'styled-components';
+import { FaGoogle } from 'react-icons/fa';
+
+
+const BodySignUp = styled.section`
+    background: #fff;
+    height: 1000px;
+`;
+
+const WrapperFormSignUp = styled.div`
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    background: #4600FF;
+    color: white;
+    border-radius: 10px;
+    padding: 40px 100px
+`;
+const TitleSignUp = styled.h3`
+    color: white;
+`;
+
+
+const ButtonSignUp= styled.button`
+    background-color: #FFE15D;
+    color: #4600FF;
+    font-size: 1em;
+    font-weight: bold;
+    padding: 0.25em 5em;
+    border: 2px solid #FFE15D;
+    border-radius: 30px;
+    margin-right: 10px;
+    display: block;
+`;
+
+const TextBottomSignUp = styled.p`
+    font-size: 13px;
+    color: #FFFFFF;
+`;
+
+function SignIn() {
+    const navigate = useNavigate();
+
+    const [validated, setValidated] = useState(false);
+    const [values, setValues] = useState({
+        name: "",
+        email: "",
+        password: "",
+        showPassword: false, 
+    })
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        const form = e.currentTarget;
+        if (form.checkValidity() === false) {
+          e.preventDefault();
+          e.stopPropagation();
+        }
+    
+        setValidated(true);
+        axios.post("http://localhost:3001/api/auth/register",{
+            name: values.name,
+            email: values.email,
+            password: values.password
+        })
+        .then(res => {
+            console.log(res.data);
+            navigate("/login");
+    })
+        .catch((err) => console.error(err));
+    }
+
+    const handlePasswordVisibility = () =>{
+        setValues({
+            ...values,
+            showPassword: !values.showPassword,
+        });
+    };
+
+  return (
+    <>
+    <BodySignUp>
+        <WrapperFormSignUp>
+        <TitleSignUp style={{textAlign: "center"}}>Sign Up</TitleSignUp>
+        <Form noValidate validated={validated} onSubmit={handleSubmit}>
+            <Form.Group className="mb-3" required>
+                <Form.Label>Name</Form.Label>
+                <Form.Control type="text" placeholder="Input name" controlId="name" onChange={(e)=>setValues({...values,name:e.target.value})} required/>
+                <Form.Control.Feedback type="invalid">Please fill the name!</Form.Control.Feedback>
+                
+            </Form.Group>
+            <Form.Group className="mb-3" required>
+                <Form.Label>Email address</Form.Label>
+                <Form.Control type="email" placeholder="Input email" onChange={(e)=>setValues({...values,email:e.target.value})} controlId="email" required/>
+                <Form.Control.Feedback type="invalid">Please fill the email!</Form.Control.Feedback>
+                <p style={{fontSize:"13px"}}>We'll never share your email with anyone else.</p>
+            </Form.Group>
+            <Form.Group className="mb-3" required>
+                <Form.Label>Password</Form.Label>
+                <Form.Control type="password" placeholder="Input password" onChange={(e)=>setValues({...values,password:e.target.value})} controlId="password" required />
+                <Form.Control.Feedback type="invalid">Please fill the password!</Form.Control.Feedback>
+            </Form.Group>
+            <ButtonSignUp className='mx-auto' style={{textAlign: "center"}}>Sign Up</ButtonSignUp>
+        </Form>
+        
+        <TextBottomSignUp className='text-center mt-4'>Already have account?, <Link to="/login">Sign In Here</Link></TextBottomSignUp>
+    </WrapperFormSignUp>
+</BodySignUp>
+    </>
+
+
+    // <div className='container'>
+    // <form onSubmit={handleSubmit}>
+    //     <div className="form-group">
+    //       <label htmlFor="name">Name</label>
+    //       <input type="text" className="form-control" id="name" aria-describedby="name" placeholder="Enter name" onChange={(e)=>setValues({...values,name:e.target.value})} />
+    //       <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small>
+    //     </div>
+    //     <div className="form-group">
+    //       <label htmlFor="email">Email address</label>
+    //       <input type="email" className="form-control" id="email" aria-describedby="email" placeholder="Enter email" onChange={(e)=>setValues({...values,email:e.target.value})} />
+    //       <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small>
+    //     </div>
+    //     <div className="form-group">
+    //       <label htmlFor="password">Password</label>
+    //       <input type="password" className="form-control" id="password" placeholder="Password" onChange={(e)=>setValues({...values,password:e.target.value})} />
+    //     </div>
+    //     <div className="form-check">
+    //       <input type="checkbox" className="form-check-input" id="exampleCheck1" />
+    //       <label className="form-check-label" htmlFor="exampleCheck1">Check me out</label>
+    //     </div>
+    //     <button type="submit" className="btn btn-primary">Submit</button>
+    //   </form>
+    // </div>
+  )
+}
+
+export default SignIn
