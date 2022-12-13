@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import styled from 'styled-components';
 import { Container, Col, Row, Form, Nav, Navbar, Offcanvas } from 'react-bootstrap';
@@ -47,6 +47,24 @@ const ButtonSignOut = styled.button`
     display: block;
 `;
 
+const WrapperTicket = styled.div`
+  margin-top: 15px;
+  padding: 2em;
+  background: #F5F6FA;
+  border-radius: 10px;
+`;
+
+const ButtonBooking = styled.button`
+    background-color: #FFE15D;
+    color: #4600FF;
+    font-size: 1em;
+    font-weight: bold;
+    padding: 0.25em 1em;
+    border: 2px solid #FFE15D;
+    border-radius: 30px;
+    display: block;
+`;
+
 function FilterTicket() {
     const getEmailUser = localStorage.getItem("emailUser");
     const getToken = localStorage.getItem("token");
@@ -55,15 +73,34 @@ function FilterTicket() {
         window.location.reload()
     }
 
-    const getData = () => {
+    const [tickets, setTickets] = useState('');
+
+
+    // const getData = () => {
+    //   axios.get("https://final-project-be-production-6de7.up.railway.app/api/v1/tickets", { headers: {"Authorization" : `Bearer ${getToken}`} })
+    //   .then((response) => response.json())
+    //   .then((data) => {
+        
+    //     setData(data)
+    //     console.log(setData)
+    //   })
+    //   .catch((err) => {
+    //     console.log(err)
+    //   });
+    // }
+
+    
+    useEffect(() => {
       axios.get("https://final-project-be-production-6de7.up.railway.app/api/v1/tickets", { headers: {"Authorization" : `Bearer ${getToken}`} })
       .then(res => {
-        console.log(res.data);
+        console.log(res.data.data);
+        const datas = res.data.data;
+        setTickets(datas);
       })
       .catch((err) => {
         console.log(err)
       });
-    }
+  });
     
     console.log(getToken)
     if (getToken) {
@@ -136,7 +173,46 @@ function FilterTicket() {
             </Container>
         </WrapperHero> 
         <h1 className="text-center">FLIGHT SCHEDULE</h1>
-        <button onClick={getData}>ambil data</button>
+        {/* <button onClick={getData}>ambil data</button> */}
+        {   
+              tickets.length > 0 ? (
+              tickets.map((item) =>
+              <>
+              <Container>
+              <WrapperTicket>
+                <Row>
+                  <Col sm={true} className='text-center'>
+                    <p>Airline: {item.airplane_name}</p>
+                  </Col>
+                  <Col sm={true} className='text-center'>
+                  <p>From: {item.origin}</p>
+                  </Col>
+                  <Col sm={true} className='text-center'>
+                  <p>To: {item.destination}</p>
+                  </Col>
+                  <Col sm={true} className='text-center'>
+                  <p>Rp.{item.price}</p>
+                  </Col>
+                </Row>
+                <Row>
+                  <Col sm={true} className='text-center'>
+                  </Col>
+                  <Col sm={true} className='text-center'>
+                  </Col>
+                  <Col sm={true} className='text-center'>
+                  </Col>
+                  <Col sm={true}>
+                    <ButtonBooking className='mx-auto'>Booking</ButtonBooking>
+                  </Col>
+                </Row>
+              </WrapperTicket>
+              </Container>
+              
+              </>
+              )) : <p className="text-center">Tiket Tidak Tersedia</p>
+                
+            }
+        
         </>
             )
       } 

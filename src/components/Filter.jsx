@@ -5,12 +5,6 @@ import FilterTicket from './filter/filterTicket'
 
 
 
-
-const token = localStorage.getItem('token')
-
-
-
-
 function Filter() {
   return (
     <>
