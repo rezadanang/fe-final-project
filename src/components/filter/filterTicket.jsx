@@ -5,6 +5,7 @@ import { Container, Col, Row, Form, Nav, Navbar, Offcanvas } from 'react-bootstr
 import Logo from "../../assets/logo.png"  
 import { Link } from 'react-router-dom';
 import Login from '../Login';
+import axios from 'axios'
 
 
 const WrapperHero = styled.section`
@@ -53,12 +54,22 @@ function FilterTicket() {
         localStorage.clear();
         window.location.reload()
     }
+
+    const getData = () => {
+      axios.get("https://final-project-be-production-6de7.up.railway.app/api/v1/tickets", { headers: {"Authorization" : `Bearer ${getToken}`} })
+      .then(res => {
+        console.log(res.data);
+      })
+      .catch((err) => {
+        console.log(err)
+      });
+    }
     
     console.log(getToken)
     if (getToken) {
         return (
         <>
-                {['lg'].map((expand) => (
+      {['lg'].map((expand) => (
         <Navbar key={expand} expand={expand} className="mb-3">
           <Container fluid>
               <Link to="/"><img src={Logo} width={80} height={80} alt="logo" /></Link>
@@ -125,6 +136,7 @@ function FilterTicket() {
             </Container>
         </WrapperHero> 
         <h1 className="text-center">FLIGHT SCHEDULE</h1>
+        <button onClick={getData}>ambil data</button>
         </>
             )
       } 

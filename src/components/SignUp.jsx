@@ -46,7 +46,7 @@ const TextBottomSignUp = styled.p`
     color: #FFFFFF;
 `;
 
-function SignIn() {
+function SignUp() {
     const navigate = useNavigate();
 
     const [validated, setValidated] = useState(false);
@@ -66,7 +66,7 @@ function SignIn() {
         }
     
         setValidated(true);
-        axios.post("http://localhost:3001/api/auth/register",{
+        axios.post("https://final-project-be-production-6de7.up.railway.app/api/auth/register",{
             name: values.name,
             email: values.email,
             password: values.password
@@ -111,7 +111,7 @@ function SignIn() {
             <ButtonSignUp className='mx-auto' style={{textAlign: "center"}}>Sign Up</ButtonSignUp>
         </Form>
         
-        <TextBottomSignUp className='text-center mt-4'>Already have account?, <Link to="/login">Sign In Here</Link></TextBottomSignUp>
+        <TextBottomSignUp className='text-center mt-4'>Already have account?, <Link to="/login" style={{ color: '#FFF', textDecoration: 'none' }}>Sign In Here</Link></TextBottomSignUp>
     </WrapperFormSignUp>
 </BodySignUp>
     </>
@@ -143,4 +143,4 @@ function SignIn() {
   )
 }
 
-export default SignIn
+export default SignUp

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Button, Form, Container, Nav, Navbar, Offcanvas } from 'react-bootstrap';
 import axios from 'axios'
 import { Link, useNavigate } from 'react-router-dom'
@@ -82,7 +82,7 @@ function Login() {
         }
     
         setValidated(true);
-        axios.post("http://localhost:3001/api/auth/login",{
+        axios.post("https://final-project-be-production-6de7.up.railway.app/api/auth/login",{
             email: values.email,
             password: values.password
         })
@@ -127,7 +127,7 @@ function Login() {
                 <ButtonLogin className='mx-auto' style={{textAlign: "center"}} type="submit">Sign In</ButtonLogin>
             </Form>
             <ButtonLoginGoogle className='mx-auto mt-3' style={{textAlign: "center"}}>Login with Google <FaGoogle /></ButtonLoginGoogle>
-            <TextBottomLogin className='text-center mt-4'>If you dont have account, <Link to="/signup">Sign Up Here</Link></TextBottomLogin>
+            <TextBottomLogin className='text-center mt-4'>If you dont have account, <Link to="/signup" style={{ color: '#FFF', textDecoration: 'none' }}>Sign Up Here</Link></TextBottomLogin>
         {/* <form onSubmit={handleSubmit}>
         <div className="form-group">
           <label htmlFor="email">Email address</label>

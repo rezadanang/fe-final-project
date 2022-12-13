@@ -1,9 +1,22 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import FilterTicket from './filter/filterTicket'
+
+
+
+
+
+
+const token = localStorage.getItem('token')
+
+
+
 
 function Filter() {
   return (
+    <>
     <FilterTicket />
+   
+    </>
   )
 }
 

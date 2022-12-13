@@ -56,7 +56,7 @@ function NavigationBar() {
                   <Nav.Link href="#action2">Passenger</Nav.Link>
                   <Nav.Link href="#action2">Your Orders</Nav.Link>
                 </Nav>
-                <Link to="/signin"><ButtonSignUp>Sign Up</ButtonSignUp></Link>
+                <Link to="/signup"><ButtonSignUp>Sign Up</ButtonSignUp></Link>
                 <Link to="/login"><ButtonLogin>Login</ButtonLogin></Link>
               </Offcanvas.Body>
             </Navbar.Offcanvas>

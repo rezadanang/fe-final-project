@@ -23,7 +23,6 @@ function Index() {
             <WhyUs />
             <Benefits />
             <Footer />
-            <a href='/login'> login </a>
             </>
         )
       }
