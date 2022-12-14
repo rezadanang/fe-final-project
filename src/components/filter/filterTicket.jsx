@@ -53,6 +53,16 @@ const WrapperTicket = styled.div`
   background: #F5F6FA;
   border-radius: 10px;
 `;
+const ButtonNavTab = styled.button`
+    background-color: #FFE15D;
+    color: #4600FF;
+    font-size: 1em;
+    font-weight: bold;
+    padding: 0.25em 1em;
+    border: 2px solid #FFE15D;
+    border-radius: 30px;
+    display: block;
+`;
 
 const ButtonBooking = styled.button`
     background-color: #FFE15D;
@@ -74,6 +84,11 @@ function FilterTicket() {
     }
 
     const [tickets, setTickets] = useState('');
+
+    //disable form return
+    const [checked, setChecked] = useState(false);
+    const [text, setText] = useState("");
+
 
 
     // const getData = () => {
@@ -101,6 +116,8 @@ function FilterTicket() {
         console.log(err)
       });
   });
+
+  
     
     console.log(getToken)
     if (getToken) {
@@ -141,34 +158,73 @@ function FilterTicket() {
         <WrapperHero className='hero-wrapper-filter'>
             <Container>
                 <Wrapper>
-                    <Row>
+                  <Form>
+                   <Row>
                         <Col md={4}>
-                            <Form.Label htmlFor="inputFrom" style={{color:"white"}}>From</Form.Label>
-                            <Form.Control type="text" id="from" aria-describedby="fromText"/>
+                        <Form.Group>
+                            <Form.Label htmlFor="origin" style={{color:"white"}}>Origin</Form.Label>
+                            <Form.Select aria-label="origin">
+                              <option value="Jakarta">Jakarta</option>
+                              <option value="Medan">Medan</option>
+                              <option value="Yogyakarta">Yogyakarta</option>
+                              <option value="Surabaya">Surabaya</option>
+                              <option value="Denpasar">Denpasar</option>
+                              <option value="Makassar">Makassar</option>
+                              <option value="Palembang">Palembang</option>
+                            </Form.Select>
+                          </Form.Group>
                         </Col>
                         <Col md={4}>
-                            <Form.Label htmlFor="inputTo" style={{color:"white"}}>To</Form.Label>
-                            <Form.Control type="text" id="to" aria-describedby="toText"/>
+                        <Form.Group>
+                            <Form.Label htmlFor="destination" style={{color:"white"}}>Destination</Form.Label>
+                            <Form.Select aria-label="destination">
+                              <option value="Jakarta">Jakarta</option>
+                              <option value="Medan">Medan</option>
+                              <option value="Yogyakarta">Yogyakarta</option>
+                              <option value="Surabaya">Surabaya</option>
+                              <option value="Denpasar">Denpasar</option>
+                              <option value="Makassar">Makassar</option>
+                              <option value="Palembang">Palembang</option>
+                            </Form.Select>
+                        </Form.Group>
                         </Col>
                         <Col md={4}>
-                            <Form.Label htmlFor="date" style={{color:"white"}}>Tanggal</Form.Label>
-                            <Form.Control type="date" id="date" aria-describedby="date"/>
+                        <Form.Group>
+                            <Form.Label htmlFor="derparture" style={{color:"white"}}>Derparture</Form.Label>
+                            <Form.Control type="date" id="derparture" aria-describedby="derparture" />
+                          </Form.Group>
                         </Col>
                     </Row>
                     <Row>
                         <Col md={4}>
-                            <Form.Label htmlFor="penumpang" style={{color:"white"}}>Penumpang</Form.Label>
-                            <Form.Control type="text" id="penumpang" aria-describedby="penumpang"/>
+                          <Form.Group className='mt-4'>
+                            <div className="form-check form-switch">
+                              <input className="form-check-input" type="checkbox" defaultValue id="flexCheckDefault" name="checkbox" checked={checked} 
+                              onChange={() => {
+                                  if(checked){
+                                  setText('')
+                                }
+                                  setChecked(!checked)
+                                }
+                              } 
+                              />
+                               <label className="form-check-label" htmlFor="flexCheckDefault" style={{color:"white"}}> Round Trip?</label>
+                            </div>
+
+                          </Form.Group>
                         </Col>
                         <Col md={4}>
-                            <Form.Label htmlFor="kelas" style={{color:"white"}}>Kelas</Form.Label>
-                            <Form.Control type="text" id="kelas" aria-describedby="kelas"/>
+                        <Form.Group>
+                            <Form.Label htmlFor="return" style={{color:"white"}}>Return</Form.Label>
+                            <Form.Control type="date" name="return" id="return" aria-describedby="return" disabled={!checked}/>
+                        </Form.Group>
                         </Col>
-                        <Col md={4}>
+                        {/* <Col md={4}>
                         
                             <ButtonFilter className="mx-auto">Cari</ButtonFilter>
-                        </Col>
+                        </Col> */}
                     </Row>
+                    </Form>
                 </Wrapper>
             </Container>
         </WrapperHero> 
