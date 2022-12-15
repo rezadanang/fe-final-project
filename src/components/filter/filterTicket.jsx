@@ -6,6 +6,7 @@ import Logo from "../../assets/logo.png"
 import { Link } from 'react-router-dom';
 import Login from '../Login';
 import axios from 'axios'
+import Moment from 'react-moment';
 
 
 const WrapperHero = styled.section`
@@ -84,6 +85,13 @@ function FilterTicket() {
     }
 
     const [tickets, setTickets] = useState('');
+    const [displayTickets, setDisplayTickets] = useState([]);
+    const [origin, setOrigin] = useState('');
+    const [destination, setDestination] = useState('');
+    const [date, setDate] = useState('');
+    const [time, setTime] = useState('');
+
+    const newDateTime = origin + destination;
 
     //disable form return
     const [checked, setChecked] = useState(false);
@@ -116,6 +124,10 @@ function FilterTicket() {
         console.log(err)
       });
   });
+
+  const showFilter = () => {
+   console.log('dest', newDateTime);
+  }
 
   
     
@@ -163,7 +175,7 @@ function FilterTicket() {
                         <Col md={4}>
                         <Form.Group>
                             <Form.Label htmlFor="origin" style={{color:"white"}}>Origin</Form.Label>
-                            <Form.Select aria-label="origin">
+                            <Form.Select aria-label="origin" onChange={(e) => setOrigin(e.target.value)}>
                               <option value="Jakarta">Jakarta</option>
                               <option value="Medan">Medan</option>
                               <option value="Yogyakarta">Yogyakarta</option>
@@ -177,7 +189,7 @@ function FilterTicket() {
                         <Col md={4}>
                         <Form.Group>
                             <Form.Label htmlFor="destination" style={{color:"white"}}>Destination</Form.Label>
-                            <Form.Select aria-label="destination">
+                            <Form.Select aria-label="destination" onChange={(e) => setDestination(e.target.value)}>
                               <option value="Jakarta">Jakarta</option>
                               <option value="Medan">Medan</option>
                               <option value="Yogyakarta">Yogyakarta</option>
@@ -191,7 +203,7 @@ function FilterTicket() {
                         <Col md={4}>
                         <Form.Group>
                             <Form.Label htmlFor="derparture" style={{color:"white"}}>Derparture</Form.Label>
-                            <Form.Control type="date" id="derparture" aria-describedby="derparture" />
+                            <Form.Control type="date" id="derparture" aria-describedby="derparture" onChange={(e) => setDate(e.target.value)} />
                           </Form.Group>
                         </Col>
                     </Row>
@@ -219,10 +231,10 @@ function FilterTicket() {
                             <Form.Control type="date" name="return" id="return" aria-describedby="return" disabled={!checked}/>
                         </Form.Group>
                         </Col>
-                        {/* <Col md={4}>
-                        
-                            <ButtonFilter className="mx-auto">Cari</ButtonFilter>
-                        </Col> */}
+                        <Col md={4}>
+                            <button onClick={showFilter}>carii</button>
+                            {/* <ButtonFilter className="mx-auto" onClick={showFilter}>Cari</ButtonFilter> */}
+                        </Col>
                     </Row>
                     </Form>
                 </Wrapper>
@@ -250,12 +262,15 @@ function FilterTicket() {
                   <p>Rp.{item.price}</p>
                   </Col>
                 </Row>
-                <Row>
+                <Row className='mt-4'>
                   <Col sm={true} className='text-center'>
+                    <p>Derparture: <Moment format='HH:mm DD-MM-YYYY'>{item.departure_time}</Moment></p>
                   </Col>
                   <Col sm={true} className='text-center'>
+                  <p>Arrival: <Moment format='HH:mm DD-MM-YYYY'>{item.arrival_time}</Moment></p>
                   </Col>
                   <Col sm={true} className='text-center'>
+                  <p>Return: <Moment format='HH:mm DD-MM-YYYY'>{item.return_time}</Moment></p>
                   </Col>
                   <Col sm={true}>
                     <ButtonBooking className='mx-auto'>Booking</ButtonBooking>

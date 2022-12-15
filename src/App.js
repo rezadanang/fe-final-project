@@ -6,6 +6,7 @@ import Index from './components/Index';
 import SignUp from './components/SignUp';
 import FilterTicket from './components/filter/filterTicket';
 import NotFound from './components/404';
+import Tickets from './components/Tickets';
 
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
         <Route path='/login' element={<Login />} />
         <Route path='/signup' element={<SignUp />} />
         <Route path='/filter' element={<FilterTicket />} />
+        <Route path='/allflights' element={<Tickets />} />
         <Route path="*" element={<NotFound />}></Route>
       </Routes>
       </BrowserRouter>
