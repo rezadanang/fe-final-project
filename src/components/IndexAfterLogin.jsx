@@ -51,7 +51,7 @@ function IndexAfterLogin() {
               </Offcanvas.Header>
               <Offcanvas.Body>
                 <Nav className="justify-content-center flex-grow-1">
-                  <Nav.Link href="/allflights">All Flights</Nav.Link>
+                  <Nav.Link><Link to="/allflights" style={{textDecoration:"none"}}>All Flights</Link></Nav.Link>
                   <Nav.Link href="#action2">Schedule</Nav.Link>
                   <Nav.Link href="#action2">Passenger</Nav.Link>
                   <Nav.Link href="#action2">Your Orders</Nav.Link>

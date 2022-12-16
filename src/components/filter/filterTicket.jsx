@@ -84,14 +84,18 @@ function FilterTicket() {
         window.location.reload()
     }
 
-    const [tickets, setTickets] = useState('');
+    const [tickets, setTickets] = useState([]);
     const [displayTickets, setDisplayTickets] = useState([]);
     const [origin, setOrigin] = useState('');
     const [destination, setDestination] = useState('');
-    const [date, setDate] = useState('');
-    const [time, setTime] = useState('');
+    const [derpartureDate, setDerpartureDate] = useState('');
+    const [derpartureTime, setDerpartureTime] = useState('');
+    const [returnDate, setReturnDate] = useState('');
+    const [returnTime, setReturnTime] = useState('');
 
-    const newDateTime = origin + destination;
+    const newDerpartureDateTime = derpartureDate + derpartureTime;
+    const newReturnDateTime = returnDate + returnTime;
+
 
     //disable form return
     const [checked, setChecked] = useState(false);
@@ -116,7 +120,7 @@ function FilterTicket() {
     useEffect(() => {
       axios.get("https://final-project-be-production-6de7.up.railway.app/api/v1/tickets", { headers: {"Authorization" : `Bearer ${getToken}`} })
       .then(res => {
-        console.log(res.data.data);
+        // console.log(res.data.data);
         const datas = res.data.data;
         setTickets(datas);
       })
@@ -125,8 +129,12 @@ function FilterTicket() {
       });
   });
 
-  const showFilter = () => {
-   console.log('dest', newDateTime);
+  const showTicketsData = (e) => {
+    e.preventDefault();
+    // console.log('dest', newDerpartureDateTime);
+    // console.log('ret', newReturnDateTime);
+    const filteredTickets = tickets.filter(item =>  (item.origin === origin && item.destination === destination) && (item.arrival_time >= newReturnDateTime && item.departure_time >= newDerpartureDateTime));
+    setDisplayTickets(filteredTickets);
   }
 
   
@@ -153,7 +161,7 @@ function FilterTicket() {
               </Offcanvas.Header>
               <Offcanvas.Body>
                 <Nav className="justify-content-center flex-grow-1">
-                  <Nav.Link href="#action1">All Flights</Nav.Link>
+                  <Nav.Link><Link to="/allflights" style={{textDecoration:"none"}}>All Flights</Link></Nav.Link>
                   <Nav.Link href="#action2">Schedule</Nav.Link>
                   <Nav.Link href="#action2">Passenger</Nav.Link>
                   <Nav.Link href="#action2">Your Orders</Nav.Link>
@@ -172,7 +180,7 @@ function FilterTicket() {
                 <Wrapper>
                   <Form>
                    <Row>
-                        <Col md={4}>
+                        <Col xs={12} sm={6} md={3}>
                         <Form.Group>
                             <Form.Label htmlFor="origin" style={{color:"white"}}>Origin</Form.Label>
                             <Form.Select aria-label="origin" onChange={(e) => setOrigin(e.target.value)}>
@@ -186,7 +194,7 @@ function FilterTicket() {
                             </Form.Select>
                           </Form.Group>
                         </Col>
-                        <Col md={4}>
+                        <Col xs={12} sm={6} md={3}>
                         <Form.Group>
                             <Form.Label htmlFor="destination" style={{color:"white"}}>Destination</Form.Label>
                             <Form.Select aria-label="destination" onChange={(e) => setDestination(e.target.value)}>
@@ -200,15 +208,21 @@ function FilterTicket() {
                             </Form.Select>
                         </Form.Group>
                         </Col>
-                        <Col md={4}>
+                        <Col xs={12} sm={6} md={3}>
                         <Form.Group>
-                            <Form.Label htmlFor="derparture" style={{color:"white"}}>Derparture</Form.Label>
-                            <Form.Control type="date" id="derparture" aria-describedby="derparture" onChange={(e) => setDate(e.target.value)} />
+                            <Form.Label htmlFor="derpartureDate" style={{color:"white"}}>Derparture Date</Form.Label>
+                            <Form.Control type="date" id="derpartureDate" aria-describedby="derpartureDate" onChange={(e) => setDerpartureDate(e.target.value)} />
+                          </Form.Group>
+                        </Col>
+                        <Col xs={12} sm={6} md={3}>
+                        <Form.Group>
+                            <Form.Label htmlFor="derpartureTime" style={{color:"white"}}>Derparture Time</Form.Label>
+                            <Form.Control type="time" id="derpartureTime" aria-describedby="derpartureTime" onChange={(e) => setDerpartureTime(e.target.value)} />
                           </Form.Group>
                         </Col>
                     </Row>
                     <Row>
-                        <Col md={4}>
+                        <Col xs={12} sm={6} md={3}>
                           <Form.Group className='mt-4'>
                             <div className="form-check form-switch">
                               <input className="form-check-input" type="checkbox" defaultValue id="flexCheckDefault" name="checkbox" checked={checked} 
@@ -225,29 +239,35 @@ function FilterTicket() {
 
                           </Form.Group>
                         </Col>
-                        <Col md={4}>
+                        <Col xs={12} sm={6} md={3}>
                         <Form.Group>
-                            <Form.Label htmlFor="return" style={{color:"white"}}>Return</Form.Label>
-                            <Form.Control type="date" name="return" id="return" aria-describedby="return" disabled={!checked}/>
+                            <Form.Label htmlFor="return" style={{color:"white"}}>Return Date</Form.Label>
+                            <Form.Control type="date" name="return" id="return" aria-describedby="return" disabled={!checked}  onChange={(e) => setReturnDate(e.target.value)}/>
                         </Form.Group>
                         </Col>
-                        <Col md={4}>
-                            <button onClick={showFilter}>carii</button>
-                            {/* <ButtonFilter className="mx-auto" onClick={showFilter}>Cari</ButtonFilter> */}
+                        <Col xs={12} sm={6} md={3}>
+                        <Form.Group>
+                            <Form.Label htmlFor="returnTime" style={{color:"white"}}>Return Time</Form.Label>
+                            <Form.Control type="time" name="returnTime" id="returnTime" aria-describedby="returnTime" disabled={!checked}  onChange={(e) => setReturnTime(e.target.value)}/>
+                        </Form.Group>
+                        </Col>
+                        <Col xs={12} sm={6} md={3}>
+                            {/* <button onClick={showTicketsData}>carii</button> */}
+                            <ButtonFilter className="mx-auto" onClick={showTicketsData}>Cari</ButtonFilter>
                         </Col>
                     </Row>
                     </Form>
                 </Wrapper>
             </Container>
         </WrapperHero> 
-        <h1 className="text-center">FLIGHT SCHEDULE</h1>
+        <h1 className="text-center mt-5">FLIGHT SCHEDULE</h1>
         {/* <button onClick={getData}>ambil data</button> */}
-        {   
-              tickets.length > 0 ? (
-              tickets.map((item) =>
+         {   
+              displayTickets.length > 0 ? (
+                displayTickets.map((item) =>
               <>
               <Container>
-              <WrapperTicket>
+              <WrapperTicket className='mt-3'>
                 <Row>
                   <Col sm={true} className='text-center'>
                     <p>Airline: {item.airplane_name}</p>
@@ -280,7 +300,7 @@ function FilterTicket() {
               </Container>
               
               </>
-              )) : <p className="text-center">Tiket Tidak Tersedia</p>
+              )) : <p className="text-center mt-5">Tiket Tidak Tersedia</p>
                 
             }
         
