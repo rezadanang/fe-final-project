@@ -90,16 +90,10 @@ function FilterTicket() {
     const [destination, setDestination] = useState('');
     const [derpartureDate, setDerpartureDate] = useState('');
     const [derpartureTime, setDerpartureTime] = useState('');
-    const [returnDate, setReturnDate] = useState('');
-    const [returnTime, setReturnTime] = useState('');
+    const [category, setCategory] = useState('one_way');
 
     const newDerpartureDateTime = derpartureDate + derpartureTime;
-    const newReturnDateTime = returnDate + returnTime;
 
-
-    //disable form return
-    const [checked, setChecked] = useState(false);
-    const [text, setText] = useState("");
 
 
 
@@ -133,7 +127,7 @@ function FilterTicket() {
     e.preventDefault();
     // console.log('dest', newDerpartureDateTime);
     // console.log('ret', newReturnDateTime);
-    const filteredTickets = tickets.filter(item =>  (item.origin === origin && item.destination === destination) && (item.arrival_time >= newReturnDateTime && item.departure_time >= newDerpartureDateTime));
+    const filteredTickets = tickets.filter(item =>  (item.origin === origin && item.destination === destination) && (item.category === category && item.departure_time >= newDerpartureDateTime));
     setDisplayTickets(filteredTickets);
   }
 
@@ -227,14 +221,15 @@ function FilterTicket() {
                         <Col xs={12} sm={6} md={3}>
                           <Form.Group className='mt-4'>
                             <div className="form-check form-switch">
-                              <input className="form-check-input" type="checkbox" defaultValue id="flexCheckDefault" name="checkbox" checked={checked} 
-                              onChange={() => {
-                                  if(checked){
-                                  setText('')
-                                }
-                                  setChecked(!checked)
-                                }
-                              } 
+                              <input className="form-check-input" type="checkbox" id="flexCheckDefault" name="checkbox" value="round_trip"
+                              onChange={(e) => setCategory(e.target.value)}
+                              // onChange={() => {
+                              //     if(checked){
+                              //     setText('')
+                              //   }
+                              //     setChecked(!checked)
+                              //   }
+                              // } 
                               />
                                <label className="form-check-label" htmlFor="flexCheckDefault" style={{color:"white"}}> Round Trip?</label>
                             </div>
@@ -242,16 +237,31 @@ function FilterTicket() {
                           </Form.Group>
                         </Col>
                         <Col xs={12} sm={6} md={3}>
-                        <Form.Group>
+                        {/* <Form.Group className='mt-4'>
+                        <div className="form-check form-switch">
+                              <input className="form-check-input" type="checkbox" id="flexCheckDefault" name="checkbox" value="one_Way"
+                              onChange={(e) => setCategory(e.target.value)}
+                              // onChange={() => {
+                              //     if(checked){
+                              //     setText('')
+                              //   }
+                              //     setChecked(!checked)
+                              //   }
+                              // } 
+                              />
+                               <label className="form-check-label" htmlFor="flexCheckDefault" style={{color:"white"}}> One Way?</label>
+                            </div>
+                            </Form.Group> */}
+                        {/* <Form.Group>
                             <Form.Label htmlFor="return" style={{color:"white"}}>Return Date</Form.Label>
                             <Form.Control type="date" name="return" id="return" aria-describedby="return" disabled={!checked}  onChange={(e) => setReturnDate(e.target.value)}/>
-                        </Form.Group>
+                        </Form.Group> */}
                         </Col>
                         <Col xs={12} sm={6} md={3}>
-                        <Form.Group>
+                        {/* <Form.Group>
                             <Form.Label htmlFor="returnTime" style={{color:"white"}}>Return Time</Form.Label>
                             <Form.Control type="time" name="returnTime" id="returnTime" aria-describedby="returnTime" disabled={!checked}  onChange={(e) => setReturnTime(e.target.value)}/>
-                        </Form.Group>
+                        </Form.Group> */}
                         </Col>
                         <Col xs={12} sm={6} md={3}>
                             {/* <button onClick={showTicketsData}>carii</button> */}
