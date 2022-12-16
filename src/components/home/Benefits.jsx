@@ -89,14 +89,14 @@ function Benefits() {
                  </Scrollable>
              </Col>
              <Col lg={6}>
-                 <img src={Frame2} alt="frame 2" className='mx-auto'/>
+                 <img src={Frame2} alt="frame 2" className='mx-auto img-frame'/>
              </Col>
          </Row>
      </SectionBenefits>
      <SectionBenefits>
          <Row>
              <Col lg={6}>
-                 <img src={Frame3} alt="frame 3" className='mx-auto'/>
+                 <img src={Frame3} alt="frame 3" className='mx-auto img-frame'/>
              </Col>
              <Col lg={6}>
                  <TitleBenefits>Dapatkan Harga Tiket Pesawat Murah ke Destinasi Favorit Anda</TitleBenefits>
