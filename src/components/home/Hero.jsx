@@ -10,11 +10,7 @@ const WrapperHero = styled.section`
 
 const WrapperButtonHero = styled.section`
     margin: 0;
-    position: absolute;
-    top: 65%;
-    left: 50%;
-    -ms-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
+    position: relative;
 `;
 
 const ButtonHero = styled.button`
@@ -25,14 +21,14 @@ const ButtonHero = styled.button`
     padding: 0.25em 5em;
     border: 2px solid #FFE15D;
     border-radius: 30px;
-    margin-right: 10px;
+    margin-top: 250px;
     display: block;
 `;
 function Hero() {
   return (
     <WrapperHero className='hero-wrapper'>
-        <WrapperButtonHero>
-        <Link to="/filter"><ButtonHero>Start Booking</ButtonHero></Link>
+        <WrapperButtonHero >
+        <Link to="/filter"><ButtonHero className='text-center mx-auto'>Start Booking</ButtonHero></Link>
         </WrapperButtonHero>    
     </WrapperHero>
   )
