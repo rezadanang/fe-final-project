@@ -56,3 +56,9 @@ ul#myRow .li-icon {
   border: 0;
   box-shadow: 0 0 0 0.1rem green !important;
 }
+
+@media only screen and (max-width: 600px) {
+  .img-frame{
+    width: 350px;
+  }
+}

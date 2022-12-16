@@ -57,7 +57,7 @@ function Benefits() {
      <SectionBenefits>
          <Row>
              <Col lg={6}>
-                 <img src={Frame1} alt="frame 1" className='mx-auto'/>
+                 <img src={Frame1} alt="frame 1" className='mx-auto img-frame'/>
              </Col>
              <Col lg={6}>
                  
