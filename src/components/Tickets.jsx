@@ -165,7 +165,7 @@ function Tickets() {
                   <p>Arrival: <Moment format='HH:mm DD-MM-YYYY'>{item.arrival_time}</Moment></p>
                   </Col>
                   <Col sm={true} className='text-center'>
-                  <p>Return: <Moment format='HH:mm DD-MM-YYYY'>{item.return_time}</Moment></p>
+                  <p>Category: {item.category}</p>
                   </Col>
                   <Col sm={true}>
                    

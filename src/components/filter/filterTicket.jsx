@@ -184,6 +184,7 @@ function FilterTicket() {
                         <Form.Group>
                             <Form.Label htmlFor="origin" style={{color:"white"}}>Origin</Form.Label>
                             <Form.Select aria-label="origin" onChange={(e) => setOrigin(e.target.value)}>
+                              <option value="" selected disabled>Select Origin</option>
                               <option value="Jakarta">Jakarta</option>
                               <option value="Medan">Medan</option>
                               <option value="Yogyakarta">Yogyakarta</option>
@@ -198,6 +199,7 @@ function FilterTicket() {
                         <Form.Group>
                             <Form.Label htmlFor="destination" style={{color:"white"}}>Destination</Form.Label>
                             <Form.Select aria-label="destination" onChange={(e) => setDestination(e.target.value)}>
+                              <option value="" selected disabled>Select Destination</option>
                               <option value="Jakarta">Jakarta</option>
                               <option value="Medan">Medan</option>
                               <option value="Yogyakarta">Yogyakarta</option>
