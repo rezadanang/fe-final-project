@@ -49,6 +49,8 @@ const TextBottomSignUp = styled.p`
 function SignUp() {
     const navigate = useNavigate();
 
+    const [error, setError] = useState('');
+
     const [validated, setValidated] = useState(false);
     const [values, setValues] = useState({
         name: "",
@@ -75,7 +77,11 @@ function SignUp() {
             console.log(res.data);
             navigate("/login");
     })
-        .catch((err) => console.error(err));
+        .catch((err) => {
+            const errMsg = err.response.data.error.message
+            // console.log(errMsg)
+            setError(errMsg);
+        });
     }
 
     const handlePasswordVisibility = () =>{
@@ -89,6 +95,9 @@ function SignUp() {
     <>
     <BodySignUp>
         <WrapperFormSignUp>
+        <div className='alert danger-alert' role='alert'>
+                <p className='text-danger text-center'>{error}</p>
+        </div>
         <TitleSignUp style={{textAlign: "center"}}>Sign Up</TitleSignUp>
         <Form noValidate validated={validated} onSubmit={handleSubmit}>
             <Form.Group className="mb-3" required>

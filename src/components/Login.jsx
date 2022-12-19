@@ -62,10 +62,12 @@ const TextBottomLogin = styled.p`
 
 function Login() {
 
+    // stateErr = {};
+
     const navigate = useNavigate();
 
     const getToken=localStorage.getItem("token");
-
+    const [error, setError] = useState('');
     const [validated, setValidated] = useState(false);
     const [values, setValues] = useState({
         email: "",
@@ -92,7 +94,12 @@ function Login() {
             localStorage.setItem("emailUser", res.data.user);
             navigate("/");
     })
-        .catch((err) => console.error(err));
+        .catch((err) => {
+            const errMsg = err.response.data.error.message
+            // console.log(errMsg)
+            setError(errMsg);
+        });
+        // .catch((err) => console.error(err));
     }
 
     const handlePasswordVisibility = () =>{
@@ -102,6 +109,8 @@ function Login() {
         });
     };
 
+
+
    
   
   return (
@@ -109,8 +118,12 @@ function Login() {
     <div>
          {
         getToken? <IndexAfterLogin /> :
+        <>
         <BodyLogin>
-        <WrapperFormLogin>
+        <WrapperFormLogin> 
+        <div className='alert danger-alert' role='alert'>
+                <p className='text-danger text-center'>{error}</p>
+        </div>
         <TitleLogin style={{textAlign: "center"}}>Sign In</TitleLogin>
         <Form noValidate validated={validated} onSubmit={handleSubmit}>
                 <Form.Group className="mb-3" required>
@@ -146,6 +159,7 @@ function Login() {
       </form> */}
       </WrapperFormLogin>
       </BodyLogin>
+      </>
     }
     </div>
     
