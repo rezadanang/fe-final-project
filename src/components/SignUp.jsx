@@ -124,31 +124,6 @@ function SignUp() {
     </WrapperFormSignUp>
 </BodySignUp>
     </>
-
-
-    // <div className='container'>
-    // <form onSubmit={handleSubmit}>
-    //     <div className="form-group">
-    //       <label htmlFor="name">Name</label>
-    //       <input type="text" className="form-control" id="name" aria-describedby="name" placeholder="Enter name" onChange={(e)=>setValues({...values,name:e.target.value})} />
-    //       <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small>
-    //     </div>
-    //     <div className="form-group">
-    //       <label htmlFor="email">Email address</label>
-    //       <input type="email" className="form-control" id="email" aria-describedby="email" placeholder="Enter email" onChange={(e)=>setValues({...values,email:e.target.value})} />
-    //       <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small>
-    //     </div>
-    //     <div className="form-group">
-    //       <label htmlFor="password">Password</label>
-    //       <input type="password" className="form-control" id="password" placeholder="Password" onChange={(e)=>setValues({...values,password:e.target.value})} />
-    //     </div>
-    //     <div className="form-check">
-    //       <input type="checkbox" className="form-check-input" id="exampleCheck1" />
-    //       <label className="form-check-label" htmlFor="exampleCheck1">Check me out</label>
-    //     </div>
-    //     <button type="submit" className="btn btn-primary">Submit</button>
-    //   </form>
-    // </div>
   )
 }
 

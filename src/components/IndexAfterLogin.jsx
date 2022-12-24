@@ -52,9 +52,9 @@ function IndexAfterLogin() {
               <Offcanvas.Body>
                 <Nav className="justify-content-center flex-grow-1">
                   <Nav.Link><Link to="/allflights" style={{textDecoration:"none"}}>All Flights</Link></Nav.Link>
-                  <Nav.Link href="#action2">Schedule</Nav.Link>
-                  <Nav.Link href="#action2">Passenger</Nav.Link>
-                  <Nav.Link href="#action2">Your Orders</Nav.Link>
+                  <Nav.Link><Link to="/wishlist-order" style={{textDecoration:"none"}}>Wishlist</Link></Nav.Link>
+                  <Nav.Link><Link to="/notification-order" style={{textDecoration:"none"}}>Notifications</Link></Nav.Link>
+                  <Nav.Link><Link to="/history-order" style={{textDecoration:"none"}}>Your Orders</Link></Nav.Link>
                 </Nav>
                 <Nav className="justify-content-center">
                   <Nav.Link href="#action1">Welcome back, {getEmailUser}</Nav.Link>

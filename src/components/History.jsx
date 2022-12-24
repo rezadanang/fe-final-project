@@ -8,8 +8,6 @@ import Login from '../components/Login';
 import axios from 'axios'
 import Moment from 'react-moment';
 import Footer from './home/Footer';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHeart } from '@fortawesome/free-solid-svg-icons';
 
 
 const ButtonSignOut = styled.button`
@@ -30,20 +28,7 @@ const WrapperTicket = styled.div`
   background: #F5F6FA;
   border-radius: 10px;
 `;
-
-const ButtonBooking = styled.button`
-    background-color: #FFE15D;
-    color: #4600FF;
-    font-size: 1em;
-    font-weight: bold;
-    padding: 0.25em 1em;
-    border: 2px solid #FFE15D;
-    border-radius: 30px;
-    display: block;
-    text-decoration: none;
-`;
-
-function Tickets() {
+function History() {
     const getEmailUser = localStorage.getItem("emailUser");
     const getToken = localStorage.getItem("token");
     const logOut = () => {
@@ -53,42 +38,19 @@ function Tickets() {
 
     const [tickets, setTickets] = useState('');
     const [searchTickets, setSearchTickets] = useState('');
-    let notFound = <h1>Tidak ditemukan</h1>;
 
-    
-
-
-    // const getData = () => {
-    //   axios.get("https://final-project-be-production-6de7.up.railway.app/api/v1/tickets", { headers: {"Authorization" : `Bearer ${getToken}`} })
-    //   .then((response) => response.json())
-    //   .then((data) => {
-        
-    //     setData(data)
-    //     console.log(setData)
-    //   })
-    //   .catch((err) => {
-    //     console.log(err)
-    //   });
-    // }
-
-    
     useEffect(() => {
-      axios.get("https://final-project-be-production-6de7.up.railway.app/api/v1/tickets", { headers: {"Authorization" : `Bearer ${getToken}`} })
-      .then(res => {
-        console.log(res.data.data);
-        const datas = res.data.data;
-        setTickets(datas);
-     
-      })
-      .catch((err) => {
-        console.log(err)
-      });
-  });
-
-
-  
-    
-    console.log(getToken)
+        axios.get("https://final-project-be-production-6de7.up.railway.app/api/v1/orders", { headers: {"Authorization" : `Bearer ${getToken}`} })
+        .then(res => {
+          console.log(res.data.data);
+          const datas = res.data.data;
+          setTickets(datas);
+       
+        })
+        .catch((err) => {
+          console.log(err)
+        });
+    });
     if (getToken) {
         return (
         <>
@@ -127,11 +89,11 @@ function Tickets() {
         <Container>
           <Row>
         <Col lg={6}>
-          <h2 className='mt-3 text-center'>Cari Penerbanganmu</h2>
+          <h2 className='mt-3 text-center'>Orderanmu</h2>
         </Col>
         <Col lg={6}>
         <InputGroup className='my-3'>
-          <Form.Control placeholder='Search Flights' onChange={(e) => setSearchTickets(e.target.value)}/>
+          <Form.Control placeholder='Cari history pesananmu' onChange={(e) => setSearchTickets(e.target.value)}/>
         </InputGroup>
         </Col>
         </Row>
@@ -147,7 +109,7 @@ function Tickets() {
                 if(searchTickets === ""){
             
                   return value
-                } else if(value.airplane_name.toLowerCase().includes(searchTickets.toLowerCase())){
+                } else if(value.idTicket.toLowerCase().includes(searchTickets.toLowerCase())){
                   return value
                 } else if(value.origin.toLowerCase().includes(searchTickets.toLowerCase())){
                   return value
@@ -160,16 +122,16 @@ function Tickets() {
               <WrapperTicket>
                 <Row>
                   <Col sm={true} className='text-center'>
-                    <p>Airline: {item.airplane_name}</p>
+                    <p>Id Ticket: {item.ticketId}</p>
                   </Col>
                   <Col sm={true} className='text-center'>
-                  <p>From: {item.origin}</p>
+                  <p>Order Date: <Moment format='HH:mm DD-MM-YYYY'>{item.order_date}</Moment></p>
                   </Col>
                   <Col sm={true} className='text-center'>
-                  <p>To: {item.destination}</p>
+                  <p>Create Order: <Moment format='HH:mm DD-MM-YYYY'>{item.createdAt}</Moment></p>
                   </Col>
                   <Col sm={true} className='text-center'>
-                  <p>Rp.{item.price}</p>
+                  <p>Update Order: <Moment format='HH:mm DD-MM-YYYY'>{item.updatedAt}</Moment></p>
                   </Col>
                 </Row>
                 <Row className='mt-4'>
@@ -183,12 +145,7 @@ function Tickets() {
                   <p>Category: {item.category}</p>
                   </Col>
                   <Col sm={true}>
-                    <Link to={"order/" + item.id}>
-                    <ButtonBooking className='mx-auto'>Booking</ButtonBooking>
-                    </Link>
-                    <Link to={"wishlist/" + item.id}>
-                      <FontAwesomeIcon style={{color:"red"}} icon={faHeart} />
-                    </Link>
+                   
                   </Col>
                 </Row>
               </WrapperTicket>
@@ -197,7 +154,7 @@ function Tickets() {
                 
             } 
 
-            <Footer />
+        <Footer />
             </>
             )
       } 
@@ -207,4 +164,4 @@ function Tickets() {
         )}
 }
 
-export default Tickets
+export default History

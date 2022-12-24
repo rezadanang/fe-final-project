@@ -3,10 +3,13 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import styled from 'styled-components';
 import { Container, Col, Row, Form, Nav, Navbar, Offcanvas } from 'react-bootstrap';
 import Logo from "../../assets/logo.png"  
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Login from '../Login';
 import axios from 'axios'
 import Moment from 'react-moment';
+import Footer from '../home/Footer';
+import { faHeart } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 
 const WrapperHero = styled.section`
@@ -20,9 +23,6 @@ const Wrapper = styled.section`
   border-radius: 10px;
 `;
 
-const TitleFormFilter = styled.p`
-  color: white;
-`;
 
 const ButtonFilter = styled.button`
     background-color: #FFE15D;
@@ -54,16 +54,6 @@ const WrapperTicket = styled.div`
   background: #F5F6FA;
   border-radius: 10px;
 `;
-const ButtonNavTab = styled.button`
-    background-color: #FFE15D;
-    color: #4600FF;
-    font-size: 1em;
-    font-weight: bold;
-    padding: 0.25em 1em;
-    border: 2px solid #FFE15D;
-    border-radius: 30px;
-    display: block;
-`;
 
 const ButtonBooking = styled.button`
     background-color: #FFE15D;
@@ -74,11 +64,13 @@ const ButtonBooking = styled.button`
     border: 2px solid #FFE15D;
     border-radius: 30px;
     display: block;
+    text-decoration: none;
 `;
 
 function FilterTicket() {
     const getEmailUser = localStorage.getItem("emailUser");
     const getToken = localStorage.getItem("token");
+    const navigate = useNavigate();
     const logOut = () => {
         localStorage.clear();
         window.location.reload()
@@ -86,6 +78,7 @@ function FilterTicket() {
 
     const [tickets, setTickets] = useState([]);
     const [displayTickets, setDisplayTickets] = useState([]);
+    const [idTicket, setIdTicket] = useState("");
     const [origin, setOrigin] = useState('');
     const [destination, setDestination] = useState('');
     const [derpartureDate, setDerpartureDate] = useState('');
@@ -94,28 +87,14 @@ function FilterTicket() {
 
     const newDerpartureDateTime = derpartureDate + derpartureTime;
 
-
-
-
-    // const getData = () => {
-    //   axios.get("https://final-project-be-production-6de7.up.railway.app/api/v1/tickets", { headers: {"Authorization" : `Bearer ${getToken}`} })
-    //   .then((response) => response.json())
-    //   .then((data) => {
-        
-    //     setData(data)
-    //     console.log(setData)
-    //   })
-    //   .catch((err) => {
-    //     console.log(err)
-    //   });
-    // }
-
     
     useEffect(() => {
       axios.get("https://final-project-be-production-6de7.up.railway.app/api/v1/tickets", { headers: {"Authorization" : `Bearer ${getToken}`} })
       .then(res => {
-        // console.log(res.data.data);
+        // console.log(res.data.data.obj.airplane_name);
         const datas = res.data.data;
+      
+        // setIdTicket(idTick)
         setTickets(datas);
       })
       .catch((err) => {
@@ -123,17 +102,21 @@ function FilterTicket() {
       });
   });
 
+
+
   const showTicketsData = (e) => {
     e.preventDefault();
     // console.log('dest', newDerpartureDateTime);
     // console.log('ret', newReturnDateTime);
+    const idTick = tickets.map(item => item.id)
     const filteredTickets = tickets.filter(item =>  (item.origin === origin && item.destination === destination) && (item.category === category && item.departure_time >= newDerpartureDateTime));
     setDisplayTickets(filteredTickets);
+    setIdTicket(idTick);
   }
 
   
     
-    console.log(getToken)
+    // console.log(getToken)
     if (getToken) {
         return (
         <>
@@ -156,9 +139,9 @@ function FilterTicket() {
               <Offcanvas.Body>
                 <Nav className="justify-content-center flex-grow-1">
                   <Nav.Link><Link to="/allflights" style={{textDecoration:"none"}}>All Flights</Link></Nav.Link>
-                  <Nav.Link href="#action2">Schedule</Nav.Link>
-                  <Nav.Link href="#action2">Passenger</Nav.Link>
-                  <Nav.Link href="#action2">Your Orders</Nav.Link>
+                  <Nav.Link><Link to="/wishlist-order" style={{textDecoration:"none"}}>Wishlist</Link></Nav.Link>
+                  <Nav.Link><Link to="/notification-order" style={{textDecoration:"none"}}>Notifications</Link></Nav.Link>
+                  <Nav.Link><Link to="/history-order" style={{textDecoration:"none"}}>Your Orders</Link></Nav.Link>
                 </Nav>
                 <Nav className="justify-content-center">
                   <Nav.Link href="#action1">Welcome back, {getEmailUser}</Nav.Link>
@@ -305,7 +288,12 @@ function FilterTicket() {
                   <p>Category: {item.category}</p>
                   </Col>
                   <Col sm={true}>
+                    <Link to={"order/" + item.id}>
                     <ButtonBooking className='mx-auto'>Booking</ButtonBooking>
+                    </Link>
+                    <Link to={"wishlist/" + item.id}>
+                      <FontAwesomeIcon style={{color:"red"}} icon={faHeart} />
+                    </Link>
                   </Col>
                 </Row>
               </WrapperTicket>
@@ -315,7 +303,7 @@ function FilterTicket() {
               )) : <p className="text-center mt-5">Tiket Tidak Tersedia</p>
                 
             }
-        
+        <Footer />
         </>
             )
       } 

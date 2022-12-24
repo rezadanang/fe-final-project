@@ -57,6 +57,10 @@ ul#myRow .li-icon {
   box-shadow: 0 0 0 0.1rem green !important;
 }
 
+.table-overflow{
+  font-size: 10px;
+}
+
 @media only screen and (max-width: 600px) {
   .img-frame{
     width: 350px;
