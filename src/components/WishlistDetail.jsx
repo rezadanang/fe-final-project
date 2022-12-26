@@ -8,6 +8,8 @@ import Login from '../components/Login';
 import axios from 'axios'
 import Moment from 'react-moment';
 import Footer from './home/Footer';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCalendarDay, faPlaneArrival, faPlaneDeparture, faTicket } from '@fortawesome/free-solid-svg-icons';
 
 const ButtonSignOut = styled.button`
     background-color: #FFE15D;
@@ -26,6 +28,16 @@ const WrapperTicket = styled.div`
   padding: 2em;
   background: #F5F6FA;
   border-radius: 10px;
+`;
+
+const ButtonDeleteWishlist = styled.button`
+    background-color: red;
+    color: white;
+    font-size: 1em;
+    padding: 0.25em 1em;
+    border-radius: 30px;
+    border: none;
+    text-decoration: none;
 `;
 
 function WishlistDetail() {
@@ -121,32 +133,27 @@ function WishlistDetail() {
               <Container>
               <WrapperTicket>
                 <Row>
-                  <Col sm={true} className='text-center'>
-                    <p>Id Ticket: {item.ticketId}</p>
+                  <Col xs={12} md={4} lg={4} className='text-center'>
+                    <p><FontAwesomeIcon icon={faTicket} /> Id Ticket: {item.ticketId}</p>
                   </Col>
-                  <Col sm={true} className='text-center'>
-                  <p>Create Order: <Moment format='HH:mm DD-MM-YYYY'>{item.createdAt}</Moment></p>
+                  <Col xs={12} md={4} lg={4} className='text-center'>
+                    <p><FontAwesomeIcon icon={faCalendarDay} /> Create Order: <Moment format='HH:mm DD-MM-YYYY'>{item.createdAt}</Moment></p>
                   </Col>
-                  <Col sm={true} className='text-center'>
-                  <p>Update Order: <Moment format='HH:mm DD-MM-YYYY'>{item.updatedAt}</Moment></p>
-                  </Col>
-                  <Col sm={true} className='text-center'>
-                  <p>Rp.{item.price}</p>
+                  <Col xs={12} md={4} lg={4} className='text-center'>
+                    <p><FontAwesomeIcon icon={faCalendarDay} /> Update Order: <Moment format='HH:mm DD-MM-YYYY'>{item.updatedAt}</Moment></p>
                   </Col>
                 </Row>
                 <Row className='mt-4'>
-                  <Col sm={true} className='text-center'>
-                    <p>Derparture: <Moment format='HH:mm DD-MM-YYYY'>{item.departure_time}</Moment></p>
+                  <Col xs={12} md={4} lg={4} className='text-center'>
+                    <p><FontAwesomeIcon icon={faPlaneDeparture} /> Derparture: <Moment format='HH:mm DD-MM-YYYY'>{item.departure_time}</Moment></p>
                   </Col>
-                  <Col sm={true} className='text-center'>
-                  <p>Arrival: <Moment format='HH:mm DD-MM-YYYY'>{item.arrival_time}</Moment></p>
+                  <Col xs={12} md={4} lg={4} className='text-center'>
+                    <p><FontAwesomeIcon icon={faPlaneArrival} /> Arrival: <Moment format='HH:mm DD-MM-YYYY'>{item.arrival_time}</Moment></p>
                   </Col>
-                  <Col sm={true} className='text-center'>
-                  <p>Category: {item.category}</p>
+                  <Col xs={12} md={4} lg={4} className='text-center'>
+                    <Link to={"delete/" + item.id}><ButtonDeleteWishlist>Delete Wishlist</ButtonDeleteWishlist></Link>
                   </Col>
-                  <Col sm={true}>
-                   
-                  </Col>
+                  
                 </Row>
               </WrapperTicket>
               </Container>

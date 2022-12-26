@@ -8,7 +8,7 @@ import Login from '../Login';
 import axios from 'axios'
 import Moment from 'react-moment';
 import Footer from '../home/Footer';
-import { faHeart } from '@fortawesome/free-solid-svg-icons';
+import { faCheckCircle, faCircleDollarToSlot, faCity, faClock, faHeart, faPlane, faPlaneArrival, faPlaneDeparture } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 
@@ -108,10 +108,10 @@ function FilterTicket() {
     e.preventDefault();
     // console.log('dest', newDerpartureDateTime);
     // console.log('ret', newReturnDateTime);
-    const idTick = tickets.map(item => item.id)
+  
     const filteredTickets = tickets.filter(item =>  (item.origin === origin && item.destination === destination) && (item.category === category && item.departure_time >= newDerpartureDateTime));
     setDisplayTickets(filteredTickets);
-    setIdTicket(idTick);
+
   }
 
   
@@ -159,7 +159,7 @@ function FilterTicket() {
                    <Row>
                         <Col xs={12} sm={6} md={3}>
                         <Form.Group>
-                            <Form.Label htmlFor="origin" style={{color:"white"}}>Origin</Form.Label>
+                            <Form.Label htmlFor="origin" style={{color:"white"}}><FontAwesomeIcon icon={faCity} /> Origin</Form.Label>
                             <Form.Select aria-label="origin" onChange={(e) => setOrigin(e.target.value)}>
                               <option value="" selected disabled>Select Origin</option>
                               <option value="Jakarta">Jakarta</option>
@@ -174,7 +174,7 @@ function FilterTicket() {
                         </Col>
                         <Col xs={12} sm={6} md={3}>
                         <Form.Group>
-                            <Form.Label htmlFor="destination" style={{color:"white"}}>Destination</Form.Label>
+                            <Form.Label htmlFor="destination" style={{color:"white"}}><FontAwesomeIcon icon={faCity} /> Destination</Form.Label>
                             <Form.Select aria-label="destination" onChange={(e) => setDestination(e.target.value)}>
                               <option value="" selected disabled>Select Destination</option>
                               <option value="Jakarta">Jakarta</option>
@@ -189,13 +189,13 @@ function FilterTicket() {
                         </Col>
                         <Col xs={12} sm={6} md={3}>
                         <Form.Group>
-                            <Form.Label htmlFor="derpartureDate" style={{color:"white"}}>Derparture Date</Form.Label>
+                            <Form.Label htmlFor="derpartureDate" style={{color:"white"}}><FontAwesomeIcon icon={faPlaneDeparture} /> Derparture Date</Form.Label>
                             <Form.Control type="date" id="derpartureDate" aria-describedby="derpartureDate" onChange={(e) => setDerpartureDate(e.target.value)} />
                           </Form.Group>
                         </Col>
                         <Col xs={12} sm={6} md={3}>
                         <Form.Group>
-                            <Form.Label htmlFor="derpartureTime" style={{color:"white"}}>Derparture Time</Form.Label>
+                            <Form.Label htmlFor="derpartureTime" style={{color:"white"}}><FontAwesomeIcon icon={faClock} /> Derparture Time</Form.Label>
                             <Form.Control type="time" id="derpartureTime" aria-describedby="derpartureTime" onChange={(e) => setDerpartureTime(e.target.value)} />
                           </Form.Group>
                         </Col>
@@ -265,27 +265,27 @@ function FilterTicket() {
               <WrapperTicket className='mt-3'>
                 <Row>
                   <Col sm={true} className='text-center'>
-                    <p>Airline: {item.airplane_name}</p>
+                    <p><FontAwesomeIcon icon={faPlane} /> Airline: {item.airplane_name}</p>
                   </Col>
                   <Col sm={true} className='text-center'>
-                  <p>From: {item.origin}</p>
+                  <p><FontAwesomeIcon icon={faCity} /> From: {item.origin}</p>
                   </Col>
                   <Col sm={true} className='text-center'>
-                  <p>To: {item.destination}</p>
+                  <p><FontAwesomeIcon icon={faCity} /> To: {item.destination}</p>
                   </Col>
                   <Col sm={true} className='text-center'>
-                  <p>Rp.{item.price}</p>
+                  <p><FontAwesomeIcon icon={faCircleDollarToSlot} /> Rp.{item.price},-</p>
                   </Col>
                 </Row>
                 <Row className='mt-4'>
                   <Col sm={true} className='text-center'>
-                    <p>Derparture: <Moment format='HH:mm DD-MM-YYYY'>{item.departure_time}</Moment></p>
+                    <p><FontAwesomeIcon icon={faPlaneDeparture} /> Derparture: <Moment format='HH:mm DD-MM-YYYY'>{item.departure_time}</Moment></p>
                   </Col>
                   <Col sm={true} className='text-center'>
-                  <p>Arrival: <Moment format='HH:mm DD-MM-YYYY'>{item.arrival_time}</Moment></p>
+                  <p><FontAwesomeIcon icon={faPlaneArrival} /> Arrival: <Moment format='HH:mm DD-MM-YYYY'>{item.arrival_time}</Moment></p>
                   </Col>
                   <Col sm={true} className='text-center'>
-                  <p>Category: {item.category}</p>
+                  <p><FontAwesomeIcon icon={faCheckCircle} style={{color:"green"}} /> Category: {item.category}</p>
                   </Col>
                   <Col sm={true}>
                     <Link to={"order/" + item.id}>

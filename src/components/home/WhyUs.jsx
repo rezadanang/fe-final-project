@@ -1,3 +1,5 @@
+import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react'
 import { Row, Container, Col, Accordion } from 'react-bootstrap';
 import styled from 'styled-components';
@@ -20,12 +22,12 @@ function WhyUs() {
                 <Row>
                     <Col lg={6}>
                         <TextLeft>Reservasi tiket maskapai harga lebih murah? Kami solusinya</TextLeft>
-                        <TextLeft>✓ mudah</TextLeft>
-                        <TextLeft>✓ praktis</TextLeft>
-                        <TextLeft>✓ aman</TextLeft>
-                        <TextLeft>✓ nyaman</TextLeft>
-                        <TextLeft>✓ cepat</TextLeft>
-                        <TextLeft>✓ Terjangkau</TextLeft>
+                        <TextLeft><FontAwesomeIcon icon={faCheckCircle} style={{color:"greenyellow"}} /> Mudah</TextLeft>
+                        <TextLeft><FontAwesomeIcon icon={faCheckCircle} style={{color:"greenyellow"}} /> Praktis</TextLeft>
+                        <TextLeft><FontAwesomeIcon icon={faCheckCircle} style={{color:"greenyellow"}} /> Aman</TextLeft>
+                        <TextLeft><FontAwesomeIcon icon={faCheckCircle} style={{color:"greenyellow"}} /> Nyaman</TextLeft>
+                        <TextLeft><FontAwesomeIcon icon={faCheckCircle} style={{color:"greenyellow"}} /> Cepat</TextLeft>
+                        <TextLeft><FontAwesomeIcon icon={faCheckCircle} style={{color:"greenyellow"}} /> Terjangkau</TextLeft>
                     </Col>
                     <Col lg={6}>
                         <Accordion>

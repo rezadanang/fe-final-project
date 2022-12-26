@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import 'bootstrap/dist/css/bootstrap.css';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
@@ -11,6 +11,7 @@ import Benefits from './home/Benefits';
 import Footer from './home/Footer';
 import Hero from './home/Hero';
 import WhyUs from './home/WhyUs';
+import axios from 'axios';
 
 const ButtonSignOut = styled.button`
     background-color: #FFE15D;
@@ -26,11 +27,28 @@ const ButtonSignOut = styled.button`
 
 function IndexAfterLogin() {
   const getEmailUser = localStorage.getItem("emailUser");
+  const getToken = localStorage.getItem("token");
+  const [user, setUser] = useState([]);
 
   const logOut = () => {
     localStorage.clear();
     window.location.reload()
   }
+
+  useEffect(() => {
+    axios.get("https://final-project-be-production-6de7.up.railway.app/api/v1/users", { headers: {"Authorization" : `Bearer ${getToken}`} })
+    .then(res => {
+      // console.log(res.data.data.obj.airplane_name);
+      const datas = res.data.data;
+    
+      // setIdTicket(idTick)
+      setUser(datas);
+    })
+    .catch((err) => {
+      console.log(err)
+    });
+    console.log(user);
+});
   return (
     <>
           {['lg'].map((expand) => (

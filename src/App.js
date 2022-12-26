@@ -15,6 +15,7 @@ import History from './components/History';
 import Wishlist from './components/Wishlist';
 import WishlistDetail from './components/WishlistDetail';
 import Notifications from './components/Notifications';
+import DeleteWishlist from './components/DeleteWishlist';
 
 
 function App() {
@@ -28,6 +29,7 @@ function App() {
         <Route path='/filter' element={<FilterTicket />} />
         <Route path='/history-order' element={<History/>} />
         <Route path='/wishlist-order' element={<WishlistDetail/>} />
+        <Route path='/wishlist-order/delete/:id' element={<DeleteWishlist/>} />
         <Route path='/notification-order' element={<Notifications/>} />
         <Route path='/filter/wishlist/:id' element={<Wishlist/>} />
         <Route path='/filter/order/:id' element={<Order/>} />

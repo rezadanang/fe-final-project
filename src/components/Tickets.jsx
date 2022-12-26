@@ -9,7 +9,7 @@ import axios from 'axios'
 import Moment from 'react-moment';
 import Footer from './home/Footer';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHeart } from '@fortawesome/free-solid-svg-icons';
+import { faCheckCircle, faCity, faHeart, faPlane, faPlaneArrival, faPlaneDeparture } from '@fortawesome/free-solid-svg-icons';
 
 
 const ButtonSignOut = styled.button`
@@ -160,13 +160,13 @@ function Tickets() {
               <WrapperTicket>
                 <Row>
                   <Col sm={true} className='text-center'>
-                    <p>Airline: {item.airplane_name}</p>
+                    <p><FontAwesomeIcon icon={faPlane} /> Airline: {item.airplane_name}</p>
                   </Col>
                   <Col sm={true} className='text-center'>
-                  <p>From: {item.origin}</p>
+                  <p><FontAwesomeIcon icon={faCity} /> From: {item.origin}</p>
                   </Col>
                   <Col sm={true} className='text-center'>
-                  <p>To: {item.destination}</p>
+                  <p><FontAwesomeIcon icon={faCity} /> To: {item.destination}</p>
                   </Col>
                   <Col sm={true} className='text-center'>
                   <p>Rp.{item.price}</p>
@@ -174,13 +174,13 @@ function Tickets() {
                 </Row>
                 <Row className='mt-4'>
                   <Col sm={true} className='text-center'>
-                    <p>Derparture: <Moment format='HH:mm DD-MM-YYYY'>{item.departure_time}</Moment></p>
+                    <p><FontAwesomeIcon icon={faPlaneDeparture} /> Derparture: <Moment format='HH:mm DD-MM-YYYY'>{item.departure_time}</Moment></p>
                   </Col>
                   <Col sm={true} className='text-center'>
-                  <p>Arrival: <Moment format='HH:mm DD-MM-YYYY'>{item.arrival_time}</Moment></p>
+                  <p><FontAwesomeIcon icon={faPlaneArrival} /> Arrival: <Moment format='HH:mm DD-MM-YYYY'>{item.arrival_time}</Moment></p>
                   </Col>
                   <Col sm={true} className='text-center'>
-                  <p>Category: {item.category}</p>
+                  <p><FontAwesomeIcon icon={faCheckCircle} style={{color:"green"}} /> Category: {item.category}</p>
                   </Col>
                   <Col sm={true}>
                     <Link to={"order/" + item.id}>

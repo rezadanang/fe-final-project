@@ -4,8 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import Moment from 'react-moment';
 import moment from 'moment'
 
-function Order() {
-
+function DeleteWishlist() {
     const getToken = localStorage.getItem("token");
 
     const [idTickets, setIdTickets] = useState("");
@@ -29,10 +28,10 @@ function Order() {
         getTicketsById();
       }, []);
 
-      const orderTicket = async (e) => {
+      const deleteWishlistTicket = async (e) => {
         e.preventDefault();
         try{
-          await axios.post(`https://final-project-be-production-6de7.up.railway.app/api/v1/tickets/${id}/order`, {
+          await axios.delete(`https://final-project-be-production-6de7.up.railway.app/api/v1/wishlists/delete/${id}`, {
             idTickets: id
           },
           {
@@ -41,7 +40,7 @@ function Order() {
           }
         })
         navigate("/");
-        alert("berhasil order")
+        alert("berhasil delete wishlist")
         }
         
         catch (err) {
@@ -50,7 +49,7 @@ function Order() {
     };
 
       const getTicketsById = async () => {
-        const response = await axios.get(`https://final-project-be-production-6de7.up.railway.app/api/v1/tickets/${id}`, { headers: {"Authorization" : `Bearer ${getToken}`} });
+        const response = await axios.get(`https://final-project-be-production-6de7.up.railway.app/api/v1/wishlists/${id}`, { headers: {"Authorization" : `Bearer ${getToken}`} });
         setIdTickets(response.data.data.id);
         setAirplane(response.data.data.airplane_name);
         setDepartureTime(response.data.data.departure_time)
@@ -61,9 +60,6 @@ function Order() {
         setOrigin(response.data.data.origin)
         setDestination(response.data.data.destination)
       };
-
-      
-    
   return (
     <>
     <div>Order</div>
@@ -107,15 +103,14 @@ function Order() {
       <input type="text" class="form-control" value={destination} placeholder="null" disabled />
     </div>
     <div className="field">
-           <button className="btn btn-primary" onClick={orderTicket}> Order</button>
+           <button className="btn btn-danger" onClick={deleteWishlistTicket}> Delete Wishlist</button>
     </div>
     </form>
   </div>
 
 
 </>
-
   )
 }
 
-export default Order
+export default DeleteWishlist

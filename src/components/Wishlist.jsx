@@ -67,7 +67,7 @@ function Wishlist() {
     <div className='container'>
     <form>
     <div class="form-group">
-      <label for="exampleInputEmail1">Id Ticket</label>
+      <label for="exampleInputEmail1"> Id Ticket</label>
       <input type="text" class="form-control" value={idTickets} placeholder="null" disabled />
     </div>
     <div class="form-group">
