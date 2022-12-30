@@ -3,6 +3,32 @@ import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 import Moment from 'react-moment';
 import moment from 'moment'
+import styled from 'styled-components';
+
+const ContainerWrapperForm = styled.div`
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    background: #4600FF;
+    color: white;
+    border-radius: 10px;
+    padding: 50px 250px
+`;
+
+const ButtonOrder = styled.button`
+    background-color: #FFE15D;
+    color: #4600FF;
+    font-size: 1em;
+    font-weight: bold;
+    padding: 0.25em 1em;
+    border: 2px solid #FFE15D;
+    border-radius: 30px;
+    margin-right: 10px;
+    display: block;
+`;
 
 function Order() {
 
@@ -66,51 +92,85 @@ function Order() {
     
   return (
     <>
-    <div>Order</div>
 
-    <div className='container'>
+   
+    <h4 className='text-center mt-4'>Order Ticket</h4>
+    <div className='container' style={{backgroundColor:"#4600FF", borderRadius:"20px"}}>
+    <div className='container p-5'>
     <form>
-    <div class="form-group">
-      <label for="exampleInputEmail1"> Id Ticket</label>
-      <input type="text" class="form-control" value={idTickets} placeholder="null" disabled />
-    </div>
-    <div class="form-group">
-      <label for="exampleInputEmail1">Airplane</label>
-      <input type="text" class="form-control" value={airplane} placeholder="null" disabled />
-    </div>
-    <div class="form-group">
-      <label for="exampleInputEmail1">Departure</label>
-      <input type="text" class="form-control" value={newDeparture} placeholder="null" disabled />
-    </div>
-    <div class="form-group">
-      <label for="exampleInputEmail1">Arrival Time</label>
-      <input type="text" class="form-control" value={newArrival} placeholder="null" disabled />
-    </div>
-    <div class="form-group">
-      <label for="exampleInputEmail1">Return Time</label>
-      <input type="text" class="form-control" value={newReturn} placeholder="null" disabled />
-    </div>
-    <div class="form-group">
-      <label for="exampleInputEmail1">Arrival Return Time</label>
-      <input type="text" class="form-control" value={newArrival2} placeholder="null" disabled />
-    </div>
-    <div class="form-group">
-      <label for="exampleInputEmail1">Price</label>
-      <input type="text" class="form-control" value={price} placeholder="null" disabled />
-    </div>
-    <div class="form-group">
-      <label for="exampleInputEmail1">Origin</label>
-      <input type="text" class="form-control" value={origin} placeholder="null" disabled />
-    </div>
-    <div class="form-group">
-      <label for="exampleInputEmail1">Destination</label>
-      <input type="text" class="form-control" value={destination} placeholder="null" disabled />
-    </div>
-    <div className="field">
-           <button className="btn btn-primary" onClick={orderTicket}> Order</button>
-    </div>
+    <div className='row'>
+        <div className='col lg-6'>
+          <div class="form-group">
+            <label style={{color:"white"}}> Id Ticket</label>
+            <input type="text" class="form-control" value={idTickets} placeholder="null" disabled />
+          </div>
+        </div>
+        <div className='col lg-6'>
+          <div class="form-group">
+            <label style={{color:"white"}}>Airplane</label>
+            <input type="text" class="form-control" value={airplane} placeholder="null" disabled />
+          </div>
+        </div>
+      </div>
+      <div className='row'>
+        <div className='col lg-6'>
+          <div class="form-group">
+            <label style={{color:"white"}}>Departure</label>
+            <input type="text" class="form-control" value={newDeparture} placeholder="null" disabled />
+          </div>
+        </div>
+        <div className='col lg-6'>
+          <div class="form-group">
+            <label style={{color:"white"}}>Arrival Time</label>
+            <input type="text" class="form-control" value={newArrival} placeholder="null" disabled />
+          </div>
+        </div>
+      </div>
+      <div className='row'>
+        <div className='col lg-6'>
+          <div class="form-group">
+            <label style={{color:"white"}}>Return Time</label>
+            <input type="text" class="form-control" value={newReturn} placeholder="null" disabled />
+          </div>
+        </div>
+        <div className='col lg-6'>
+          <div class="form-group">
+            <label style={{color:"white"}}>Arrival Return Time</label>
+            <input type="text" class="form-control" value={newArrival2} placeholder="null" disabled />
+          </div>
+        </div>
+      </div>
+      <div className='row'>
+        <div className='col lg-6'>
+          <div class="form-group">
+          <label style={{color:"white"}}>Price</label>
+          <input type="text" class="form-control" value={price} placeholder="null" disabled />
+        </div>
+        </div>
+        <div className='col lg-6'>
+          <div class="form-group">
+            <label style={{color:"white"}}>Origin</label>
+            <input type="text" class="form-control" value={origin} placeholder="null" disabled />
+          </div>
+        </div>
+      </div>
+      <div className='row'>
+        <div className='col lg-6'>
+          <div class="form-group">
+            <label style={{color:"white"}}>Destination</label>
+            <input type="text" class="form-control" value={destination} placeholder="null" disabled />
+          </div>
+        </div>
+        <div className='col lg-6'>
+          <div className="field mt-3">
+            <ButtonOrder className='mx-auto' onClick={orderTicket}>Order</ButtonOrder>
+            {/* <button className="btn btn-primary" onClick={orderTicket}> Order</button> */}
+          </div>
+        </div>
+      </div>
     </form>
   </div>
+</div>
 
 
 </>

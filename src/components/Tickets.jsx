@@ -10,7 +10,7 @@ import Moment from 'react-moment';
 import Footer from './home/Footer';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheckCircle, faCity, faHeart, faPlane, faPlaneArrival, faPlaneDeparture } from '@fortawesome/free-solid-svg-icons';
-
+import defaultProfile from '../assets/avatarr.png'
 
 const ButtonSignOut = styled.button`
     background-color: #FFE15D;
@@ -46,6 +46,7 @@ const ButtonBooking = styled.button`
 function Tickets() {
     const getEmailUser = localStorage.getItem("emailUser");
     const getToken = localStorage.getItem("token");
+    const idUser = localStorage.getItem("idUser");
     const logOut = () => {
         localStorage.clear();
         window.location.reload()
@@ -53,8 +54,20 @@ function Tickets() {
 
     const [tickets, setTickets] = useState('');
     const [searchTickets, setSearchTickets] = useState('');
-    let notFound = <h1>Tidak ditemukan</h1>;
+    const [photoProfile, setPhotoProfile] = useState('');
 
+    useEffect(() => {
+      getProfileById();
+    }, []);
+
+    const getProfileById = async () => {
+      try{const response = await axios.get(`https://final-project-be-production-6de7.up.railway.app/api/v1/users/${idUser}`, { headers: {"Authorization" : `Bearer ${getToken}`} });
+      setPhotoProfile(response.data.data.photoProfile)
+    }catch (err){
+      console.log(err);
+    }
+      
+    };
     
 
 
@@ -84,6 +97,8 @@ function Tickets() {
         console.log(err)
       });
   });
+
+  
 
 
   
@@ -116,7 +131,7 @@ function Tickets() {
                   <Nav.Link><Link to="/history-order" style={{textDecoration:"none"}}>Your Orders</Link></Nav.Link>
                 </Nav>
                 <Nav className="justify-content-center">
-                  <Nav.Link href="#action1">Welcome back, {getEmailUser}</Nav.Link>
+                  <Nav.Link><Link to={"user/" + idUser} style={{textDecoration:"none"}}><img src={photoProfile ? photoProfile : defaultProfile} style={{width:"25px", height:"25px", borderRadius:"50%"}} className="text-center" alt="profile image"/> {getEmailUser}</Link></Nav.Link>
                   <ButtonSignOut onClick={logOut}>LOG OUT</ButtonSignOut> 
                 </Nav>
               </Offcanvas.Body>

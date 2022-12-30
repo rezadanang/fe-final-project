@@ -16,6 +16,8 @@ import Wishlist from './components/Wishlist';
 import WishlistDetail from './components/WishlistDetail';
 import Notifications from './components/Notifications';
 import DeleteWishlist from './components/DeleteWishlist';
+import UserProfile from './components/UserProfile';
+import EditProfile from './components/EditProfile';
 
 
 function App() {
@@ -36,6 +38,16 @@ function App() {
         <Route path='/allflights' element={<Tickets />} />
         <Route path='/allflights/wishlist/:id' element={<Wishlist/>} />
         <Route path='/allflights/order/:id' element={<Order/>} />
+        <Route path='/user/:id' element={<UserProfile />} />
+        <Route path='/allflights/user/:id' element={<UserProfile />} />
+        <Route path='/notification-order/user/:id' element={<UserProfile />} />
+        <Route path='/wishlist-order/user/:id' element={<UserProfile />} />
+        <Route path='/history-order/user/:id' element={<UserProfile />} />
+        <Route path='/user/:id/edit' element={<EditProfile />} />
+        <Route path='allflights/user/:id/edit' element={<EditProfile />} />
+        <Route path='wishlist-order/user/:id/edit' element={<EditProfile />} />
+        <Route path='notification-order/user/:id/edit' element={<EditProfile />} />
+        <Route path='history-order/user/:id/edit' element={<EditProfile />} />
         <Route path='/id/admin' element={<Admin/>} />
         <Route path='/id/admin/add' element={<AddTickets />} />
         <Route path='/id/admin/detail/:id' element={<DetailTickets/>} />

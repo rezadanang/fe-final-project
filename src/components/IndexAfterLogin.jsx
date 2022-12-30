@@ -12,6 +12,7 @@ import Footer from './home/Footer';
 import Hero from './home/Hero';
 import WhyUs from './home/WhyUs';
 import axios from 'axios';
+import defaultProfile from '../assets/avatarr.png'
 
 const ButtonSignOut = styled.button`
     background-color: #FFE15D;
@@ -28,12 +29,16 @@ const ButtonSignOut = styled.button`
 function IndexAfterLogin() {
   const getEmailUser = localStorage.getItem("emailUser");
   const getToken = localStorage.getItem("token");
+  const idUser = localStorage.getItem("idUser");
+  const [photoProfile, setPhotoProfile] = useState(null);
   const [user, setUser] = useState([]);
 
   const logOut = () => {
     localStorage.clear();
     window.location.reload()
   }
+
+ 
 
   useEffect(() => {
     axios.get("https://final-project-be-production-6de7.up.railway.app/api/v1/users", { headers: {"Authorization" : `Bearer ${getToken}`} })
@@ -47,8 +52,22 @@ function IndexAfterLogin() {
     .catch((err) => {
       console.log(err)
     });
-    console.log(user);
+    // console.log(idUser);
+    // console.log(user);
 });
+
+useEffect(() => {
+  getProfileById();
+}, []);
+
+const getProfileById = async () => {
+  try{const response = await axios.get(`https://final-project-be-production-6de7.up.railway.app/api/v1/users/${idUser}`, { headers: {"Authorization" : `Bearer ${getToken}`} });
+  setPhotoProfile(response.data.data.photoProfile)
+}catch (err){
+  console.log(err);
+}
+  
+};
   return (
     <>
           {['lg'].map((expand) => (
@@ -75,7 +94,8 @@ function IndexAfterLogin() {
                   <Nav.Link><Link to="/history-order" style={{textDecoration:"none"}}>Your Orders</Link></Nav.Link>
                 </Nav>
                 <Nav className="justify-content-center">
-                  <Nav.Link href="#action1">Welcome back, {getEmailUser}</Nav.Link>
+                
+                  <Nav.Link><Link to={"user/" + idUser} style={{textDecoration:"none"}}><img src={photoProfile ? photoProfile : defaultProfile} style={{width:"25px", height:"25px", borderRadius:"50%"}} className="text-center" alt="profile image"/> Welcome back, {getEmailUser}</Link></Nav.Link>
                   <ButtonSignOut onClick={logOut}>LOG OUT</ButtonSignOut> 
                 </Nav>
               </Offcanvas.Body>

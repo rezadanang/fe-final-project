@@ -61,6 +61,10 @@ ul#myRow .li-icon {
   font-size: 10px;
 }
 
+.container-profile{
+  box-shadow: 0 0 13px rgba(33,33,33,.2); 
+}
+
 @media only screen and (max-width: 600px) {
   .img-frame{
     width: 350px;
