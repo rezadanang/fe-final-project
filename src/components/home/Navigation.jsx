@@ -52,9 +52,9 @@ function NavigationBar() {
               <Offcanvas.Body>
                 <Nav className="justify-content-center flex-grow-1">
                   <Nav.Link><Link to="/allflights" style={{textDecoration:"none"}}>All Flights</Link></Nav.Link>
-                  <Nav.Link href="#action2">Wishlist</Nav.Link>
-                  <Nav.Link href="#action2">Notifications</Nav.Link>
-                  <Nav.Link href="#action2">Your Orders</Nav.Link>
+                  <Nav.Link><Link to="/login" style={{textDecoration:"none"}}>Wishlist</Link></Nav.Link>
+                  <Nav.Link><Link to="/login" style={{textDecoration:"none"}}>Notifications</Link></Nav.Link>
+                  <Nav.Link><Link to="/login" style={{textDecoration:"none"}}>Your Orders</Link></Nav.Link>
                 </Nav>
                 <Link to="/signup"><ButtonSignUp>Sign Up</ButtonSignUp></Link>
                 <Link to="/login"><ButtonLogin>Login</ButtonLogin></Link>
