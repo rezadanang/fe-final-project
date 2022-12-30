@@ -43,19 +43,12 @@ function EditProfile() {
 
     const onImageUpload = (e) => {
         let fileProfile = e.target.files[0];
-        console.log(fileProfile)
         setPhotoProfile(fileProfile)
-
     }
-
-
 
     const updateProfile = async (e) => {
         e.preventDefault();
         console.log(photoProfile);
-        // let formData = new FormData();
-        // formData.append("photoProfile", photoProfile);
-        
 
         try{
           await axios.put(`https://final-project-be-production-6de7.up.railway.app/api/v1/users/update/${idUser}`, {
@@ -67,6 +60,7 @@ function EditProfile() {
           },
           {
           headers: {
+            'content-type': 'multipart/form-data',
             Authorization: 'Bearer ' + getToken
           }
         })
@@ -100,7 +94,7 @@ function EditProfile() {
     <div className='container container-profile mt-5 mb-5' style={{ borderRadius:"20px", background:"#F5F6FA"}}>
     
      <div className='container p-5'>
-     <form>
+     <form> 
      <label for="exampleInputEmail1">Image</label>
      <input type="file" name='photoProfile' id='photoProfile' class="form-control" onChange={(e) => onImageUpload(e)} />
      {/* <img src={photoProfile ? photoProfile : defaultProfile} style={{width:"250px", height:"250px", borderRadius:"50%"}} className="mx-auto d-block" alt="profile image"/> */}

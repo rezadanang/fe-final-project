@@ -6,8 +6,7 @@ import moment from 'moment'
 
 function DeleteWishlist() {
     const getToken = localStorage.getItem("token");
-
-    const [idTickets, setIdTickets] = useState("");
+    const [idWishlist, setIdWishlist] = useState("");
     const [airplane, setAirplane] = useState("");
     const [departureTime, setDepartureTime] = useState("");
     const [arrivalTime, setArrivalTime] = useState("");
@@ -31,26 +30,18 @@ function DeleteWishlist() {
       const deleteWishlistTicket = async (e) => {
         e.preventDefault();
         try{
-          await axios.delete(`https://final-project-be-production-6de7.up.railway.app/api/v1/wishlists/delete/${id}`, {
-            idTickets: id
-          },
-          {
-          headers: {
-            Authorization: 'Bearer ' + getToken
-          }
-        })
+          await axios.delete(`https://final-project-be-production-6de7.up.railway.app/api/v1/wishlists/delete/${id}`,{ headers: {"Authorization" : `Bearer ${getToken}`} });
         navigate("/");
-        alert("berhasil delete wishlist")
+        alert("berhasil delete")
         }
-        
         catch (err) {
-            console.log(err.message)
+            console.log(err)
         }
     };
 
       const getTicketsById = async () => {
         const response = await axios.get(`https://final-project-be-production-6de7.up.railway.app/api/v1/wishlists/${id}`, { headers: {"Authorization" : `Bearer ${getToken}`} });
-        setIdTickets(response.data.data.id);
+        setIdWishlist(response.data.data.id);
         setAirplane(response.data.data.airplane_name);
         setDepartureTime(response.data.data.departure_time)
         setArrivalTime(response.data.data.arrival_time)
@@ -67,8 +58,8 @@ function DeleteWishlist() {
     <div className='container'>
     <form>
     <div class="form-group">
-      <label for="exampleInputEmail1"> Id Ticket</label>
-      <input type="text" class="form-control" value={idTickets} placeholder="null" disabled />
+      <label for="exampleInputEmail1"> Id Wishlist</label>
+      <input type="text" class="form-control" value={idWishlist} placeholder="null" disabled />
     </div>
     <div class="form-group">
       <label for="exampleInputEmail1">Airplane</label>
