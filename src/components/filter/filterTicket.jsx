@@ -10,6 +10,7 @@ import Moment from 'react-moment';
 import Footer from '../home/Footer';
 import { faCheckCircle, faCircleDollarToSlot, faCity, faClock, faHeart, faPlane, faPlaneArrival, faPlaneDeparture } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import defaultProfile from '../../assets/avatarr.png'
 
 
 const WrapperHero = styled.section`
@@ -70,6 +71,7 @@ const ButtonBooking = styled.button`
 function FilterTicket() {
     const getEmailUser = localStorage.getItem("emailUser");
     const getToken = localStorage.getItem("token");
+    const idUser = localStorage.getItem("idUser");
     const navigate = useNavigate();
     const logOut = () => {
         localStorage.clear();
@@ -84,9 +86,22 @@ function FilterTicket() {
     const [derpartureDate, setDerpartureDate] = useState('');
     const [derpartureTime, setDerpartureTime] = useState('');
     const [category, setCategory] = useState('one_way');
+    const [photoProfile, setPhotoProfile] = useState('');
 
     const newDerpartureDateTime = derpartureDate + derpartureTime;
 
+    useEffect(() => {
+      getProfileById();
+    }, []);
+    
+    const getProfileById = async () => {
+      try{const response = await axios.get(`https://final-project-be-production-6de7.up.railway.app/api/v1/users/${idUser}`, { headers: {"Authorization" : `Bearer ${getToken}`} });
+      setPhotoProfile(response.data.data.photoProfile)
+    }catch (err){
+      console.log(err);
+    }
+      
+    };
     
     useEffect(() => {
       axios.get("https://final-project-be-production-6de7.up.railway.app/api/v1/tickets", { headers: {"Authorization" : `Bearer ${getToken}`} })
@@ -144,7 +159,7 @@ function FilterTicket() {
                   <Nav.Link><Link to="/history-order" style={{textDecoration:"none"}}>Your Orders</Link></Nav.Link>
                 </Nav>
                 <Nav className="justify-content-center">
-                  <Nav.Link href="#action1">Welcome back, {getEmailUser}</Nav.Link>
+                <Nav.Link><Link to={"user/" + idUser} style={{textDecoration:"none"}}><img src={photoProfile ? photoProfile : defaultProfile} style={{width:"25px", height:"25px", borderRadius:"50%"}} className="text-center" alt="profile image"/> {getEmailUser}</Link></Nav.Link>
                   <ButtonSignOut onClick={logOut}>LOG OUT</ButtonSignOut> 
                 </Nav>
               </Offcanvas.Body>
