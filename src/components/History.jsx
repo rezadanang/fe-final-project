@@ -8,7 +8,7 @@ import Login from '../components/Login';
 import axios from 'axios'
 import Moment from 'react-moment';
 import Footer from './home/Footer';
-import { faCalendarDay, faPlaneArrival, faPlaneDeparture, faTicket } from '@fortawesome/free-solid-svg-icons';
+import { faBookmark, faCalendarDay, faPlaneArrival, faPlaneDeparture, faTicket } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import defaultProfile from '../assets/avatarr.png'
 
@@ -105,16 +105,17 @@ function History() {
         </Navbar>
       ))}
         <Container>
-          <Row>
+        <h2 className='mt-3 text-center'>Your History Orders <FontAwesomeIcon style={{color:"#4600FF"}} icon={faBookmark} /></h2>
+          {/* <Row>
         <Col lg={6}>
-          <h2 className='mt-3 text-center'>Orderanmu</h2>
+          
         </Col>
         <Col lg={6}>
         <InputGroup className='my-3'>
           <Form.Control placeholder='Cari history pesananmu' onChange={(e) => setSearchTickets(e.target.value)}/>
         </InputGroup>
         </Col>
-        </Row>
+        </Row> */}
         
         </Container>
 
@@ -140,7 +141,7 @@ function History() {
               <WrapperTicket>
                 <Row>
                 <Col xs={12} md={4} lg={4} className='text-center'>
-                  <p><FontAwesomeIcon icon={faTicket} /> Id Ticket: {item.ticketId}</p>
+                <p><FontAwesomeIcon icon={faCalendarDay} /> Order Date: <Moment format='HH:mm DD-MM-YYYY'>{item.order_date}</Moment></p>
                 </Col>
                 <Col xs={12} md={4} lg={4} className='text-center'>
                   <p><FontAwesomeIcon icon={faCalendarDay} /> Create Order: <Moment format='HH:mm DD-MM-YYYY'>{item.createdAt}</Moment></p>
@@ -157,7 +158,7 @@ function History() {
                   <p><FontAwesomeIcon icon={faPlaneArrival} /> Arrival: <Moment format='HH:mm DD-MM-YYYY'>{item.arrival_time}</Moment></p>
                 </Col>
                 <Col xs={12} md={4} lg={4} className='text-center'>
-                  <p><FontAwesomeIcon icon={faCalendarDay} /> Order Date: <Moment format='HH:mm DD-MM-YYYY'>{item.order_date}</Moment></p>
+                  
                 </Col>
                 </Row>
               </WrapperTicket>

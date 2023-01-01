@@ -18,6 +18,7 @@ import Notifications from './components/Notifications';
 import DeleteWishlist from './components/DeleteWishlist';
 import UserProfile from './components/UserProfile';
 import EditProfile from './components/EditProfile';
+import FilterBeforeLogin from './components/FilterBeforeLogin';
 
 
 function App() {
@@ -28,6 +29,7 @@ function App() {
         <Route path='/' element={<Index />} />
         <Route path='/login' element={<Login />} />
         <Route path='/signup' element={<SignUp />} />
+        <Route path='/filterticket' element={<FilterBeforeLogin/>} />
         <Route path='/filter' element={<FilterTicket />} />
         <Route path='/history-order' element={<History/>} />
         <Route path='/wishlist-order' element={<WishlistDetail/>} />
@@ -35,6 +37,8 @@ function App() {
         <Route path='/notification-order' element={<Notifications/>} />
         <Route path='/filter/wishlist/:id' element={<Wishlist/>} />
         <Route path='/filter/order/:id' element={<Order/>} />
+        <Route path='/filterticket/wishlist/:id' element={<Wishlist/>} />
+        <Route path='/filterticket/order/:id' element={<Order/>} />
         <Route path='/allflights' element={<Tickets />} />
         <Route path='/allflights/wishlist/:id' element={<Wishlist/>} />
         <Route path='/allflights/order/:id' element={<Order/>} />

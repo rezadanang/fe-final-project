@@ -6,7 +6,7 @@ import GooglePlay from "../../assets/google-play-badge.png"
 import { FaInstagram, FaLinkedin, FaTiktok, FaTwitter } from 'react-icons/fa';
 
 const WrapperFooter = styled.section`
-    margin-top: 4em;   
+    margin-top: 15em;   
     padding: 3em;
     background: #FFE15D;
 `;

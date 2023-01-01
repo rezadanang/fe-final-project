@@ -3,6 +3,8 @@ import axios from "axios";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import defaultProfile from '../assets/avatarr.png'
 import styled from 'styled-components';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const ButtonSaveProfile = styled.button`
     background-color: #FFE15D;
@@ -64,9 +66,22 @@ function EditProfile() {
             Authorization: 'Bearer ' + getToken
           }
         })
-        navigate("/user/" + idUser);
-        alert("berhasil update")
-        console.log(photoProfile)
+        toast.success('Profile has been updated', {
+          position: "top-center",
+          autoClose: 1000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+          });
+        setTimeout(() => {
+          navigate("/user/"+ idUser)
+        }, 3000);
+        // navigate("/user/" + idUser);
+        // alert("berhasil update")
+        // console.log(photoProfile)
         }
         
         catch (err) {
@@ -100,9 +115,9 @@ function EditProfile() {
      {/* <img src={photoProfile ? photoProfile : defaultProfile} style={{width:"250px", height:"250px", borderRadius:"50%"}} className="mx-auto d-block" alt="profile image"/> */}
      <div className='row'>
        <div className='col lg-6'>
-         <div class="form-group">
-           <label for="exampleInputEmail1">ID User</label>
-           <input type="text" class="form-control" value={idKtp} placeholder="null" onChange={(e) => setIdKtp(e.target.value)} />
+       <div class="form-group">
+           <label for="exampleInputEmail1">Email</label>
+           <input type="text" class="form-control" value={email} placeholder="null" onChange={(e) => setEmail(e.target.value)} disabled/>
          </div>
        </div>
        <div className='col lg-6'>
@@ -128,10 +143,7 @@ function EditProfile() {
      </div>
      <div className='row'>
        <div className='col lg-6'>
-         <div class="form-group">
-           <label for="exampleInputEmail1">Email</label>
-           <input type="text" class="form-control" value={email} placeholder="null" onChange={(e) => setEmail(e.target.value)} disabled/>
-         </div>
+         
        </div>
        <div className='col lg-6'>
          <div className="field mt-4">
@@ -140,23 +152,10 @@ function EditProfile() {
          </div>
        </div>
      </div>
-    
-     
-     
-     
-     
-
-     {/* <div className="field">
-            <button type="submit" className="btn btn-primary" >
-             Update
-           </button>
-          </div>
-          <div className="field">
-          <button className="btn btn-danger" onClick={deleteTicket}><FontAwesomeIcon icon={faTrash} /> Delete</button>
-          </div> */}
      </form>
    </div>
    </div>
+   <ToastContainer />
    </>
   )
 }

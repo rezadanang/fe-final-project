@@ -8,7 +8,7 @@ import Login from '../components/Login';
 import axios from 'axios'
 import Moment from 'react-moment';
 import Footer from './home/Footer';
-import { faBookmark, faCalendarDay, faPlaneArrival, faPlaneDeparture } from '@fortawesome/free-solid-svg-icons';
+import { faBell, faBookmark, faCalendarDay, faPlaneArrival, faPlaneDeparture } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import defaultProfile from '../assets/avatarr.png'
 
@@ -106,16 +106,16 @@ if (getToken) {
     </Navbar>
   ))}
     <Container>
-      <Row>
+    <h2 className='mt-3 text-center'>Notifications <FontAwesomeIcon style={{color:"#4600FF"}} icon={faBell} /></h2>
+      {/* <Row>
     <Col lg={6}>
-      <h2 className='mt-3 text-center'>Notifications</h2>
-    </Col>
+     
     <Col lg={6}>
     <InputGroup className='my-3'>
       <Form.Control placeholder='Cari history pesananmu' onChange={(e) => setSearchTickets(e.target.value)}/>
     </InputGroup>
     </Col>
-    </Row>
+    </Row> */}
     
     </Container>
 

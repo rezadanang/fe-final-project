@@ -9,7 +9,7 @@ import axios from 'axios'
 import Moment from 'react-moment';
 import Footer from './home/Footer';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCheckCircle, faCity, faHeart, faPlane, faPlaneArrival, faPlaneDeparture } from '@fortawesome/free-solid-svg-icons';
+import { faCheckCircle, faCity, faHeart, faLocationDot, faPlane, faPlaneArrival, faPlaneDeparture } from '@fortawesome/free-solid-svg-icons';
 import defaultProfile from '../assets/avatarr.png'
 
 const ButtonSignOut = styled.button`
@@ -86,7 +86,7 @@ function Tickets() {
 
     
     useEffect(() => {
-      axios.get("https://final-project-be-production-6de7.up.railway.app/api/v1/tickets", { headers: {"Authorization" : `Bearer ${getToken}`} })
+      axios.get("https://final-project-be-production-6de7.up.railway.app/api/v1/tickets")
       .then(res => {
         console.log(res.data.data);
         const datas = res.data.data;
@@ -98,13 +98,7 @@ function Tickets() {
       });
   });
 
-  
 
-
-  
-    
-    console.log(getToken)
-    if (getToken) {
         return (
         <>
       {['lg'].map((expand) => (
@@ -142,11 +136,11 @@ function Tickets() {
         <Container>
           <Row>
         <Col lg={6}>
-          <h2 className='mt-3 text-center'>Cari Penerbanganmu</h2>
+          <h2 className='mt-3 text-center'>Find Your Destination <FontAwesomeIcon style={{color:"#4600FF"}} icon={faLocationDot} /></h2>
         </Col>
         <Col lg={6}>
         <InputGroup className='my-3'>
-          <Form.Control placeholder='Search Flights' onChange={(e) => setSearchTickets(e.target.value)}/>
+          <Form.Control placeholder='Type City or Airplane' onChange={(e) => setSearchTickets(e.target.value)}/>
         </InputGroup>
         </Col>
         </Row>
@@ -160,13 +154,12 @@ function Tickets() {
               tickets.length > 0 ? (
               tickets.filter((value) => {
                 if(searchTickets === ""){
-            
                   return value
-                } else if(value.airplane_name.toLowerCase().includes(searchTickets.toLowerCase())){
+                } else if(value.airplane_name?.toLowerCase().includes(searchTickets.toLowerCase())){
                   return value
-                } else if(value.origin.toLowerCase().includes(searchTickets.toLowerCase())){
+                } else if(value.origin?.toLowerCase().includes(searchTickets.toLowerCase())){
                   return value
-                } else if(value.destination.toLowerCase().includes(searchTickets.toLowerCase())){
+                } else if(value.destination?.toLowerCase().includes(searchTickets.toLowerCase())){
                   return value
                 }
               }).
@@ -216,10 +209,4 @@ function Tickets() {
             </>
             )
       } 
-      else { 
-        return (
-            <Login />
-        )}
-}
-
 export default Tickets

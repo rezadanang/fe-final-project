@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import 'bootstrap/dist/css/bootstrap.css';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
@@ -30,15 +30,22 @@ function IndexAfterLogin() {
   const getEmailUser = localStorage.getItem("emailUser");
   const getToken = localStorage.getItem("token");
   const idUser = localStorage.getItem("idUser");
+  const getRole=localStorage.getItem("role");
+
   const [photoProfile, setPhotoProfile] = useState(null);
   const [user, setUser] = useState([]);
+  const navigate = useNavigate();
 
   const logOut = () => {
     localStorage.clear();
     window.location.reload()
   }
 
- 
+  useEffect(() => {
+    if (getRole === "ADMIN"){
+      navigate("/filter")
+    }
+  })
 
   useEffect(() => {
     axios.get("https://final-project-be-production-6de7.up.railway.app/api/v1/users", { headers: {"Authorization" : `Bearer ${getToken}`} })
@@ -55,6 +62,8 @@ function IndexAfterLogin() {
     // console.log(idUser);
     // console.log(user);
 });
+
+
 
 useEffect(() => {
   getProfileById();
@@ -94,7 +103,7 @@ const getProfileById = async () => {
                   <Nav.Link><Link to="/history-order" style={{textDecoration:"none"}}>Your Orders</Link></Nav.Link>
                 </Nav>
                 <Nav className="justify-content-center">
-                
+                  
                   <Nav.Link><Link to={"user/" + idUser} style={{textDecoration:"none"}}><img src={photoProfile ? photoProfile : defaultProfile} style={{width:"25px", height:"25px", borderRadius:"50%"}} className="text-center" alt="profile image"/> Welcome back, {getEmailUser}</Link></Nav.Link>
                   <ButtonSignOut onClick={logOut}>LOG OUT</ButtonSignOut> 
                 </Nav>

@@ -4,6 +4,9 @@ import { useNavigate, useParams } from "react-router-dom";
 import Moment from 'react-moment';
 import moment from 'moment'
 import styled from 'styled-components';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import Login from './Login';
 
 const ContainerWrapperForm = styled.div`
     margin: 0;
@@ -66,8 +69,19 @@ function Order() {
             Authorization: 'Bearer ' + getToken
           }
         })
-        navigate("/");
-        alert("berhasil order")
+        toast.success('Success order ticket', {
+          position: "top-center",
+          autoClose: 1000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+          });
+        setTimeout(() => {
+          navigate("/")
+        }, 3000);
         }
         
         catch (err) {
@@ -89,7 +103,7 @@ function Order() {
       };
 
       
-    
+if (getToken) {
   return (
     <>
 
@@ -171,11 +185,15 @@ function Order() {
     </form>
   </div>
 </div>
-
+<ToastContainer />
 
 </>
 
   )
+} else { 
+  return (
+      <Login />
+  )}
 }
 
 export default Order

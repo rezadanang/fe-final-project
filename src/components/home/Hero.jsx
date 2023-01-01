@@ -28,7 +28,7 @@ function Hero() {
   return (
     <WrapperHero className='hero-wrapper'>
         <WrapperButtonHero >
-        <Link to="/filter"><ButtonHero className='text-center mx-auto'>Start Booking</ButtonHero></Link>
+        <Link to="/filterticket"><ButtonHero className='text-center mx-auto'>Start Booking</ButtonHero></Link>
         </WrapperButtonHero>    
     </WrapperHero>
   )

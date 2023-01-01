@@ -4,6 +4,10 @@ import { useNavigate, useParams } from "react-router-dom";
 import Moment from 'react-moment';
 import moment from 'moment'
 import styled from 'styled-components';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import Login from './Login';
+
 
 const ContainerWrapperForm = styled.div`
     margin: 0;
@@ -64,8 +68,21 @@ function Wishlist() {
             Authorization: 'Bearer ' + getToken
           }
         })
-        navigate("/");
-        alert("berhasil menambahkan wishlist")
+        toast('Success added wishlist', {
+          position: "top-center",
+          autoClose: 1000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+          });
+        setTimeout(() => {
+          navigate("/")
+        }, 3000);
+        
+       
         }
         
         catch (err) {
@@ -85,18 +102,20 @@ function Wishlist() {
         setOrigin(response.data.data.origin)
         setDestination(response.data.data.destination)
       };
+  if (getToken) {
   return (
     <>
-    
+   
     <h4 className='text-center mt-4'>Add Wishlist</h4>
+    
     <div className='container' style={{backgroundColor:"#4600FF", borderRadius:"20px"}}>
     <div className='container p-5'>
     <form>
       <div className='row'>
         <div className='col lg-6'>
           <div class="form-group">
-            <label style={{color:"white"}}> Id Ticket</label>
-            <input type="text" class="form-control" value={idTickets} placeholder="null" disabled />
+            <label style={{color:"white"}}>Price</label>
+            <input type="text" class="form-control" value={price} placeholder="null" disabled />
           </div>
         </div>
         <div className='col lg-6'>
@@ -136,10 +155,10 @@ function Wishlist() {
       </div>
       <div className='row'>
         <div className='col lg-6'>
-          <div class="form-group">
-          <label style={{color:"white"}}>Price</label>
-          <input type="text" class="form-control" value={price} placeholder="null" disabled />
-        </div>
+        <div class="form-group">
+            <label style={{color:"white"}}>Destination</label>
+            <input type="text" class="form-control" value={destination} placeholder="null" disabled />
+          </div>
         </div>
         <div className='col lg-6'>
           <div class="form-group">
@@ -150,27 +169,30 @@ function Wishlist() {
       </div>
       <div className='row'>
         <div className='col lg-6'>
-          <div class="form-group">
-            <label style={{color:"white"}}>Destination</label>
-            <input type="text" class="form-control" value={destination} placeholder="null" disabled />
-          </div>
+          
         </div>
         <div className='col lg-6'>
           <div className="field mt-3">
             <ButtonWishlist className='mx-auto' onClick={wishListTicket}>Add Wishlist</ButtonWishlist>
+   
            {/* <button className="btn btn-primary" onClick={wishListTicket}> Add Wishlist</button> */}
           </div>
         </div>
       </div>
     </form>
     </div>
-  </div>
+  </div> 
+  <ToastContainer />
   
     
 
 
 </>
   )
+} else { 
+  return (
+      <Login />
+  )}
 }
 
 export default Wishlist

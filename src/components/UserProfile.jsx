@@ -3,6 +3,8 @@ import axios from "axios";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import defaultProfile from '../assets/avatarr.png'
 import styled from 'styled-components';
+import { Container, Col, Row, Form, Nav, Navbar, Offcanvas, InputGroup } from 'react-bootstrap';
+import Logo from "../assets/logo.png"  
 
 const ButtonUpdateProfile = styled.button`
     background-color: #FFE15D;
@@ -16,9 +18,28 @@ const ButtonUpdateProfile = styled.button`
     display: block;
 `;
 
+const ButtonSignOut = styled.button`
+    background-color: #FFE15D;
+    color: #4600FF;
+    font-size: 1em;
+    font-weight: bold;
+    padding: 0.25em 1em;
+    border: 2px solid #FFE15D;
+    border-radius: 30px;
+    margin-right: 10px;
+    display: block;
+`;
+
+
 function UserProfile() {
     const getToken = localStorage.getItem("token");
+    const getEmailUser = localStorage.getItem("emailUser");
     const idUser = localStorage.getItem("idUser");
+    const logOut = () => {
+      localStorage.clear();
+      window.location.reload()
+  }
+
 
     const [photoProfile, setPhotoProfile] = useState(null);
     const [idKtp, setIdKtp] = useState("");
@@ -48,6 +69,38 @@ function UserProfile() {
     
   return (
     <>
+    {['lg'].map((expand) => (
+        <Navbar key={expand} expand={expand} className="mb-3">
+          <Container fluid>
+              <Link to="/"><img src={Logo} width={80} height={80} alt="logo" /></Link>
+            <Navbar.Brand href="#"></Navbar.Brand>
+            <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${expand}`} />
+            <Navbar.Offcanvas
+              id={`offcanvasNavbar-expand-${expand}`}
+              aria-labelledby={`offcanvasNavbarLabel-expand-${expand}`}
+              placement="end"
+            >
+              <Offcanvas.Header closeButton>
+                <Offcanvas.Title id={`offcanvasNavbarLabel-expand-${expand}`}>
+                 E-flights
+                </Offcanvas.Title>
+              </Offcanvas.Header>
+              <Offcanvas.Body>
+                <Nav className="justify-content-center flex-grow-1">
+                  <Nav.Link><Link to="/allflights" style={{textDecoration:"none"}}>All Flights</Link></Nav.Link>
+                  <Nav.Link><Link to="/wishlist-order" style={{textDecoration:"none"}}>Wishlist</Link></Nav.Link>
+                  <Nav.Link><Link to="/notification-order" style={{textDecoration:"none"}}>Notifications</Link></Nav.Link>
+                  <Nav.Link><Link to="/history-order" style={{textDecoration:"none"}}>Your Orders</Link></Nav.Link>
+                </Nav>
+                <Nav className="justify-content-center">
+                  <Nav.Link><Link to={"user/" + idUser} style={{textDecoration:"none"}}><img src={photoProfile ? photoProfile : defaultProfile} style={{width:"25px", height:"25px", borderRadius:"50%"}} className="text-center" alt="profile image"/> {getEmailUser}</Link></Nav.Link>
+                  <ButtonSignOut onClick={logOut}>LOG OUT</ButtonSignOut> 
+                </Nav>
+              </Offcanvas.Body>
+            </Navbar.Offcanvas>
+          </Container>
+        </Navbar>
+      ))}
      <div className='container container-profile mt-5 mb-5' style={{ borderRadius:"20px", background:"#F5F6FA"}}>
      
       <div className='container p-5'>
@@ -55,10 +108,14 @@ function UserProfile() {
       <img src={photoProfile ? photoProfile : defaultProfile} style={{width:"250px", height:"250px", borderRadius:"50%"}} className="mx-auto d-block" alt="profile image"/>
       <div className='row'>
         <div className='col lg-6'>
-          <div class="form-group">
+        <div class="form-group">
+            <label for="exampleInputEmail1">Email</label>
+            <input type="text" class="form-control" value={email} placeholder="null" onChange={(e) => setName(e.target.value)} disabled/>
+          </div>
+          {/* <div class="form-group">
             <label for="exampleInputEmail1">ID User</label>
             <input type="text" class="form-control" value={idKtp} placeholder="null" onChange={(e) => setIdKtp(e.target.value)} disabled />
-          </div>
+          </div> */}
         </div>
         <div className='col lg-6'>
           <div class="form-group">
@@ -83,10 +140,7 @@ function UserProfile() {
       </div>
       <div className='row'>
         <div className='col lg-6'>
-          <div class="form-group">
-            <label for="exampleInputEmail1">Email</label>
-            <input type="text" class="form-control" value={email} placeholder="null" onChange={(e) => setName(e.target.value)} disabled/>
-          </div>
+          
         </div>
         <div className='col lg-6'>
           <div className="field mt-4">

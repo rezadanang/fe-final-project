@@ -9,7 +9,7 @@ import axios from 'axios'
 import Moment from 'react-moment';
 import Footer from './home/Footer';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCalendarDay, faPlaneArrival, faPlaneDeparture, faTicket } from '@fortawesome/free-solid-svg-icons';
+import { faCalendarDay, faHeart, faPlaneArrival, faPlaneDeparture, faTicket } from '@fortawesome/free-solid-svg-icons';
 import defaultProfile from '../assets/avatarr.png'
 
 const ButtonSignOut = styled.button`
@@ -114,16 +114,17 @@ function WishlistDetail() {
         </Navbar>
       ))}
         <Container>
-          <Row>
+        <h2 className='mt-3 text-center'>Your Wishlists <FontAwesomeIcon style={{color:"red"}} icon={faHeart} /></h2>
+          {/* <Row>
         <Col lg={6}>
-          <h2 className='mt-3 text-center'>Wishlistmu</h2>
+          
         </Col>
         <Col lg={6}>
         <InputGroup className='my-3'>
-          <Form.Control placeholder='Cari history pesananmu' onChange={(e) => setSearchTickets(e.target.value)}/>
+          <Form.Control placeholder='type your wishlists' onChange={(e) => setSearchTickets(e.target.value)}/>
         </InputGroup>
         </Col>
-        </Row>
+        </Row> */}
         
         </Container>
 
@@ -149,13 +150,13 @@ function WishlistDetail() {
               <WrapperTicket>
                 <Row>
                   <Col xs={12} md={4} lg={4} className='text-center'>
-                    <p><FontAwesomeIcon icon={faTicket} /> Id Wishlist: {item.id}</p>
-                  </Col>
-                  <Col xs={12} md={4} lg={4} className='text-center'>
                     <p><FontAwesomeIcon icon={faCalendarDay} /> Create Order: <Moment format='HH:mm DD-MM-YYYY'>{item.createdAt}</Moment></p>
                   </Col>
                   <Col xs={12} md={4} lg={4} className='text-center'>
                     <p><FontAwesomeIcon icon={faCalendarDay} /> Update Order: <Moment format='HH:mm DD-MM-YYYY'>{item.updatedAt}</Moment></p>
+                  </Col>
+                  <Col xs={12} md={4} lg={4} className='text-center'>
+                    {/* <p><FontAwesomeIcon icon={faCalendarDay} /> Update Order: <Moment format='HH:mm DD-MM-YYYY'>{item.updatedAt}</Moment></p> */}
                   </Col>
                 </Row>
                 <Row className='mt-4'>
@@ -172,7 +173,7 @@ function WishlistDetail() {
                 </Row>
               </WrapperTicket>
               </Container>
-              )) : <p className="text-center">Tiket Tidak Tersedia</p>
+              )) : <p className="text-center">Data Tersedia</p>
                 
             } 
 

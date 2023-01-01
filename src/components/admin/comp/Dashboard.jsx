@@ -16,10 +16,18 @@ import moment from "moment";
 function Dashboard() {
 
 const getToken = localStorage.getItem("token");
+const getRole=localStorage.getItem("role");
 const [loading, setLoading] = useState(false);
 const [tickets, setTickets] = useState([]);
 const navigate = useNavigate();
 const { id } = useParams();
+
+useEffect(() => {
+    if (getRole === "CUSTOMER"){
+      navigate("/")
+    }
+  })
+
 const getTicketData = async () => {
     try{
         const data = await axios.get("https://final-project-be-production-6de7.up.railway.app/api/v1/tickets", { headers: {"Authorization" : `Bearer ${getToken}`} });
