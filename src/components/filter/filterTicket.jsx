@@ -320,7 +320,7 @@ function FilterTicket() {
               </Container>
               
               </>
-              )) : <p className="text-center mt-5">Tiket Tidak Tersedia</p>
+              )) : <p className="text-center mt-5">Data Tidak Tersedia</p>
                 
             }
         <Footer />

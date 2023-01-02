@@ -177,7 +177,7 @@ function WishlistDetail() {
                 </Row>
               </WrapperTicket>
               </Container>
-              )) : <p className="text-center">Data Tersedia</p>
+              )) : <p className="text-center">Data Tidak Tersedia</p>
                 
             } 
 

@@ -158,7 +158,7 @@ if (getToken) {
             </Row>
           </WrapperTicket>
           </Container>
-          )) : <p className="text-center">Tiket Tidak Tersedia</p>
+          )) : <p className="text-center">Data Tidak Tersedia</p>
             
         } 
 
