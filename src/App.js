@@ -67,6 +67,7 @@ function App() {
         <Route path='/history-order/user/:id' element={<UserProfile />} />
         <Route path='/filter/user/:id' element={<UserProfile />} />
         <Route path='/user/:id/edit' element={<EditProfile />} />
+        <Route path='/admin/index/user/:id/edit' element={<EditProfile />} />
         <Route path='/admin/index/user/:id/user/:id' element={<EditProfile />} />
         <Route path='allflights/user/:id/edit' element={<EditProfile />} />
         <Route path='wishlist-order/user/:id/edit' element={<EditProfile />} />
