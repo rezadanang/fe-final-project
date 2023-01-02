@@ -11,14 +11,21 @@ import { Button } from 'bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faInfo, faEdit, faTrash, faPlusCircle} from "@fortawesome/free-solid-svg-icons";
 import { Link, useNavigate, useParams } from 'react-router-dom';
+import moment from "moment";
 
 function DataOrders() {
 
-const getToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NywibmFtZSI6IkFkbWluIiwiZW1haWwiOiJhZG1pbkBiaW5hci5jby5pZCIsInJvbGUiOnsiaWQiOjIsIm5hbWUiOiJBRE1JTiJ9LCJpYXQiOjE2NzE3MTc1MjF9.80QsMAPTPAuD7eyVawX_1VhD1tU-XJSNIkiN2wObOaM";
+const getToken = localStorage.getItem("token");
 const [loading, setLoading] = useState(false);
 const [orders, setOrders] = useState([]);
 const navigate = useNavigate();
 const { id } = useParams();
+
+function dateFormat(value, row, index) {
+    return moment(value).format('HH:mm DD-MM-YYYY');
+  }
+
+
 const getOrdersData = async () => {
     try{
         const data = await axios.get("https://final-project-be-production-6de7.up.railway.app/api/v1/orders", { headers: {"Authorization" : `Bearer ${getToken}`} });
@@ -42,15 +49,8 @@ const columns = [
         return{ width: "7%"};
     },},
     {dataField: "ticketId", text: "ticket Id", sort: "true"},
-    // {dataField: "return_time", text: "Return"},
-
-    // {dataField: "createdBy", text: "Created By", sort: "true", headerStyle: () =>{
-    //     return{ width: "5%"};
-    // },},
-    // {dataField: "updatedBy", text: "Updated By", sort: "true"},
-    // {dataField: "deletedAt", text: "Deleted At", sort: "true"},
-    {dataField: "createdAt", text: "Created At", sort: "true"},
-    {dataField: "updatedAt", text: "Updated At", sort: "true"},
+    {dataField: "createdAt", formatter: dateFormat, dateFormat, text: "Created At", sort: "true"},
+    {dataField: "updatedAt", formatter: dateFormat, dateFormat, text: "Updated At", sort: "true"},
     {
         dataField: "",
         text: "",

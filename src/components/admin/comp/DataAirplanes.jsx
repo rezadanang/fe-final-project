@@ -15,7 +15,7 @@ import moment from "moment";
 
 function DataAirplanes() {
 
-const getToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NywibmFtZSI6IkFkbWluIiwiZW1haWwiOiJhZG1pbkBiaW5hci5jby5pZCIsInJvbGUiOnsiaWQiOjIsIm5hbWUiOiJBRE1JTiJ9LCJpYXQiOjE2NzE3MTc1MjF9.80QsMAPTPAuD7eyVawX_1VhD1tU-XJSNIkiN2wObOaM";
+const getToken = localStorage.getItem("token");
 const [loading, setLoading] = useState(false);
 const [airplane, setAirplane] = useState([]);
 const navigate = useNavigate();
@@ -52,12 +52,12 @@ const columns = [
     },
 },
     {dataField: "name", text: "Name", sort: "true", headerStyle: () =>{
-        return{ width: "7%"};
+        return{ width: "10%"};
     },},
     {dataField: "code", text: "Code", sort: "true"},
     // {dataField: "return_time", text: "Return"},
     {dataField: "country", text: "Country", sort: "true", headerStyle: () =>{
-        return{ width: "5%"};
+        return{ width: "10%"};
     },},
    
     // {dataField: "createdBy", text: "Created By", sort: "true", headerStyle: () =>{
@@ -109,7 +109,7 @@ useEffect(() => {
           {loading? (
            <>
            <Link to={"/admin/add-airplane"}>
-           <button className="btn btn-dark mb-1"><FontAwesomeIcon icon={faPlusCircle} /> Tambah</button>
+           <button className="btn btn-dark mb-1"><FontAwesomeIcon icon={faPlusCircle} /> Add Airplane</button>
             </Link>   
             
         <BootstrapTable bootstrap4 style={{fontSize: "20px"}} defaultSorted={defaultSortedBy} keyField='id' data={airplane} columns={columns} pagination={paginationFactory()} striped />

@@ -11,10 +11,11 @@ import { Button } from 'bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faInfo, faEdit, faTrash, faPlusCircle} from "@fortawesome/free-solid-svg-icons";
 import { Link, useNavigate, useParams } from 'react-router-dom';
+import moment from "moment";
 
 function DataAirport() {
 
-const getToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NywibmFtZSI6IkFkbWluIiwiZW1haWwiOiJhZG1pbkBiaW5hci5jby5pZCIsInJvbGUiOnsiaWQiOjIsIm5hbWUiOiJBRE1JTiJ9LCJpYXQiOjE2NzE3MTc1MjF9.80QsMAPTPAuD7eyVawX_1VhD1tU-XJSNIkiN2wObOaM";
+const getToken = localStorage.getItem("token");
 const [loading, setLoading] = useState(false);
 const [airport, setAirport] = useState([]);
 const navigate = useNavigate();
@@ -28,6 +29,9 @@ useEffect(() => {
   }
 })
 
+function dateFormat(value, row, index) {
+  return moment(value).format('HH:mm DD-MM-YYYY');
+}
 
 const getAirportData = async () => {
     try{
@@ -54,10 +58,10 @@ const columns = [
     {dataField: "city", text: "City", sort: "true"},
     // {dataField: "return_time", text: "Return"},
     {dataField: "country", text: "Country", sort: "true", headerStyle: () =>{
-        return{ width: "5%"};
+        return{ width: "15%"};
     },},
     {dataField: "country_code", text: "Country_Code", sort: "true", headerStyle: () =>{
-        return{ width: "5%"};
+        return{ width: "15%"};
     },},
    
     // {dataField: "createdBy", text: "Created By", sort: "true", headerStyle: () =>{
@@ -65,8 +69,8 @@ const columns = [
     // },},
     // {dataField: "updatedBy", text: "Updated By", sort: "true"},
     // {dataField: "deletedAt", text: "Deleted At", sort: "true"},
-    {dataField: "createdAt", text: "Created At", sort: "true"},
-    {dataField: "updatedAt", text: "Updated At", sort: "true"},
+    {dataField: "createdAt", formatter: dateFormat, dateFormat, text: "Created At", sort: "true"},
+    {dataField: "updatedAt", formatter: dateFormat, dateFormat, text: "Updated At", sort: "true"},
     {
         dataField: "",
         text: "Action",
@@ -109,7 +113,7 @@ useEffect(() => {
           {loading? (
            <>
            <Link to={"/admin/add-airport"}>
-           <button className="btn btn-dark mb-1"><FontAwesomeIcon icon={faPlusCircle} /> Tambah</button>
+           <button className="btn btn-dark mb-1"><FontAwesomeIcon icon={faPlusCircle} /> Add Airport</button>
             </Link>   
             
         <BootstrapTable bootstrap4 style={{fontSize: "20px"}} defaultSorted={defaultSortedBy} keyField='id' data={airport} columns={columns} pagination={paginationFactory()} striped />

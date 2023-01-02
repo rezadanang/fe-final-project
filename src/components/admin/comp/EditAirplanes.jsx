@@ -2,10 +2,12 @@ import React, { useEffect, useState } from 'react'
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function EditAirplanes() {
-    const getToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NywibmFtZSI6IkFkbWluIiwiZW1haWwiOiJhZG1pbkBiaW5hci5jby5pZCIsInJvbGUiOnsiaWQiOjIsIm5hbWUiOiJBRE1JTiJ9LCJpYXQiOjE2NzE3MTc1MjF9.80QsMAPTPAuD7eyVawX_1VhD1tU-XJSNIkiN2wObOaM";
+    const getToken = localStorage.getItem("token");
 
     const [idAirplanes, setIdAirplanes] = useState("");
     const [name, setName] = useState("");
@@ -40,8 +42,19 @@ function EditAirplanes() {
             Authorization: 'Bearer ' + getToken
           }
         })
-        navigate("/admin/airplanes");
-        alert("berhasil update")
+        toast.success('Success updated airplane', {
+          position: "top-center",
+          autoClose: 1000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+          });
+        setTimeout(() => {
+          navigate("/admin/airplane")
+        }, 3000);
         }
         
         catch (err) {
@@ -53,8 +66,19 @@ function EditAirplanes() {
       e.preventDefault();
       try{
         await axios.delete(`https://final-project-be-production-6de7.up.railway.app/api/v1/airplanes/delete/${id}`,{ headers: {"Authorization" : `Bearer ${getToken}`} });
-        navigate("/admin/airplanes");
-      alert("berhasil delete")
+        toast.success('Success deleted airplane', {
+          position: "top-center",
+          autoClose: 1000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+          });
+        setTimeout(() => {
+          navigate("/admin/airplane")
+        }, 3000);
       }
       catch (err) {
           console.log(err)
@@ -77,37 +101,58 @@ function EditAirplanes() {
       };
     
   return (
-
-    <div className='container mx-auto'>
+    <>
+    <h4 className='text-center mt-4'>Edit Airplane</h4>
+    <div className='container' style={{backgroundColor:"#4600FF", borderRadius:"20px"}}>
+    <div className='container p-5'>
       <form onSubmit={updateAirplanes}>
-      <div class="form-group">
-        <label for="exampleInputEmail1">Id Airplanes</label>
-        <input type="text" class="form-control" value={idAirplanes} placeholder="null" onChange={(e) => setIdAirplanes(e.target.value)} disabled />
-      </div>
-      <div class="form-group">
-        <label for="exampleInputEmail1">Name Airplane</label>
-        <input type="text" class="form-control" value={name} placeholder="null" onChange={(e) => setName(e.target.value)} disabled/>
-      </div>
-      <div class="form-group">
-        <label for="exampleInputEmail1">Code</label>
-        <input type="text" class="form-control" value={code} placeholder="null" onChange={(e) => setCode(e.target.value)} />
-      </div>
-      <div class="form-group">
-        <label for="exampleInputEmail1">Country</label>
-        <input type="text" class="form-control" value={country} placeholder="null" onChange={(e) => setCountry(e.target.value)} />
-      </div>
-
-      <div className="field">
-             <button type="submit" className="btn btn-primary" >
+      <div className='row'>
+          <div className='col lg-6'>
+            <div class="form-group">
+              <label style={{color:"white"}}>Id Airplanes</label>
+              <input type="text" class="form-control" value={idAirplanes} placeholder="null" onChange={(e) => setIdAirplanes(e.target.value)} disabled />
+            </div>
+          </div>
+          <div className='col lg-6'>
+            <div class="form-group">
+              <label style={{color:"white"}}>Name Airplane</label>
+              <input type="text" class="form-control" value={name} placeholder="null" onChange={(e) => setName(e.target.value)} disabled/>
+            </div>
+          </div>
+        </div>
+        <div className='row'>
+          <div className='col lg-6'>
+            <div class="form-group">
+              <label style={{color:"white"}}>Code</label>
+              <input type="text" class="form-control" value={code} placeholder="null" onChange={(e) => setCode(e.target.value)} />
+            </div>
+          </div>
+          <div className='col lg-6'>
+            <div class="form-group">
+              <label style={{color:"white"}}>Country</label>
+              <input type="text" class="form-control" value={country} placeholder="null" onChange={(e) => setCountry(e.target.value)} />
+            </div>
+          </div>
+        </div>
+        <div className='row'>
+          <div className='col lg-6'>
+            <div className="field mt-4">
+             <button type="submit" className="btn btn-warning" ><FontAwesomeIcon icon={faEdit} />
               Update
             </button>
            </div>
-           <div className="field">
-           <button className="btn btn-danger" onClick={deleteAirplanes}><FontAwesomeIcon icon={faTrash} /> Delete</button>
-           </div>
+          </div>
+          <div className='col lg-6'>
+            <div className="field mt-4">
+              <button className="btn btn-danger" onClick={deleteAirplanes}><FontAwesomeIcon icon={faTrash} /> Delete</button>
+            </div>
+          </div>
+        </div>
       </form>
     </div>
-
+    </div>
+    <ToastContainer />
+    </>
   )
 }
 

@@ -5,6 +5,7 @@ import defaultProfile from '../assets/avatarr.png'
 import styled from 'styled-components';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import {Helmet} from "react-helmet";
 
 const ButtonSaveProfile = styled.button`
     background-color: #FFE15D;
@@ -106,6 +107,10 @@ function EditProfile() {
       };
   return (
     <>
+     <Helmet>
+                <meta charSet="utf-8" />
+                <title> E-Flight | Edit Profile</title>
+          </Helmet>
     <div className='container container-profile mt-5 mb-5' style={{ borderRadius:"20px", background:"#F5F6FA"}}>
     
      <div className='container p-5'>

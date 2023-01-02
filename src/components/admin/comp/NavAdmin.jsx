@@ -1,3 +1,5 @@
+import { faRightFromBracket } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react'
 import { useNavigate } from 'react-router-dom';
 
@@ -14,7 +16,7 @@ function NavAdmin() {
       <div class="container-fluid">
         <span className="navbar-brand">E-Flight Admin</span>
         
-        <button className='btn btn-danger' onClick={logOut}>LOG OUT</button>
+        <button className='btn btn-danger' onClick={logOut}>LOG OUT <FontAwesomeIcon icon={faRightFromBracket} /></button>
       </div>
     </nav>
   )

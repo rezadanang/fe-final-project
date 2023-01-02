@@ -4,7 +4,7 @@ import NavAdmin from '../comp/NavAdmin';
 import Sidebar from '../comp/Sidebar';
 import DataTickets from '../comp/DataTickets';
 import { useNavigate } from 'react-router-dom';
-
+import {Helmet} from "react-helmet";
 
 
 
@@ -20,6 +20,10 @@ useEffect(() => {
 
   return (
     <>
+     <Helmet>
+                <meta charSet="utf-8" />
+                <title>Admin E-Flight</title>
+            </Helmet>
      <div>
         <NavAdmin />
           <div className="container-fluid">

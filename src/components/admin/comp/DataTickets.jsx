@@ -15,7 +15,7 @@ import moment from "moment";
 
 function DataTickets() {
 
-const getToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NywibmFtZSI6IkFkbWluIiwiZW1haWwiOiJhZG1pbkBiaW5hci5jby5pZCIsInJvbGUiOnsiaWQiOjIsIm5hbWUiOiJBRE1JTiJ9LCJpYXQiOjE2NzE3MTc1MjF9.80QsMAPTPAuD7eyVawX_1VhD1tU-XJSNIkiN2wObOaM";
+const getToken = localStorage.getItem("token");
 const [loading, setLoading] = useState(false);
 const [tickets, setTickets] = useState([]);
 const navigate = useNavigate();
@@ -118,7 +118,7 @@ useEffect(() => {
           {loading? (
            <>
            <Link to={"/admin/add-ticket"}>
-           <button className="btn btn-dark mb-1"><FontAwesomeIcon icon={faPlusCircle} /> Tambah</button>
+           <button className="btn btn-dark mb-1"><FontAwesomeIcon icon={faPlusCircle} /> Add Ticket</button>
             </Link>   
             
         <BootstrapTable bootstrap4 style={{fontSize: "20px"}} defaultSorted={defaultSortedBy} keyField='id' data={tickets} columns={columns} pagination={paginationFactory()} striped />

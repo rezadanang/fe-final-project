@@ -4,7 +4,7 @@ import NavAdmin from '../comp/NavAdmin';
 import Sidebar from '../comp/Sidebar';
 import DataUsers from '../comp/DataUsers';
 import { useNavigate } from 'react-router-dom';
-
+import {Helmet} from "react-helmet";
 
 
 function AdminUser() {
@@ -18,6 +18,10 @@ useEffect(() => {
 })
   return (
     <>
+     <Helmet>
+                <meta charSet="utf-8" />
+                <title>Admin E-Flight</title>
+            </Helmet>
      <div>
         <NavAdmin />
           <div className="container-fluid">
