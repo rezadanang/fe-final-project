@@ -60,12 +60,14 @@ function App() {
         <Route path='/all-flights/order/:id' element={<Order />} />
         <Route path='/allflights/order/:id' element={<Order/>} />
         <Route path='/user/:id' element={<UserProfile />} />
+        <Route path='/admin/index/user/:id' element={<UserProfile />} />
         <Route path='/allflights/user/:id' element={<UserProfile />} />
         <Route path='/notification-order/user/:id' element={<UserProfile />} />
         <Route path='/wishlist-order/user/:id' element={<UserProfile />} />
         <Route path='/history-order/user/:id' element={<UserProfile />} />
         <Route path='/filter/user/:id' element={<UserProfile />} />
         <Route path='/user/:id/edit' element={<EditProfile />} />
+        <Route path='/admin/index/user/:id/user/:id' element={<EditProfile />} />
         <Route path='allflights/user/:id/edit' element={<EditProfile />} />
         <Route path='wishlist-order/user/:id/edit' element={<EditProfile />} />
         <Route path='notification-order/user/:id/edit' element={<EditProfile />} />
