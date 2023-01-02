@@ -11,7 +11,7 @@ import Footer from '../home/Footer';
 import { faCheckCircle, faCircleDollarToSlot, faCity, faClock, faHeart, faPlane, faPlaneArrival, faPlaneDeparture } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import defaultProfile from '../../assets/avatarr.png'
-
+import {Helmet} from "react-helmet";
 
 const WrapperHero = styled.section`
     height: 600px;
@@ -136,6 +136,10 @@ function FilterTicket() {
     if (getToken) {
         return (
         <>
+         <Helmet>
+                <meta charSet="utf-8" />
+                <title>E-Flight | Filter Tickets</title>
+        </Helmet>
       {['lg'].map((expand) => (
         <Navbar key={expand} expand={expand} className="mb-3">
           <Container fluid>

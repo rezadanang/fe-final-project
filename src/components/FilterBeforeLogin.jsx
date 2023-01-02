@@ -10,7 +10,7 @@ import Footer from '../components/home/Footer';
 import { faCheckCircle, faCircleDollarToSlot, faCity, faClock, faHeart, faPlane, faPlaneArrival, faPlaneDeparture } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import defaultProfile from '../assets/avatarr.png'
-
+import {Helmet} from "react-helmet";
 
 const WrapperHero = styled.section`
     height: 600px;
@@ -143,8 +143,6 @@ function FilterBeforeLogin() {
 
   const showTicketsData = (e) => {
     e.preventDefault();
-    // console.log('dest', newDerpartureDateTime);
-    // console.log('ret', newReturnDateTime);
   
     const filteredTickets = tickets.filter(item =>  (item.origin === origin && item.destination === destination) && (item.category === category && item.departure_time >= newDerpartureDateTime));
     setDisplayTickets(filteredTickets);
@@ -155,6 +153,10 @@ function FilterBeforeLogin() {
    
         return (
         <>
+         <Helmet>
+                <meta charSet="utf-8" />
+                <title>E-Flight | Filter Tickets</title>
+        </Helmet>
       {['lg'].map((expand) => (
         <Navbar key={expand} expand={expand} className="mb-3">
           <Container fluid>

@@ -7,6 +7,7 @@ import styled from 'styled-components';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Login from './Login';
+import {Helmet} from "react-helmet";
 
 const ContainerWrapperForm = styled.div`
     margin: 0;
@@ -106,7 +107,10 @@ function Order() {
 if (getToken) {
   return (
     <>
-
+  <Helmet>
+                <meta charSet="utf-8" />
+                <title>E-Flight | Order Tickets</title>
+        </Helmet>
    
     <h4 className='text-center mt-4'>Order Ticket</h4>
     <div className='container' style={{backgroundColor:"#4600FF", borderRadius:"20px"}}>

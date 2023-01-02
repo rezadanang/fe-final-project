@@ -14,6 +14,7 @@ import WhyUs from './home/WhyUs';
 import axios from 'axios';
 import defaultProfile from '../assets/avatarr.png'
 import HeroAfterLogin from './home/HeroAfterLogin';
+import {Helmet} from "react-helmet";
 
 const ButtonAdmin = styled.button`
     background-color: #FFE15D;
@@ -92,6 +93,10 @@ const getProfileById = async () => {
 };
   return (
     <>
+    <Helmet>
+                <meta charSet="utf-8" />
+                <title>E-Flight</title>
+        </Helmet>
           {['lg'].map((expand) => (
         <Navbar key={expand} expand={expand} className="mb-3">
           <Container fluid>

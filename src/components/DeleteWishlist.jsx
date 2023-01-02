@@ -6,6 +6,7 @@ import moment from 'moment'
 import styled from 'styled-components';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import {Helmet} from "react-helmet";
 
 const ButtonDeleteWishlist = styled.button`
     background-color: red;
@@ -86,6 +87,10 @@ function DeleteWishlist() {
       };
   return (
     <>
+      <Helmet>
+                <meta charSet="utf-8" />
+                <title>E-Flight | Delete Wishlist</title>
+        </Helmet>
   <h4 className='text-center mt-4'>Delete Wishlist</h4>  
     <div className='container' style={{backgroundColor:"#4600FF", borderRadius:"20px"}}>
     <div className='container p-5'>

@@ -5,6 +5,7 @@ import defaultProfile from '../assets/avatarr.png'
 import styled from 'styled-components';
 import { Container, Col, Row, Form, Nav, Navbar, Offcanvas, InputGroup } from 'react-bootstrap';
 import Logo from "../assets/logo.png"  
+import {Helmet} from "react-helmet";
 
 const ButtonUpdateProfile = styled.button`
     background-color: #FFE15D;
@@ -69,6 +70,10 @@ function UserProfile() {
     
   return (
     <>
+    <Helmet>
+                <meta charSet="utf-8" />
+                <title>E-Flight | Profile</title>
+        </Helmet>
     {['lg'].map((expand) => (
         <Navbar key={expand} expand={expand} className="mb-3">
           <Container fluid>

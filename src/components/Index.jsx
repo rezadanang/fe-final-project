@@ -6,6 +6,7 @@ import NavigationBar from './home/Navigation';
 import Navigation from './home/Navigation';
 import WhyUs from './home/WhyUs';
 import IndexAfterLogin from './IndexAfterLogin';
+import {Helmet} from "react-helmet";
 
 function Index() {
     const getToken = localStorage.getItem("token");
@@ -17,6 +18,10 @@ function Index() {
       } else { 
         return (
             <>
+            <Helmet>
+                <meta charSet="utf-8" />
+                <title>E-Flight</title>
+            </Helmet>
             <NavigationBar />
             <Hero />
             <WhyUs />

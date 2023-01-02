@@ -11,6 +11,7 @@ import Footer from './home/Footer';
 import { faBell, faBookmark, faCalendarDay, faPlaneArrival, faPlaneDeparture } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import defaultProfile from '../assets/avatarr.png'
+import {Helmet} from "react-helmet";
 
 function Notifications() {
     const ButtonSignOut = styled.button`
@@ -72,6 +73,10 @@ const getProfileById = async () => {
 if (getToken) {
     return (
     <>
+     <Helmet>
+                <meta charSet="utf-8" />
+                <title>E-Flight | Notifications</title>
+        </Helmet>
   {['lg'].map((expand) => (
     <Navbar key={expand} expand={expand} className="mb-3">
       <Container fluid>
@@ -106,21 +111,12 @@ if (getToken) {
   ))}
     <Container>
     <h2 className='mt-3 text-center'>Notifications <FontAwesomeIcon style={{color:"#4600FF"}} icon={faBell} /></h2>
-      {/* <Row>
-    <Col lg={6}>
      
-    <Col lg={6}>
-    <InputGroup className='my-3'>
-      <Form.Control placeholder='Cari history pesananmu' onChange={(e) => setSearchTickets(e.target.value)}/>
-    </InputGroup>
-    </Col>
-    </Row> */}
     
     </Container>
 
     
-    {/* <label>Search:</label>
-    <input type="text" placeholder='Search Flights' onChange={(e) => setSearchTickets(e.target.value)} /> */}
+  
           {   
           tickets.length > 0 ? (
           tickets.filter((value) => {

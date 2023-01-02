@@ -5,7 +5,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import IndexAfterLogin from './IndexAfterLogin';
 import styled from 'styled-components';
 import { FaGoogle } from 'react-icons/fa';
-
+import {Helmet} from "react-helmet";
 
 const BodyLogin = styled.section`
     background: #fff;
@@ -122,6 +122,10 @@ function Login() {
     } else{
         return (
             <>
+             <Helmet>
+                <meta charSet="utf-8" />
+                <title>E-Flight | Login</title>
+        </Helmet>
             <BodyLogin>
             <WrapperFormLogin> 
             <div className='alert danger-alert' role='alert'>

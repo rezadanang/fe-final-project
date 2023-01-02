@@ -5,7 +5,7 @@ import { Button, Form } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import styled from 'styled-components';
 import { FaGoogle } from 'react-icons/fa';
-
+import {Helmet} from "react-helmet";
 
 const BodySignUp = styled.section`
     background: #fff;
@@ -93,6 +93,10 @@ function SignUp() {
 
   return (
     <>
+     <Helmet>
+                <meta charSet="utf-8" />
+                <title>E-Flight | Sign Up</title>
+        </Helmet>
     <BodySignUp>
         <WrapperFormSignUp>
         <div className='alert danger-alert' role='alert'>

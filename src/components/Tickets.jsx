@@ -11,6 +11,7 @@ import Footer from './home/Footer';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheckCircle, faCity, faHeart, faLocationDot, faPlane, faPlaneArrival, faPlaneDeparture } from '@fortawesome/free-solid-svg-icons';
 import defaultProfile from '../assets/avatarr.png'
+import {Helmet} from "react-helmet";
 
 const ButtonSignOut = styled.button`
     background-color: #FFE15D;
@@ -85,6 +86,10 @@ function Tickets() {
 
         return (
         <>
+        <Helmet>
+                <meta charSet="utf-8" />
+                <title>E-Flight | All Flights</title>
+        </Helmet>
       {['lg'].map((expand) => (
         <Navbar key={expand} expand={expand} className="mb-3">
           <Container fluid>

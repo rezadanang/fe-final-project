@@ -68,7 +68,7 @@ function Wishlist() {
             Authorization: 'Bearer ' + getToken
           }
         })
-        toast('Success added wishlist', {
+        toast.success('Success added wishlist', {
           position: "top-center",
           autoClose: 1000,
           hideProgressBar: true,
@@ -76,7 +76,7 @@ function Wishlist() {
           pauseOnHover: true,
           draggable: true,
           progress: undefined,
-          theme: "light",
+          theme: "colored",
           });
         setTimeout(() => {
           navigate("/")
