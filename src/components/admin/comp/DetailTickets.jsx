@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
-import Moment from 'react-moment';
-import moment from 'moment'
+
 
 function DetailTickets() {
-    const getToken = localStorage.getItem("token");
+    const getToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NywibmFtZSI6IkFkbWluIiwiZW1haWwiOiJhZG1pbkBiaW5hci5jby5pZCIsInJvbGUiOnsiaWQiOjIsIm5hbWUiOiJBRE1JTiJ9LCJpYXQiOjE2NzE3MTc1MjF9.80QsMAPTPAuD7eyVawX_1VhD1tU-XJSNIkiN2wObOaM";
     const [idTickets, setIdTickets] = useState("");
     const [airplane, setAirplane] = useState("");
     const [departureTime, setDepartureTime] = useState("");
@@ -18,10 +17,13 @@ function DetailTickets() {
     const navigate = useNavigate();
     const { id } = useParams();
 
-    const newDeparture = moment(departureTime).format('HH:mm MM/DD/YYYY');
-    const newArrival = moment(arrivalTime).format('HH:mm MM/DD/YYYY');
-    const newReturn = moment(returnTime).format('HH:mm MM/DD/YYYY');
-    const newArrival2 = moment(arrival2Time).format('HH:mm MM/DD/YYYY');
+    const getRole = localStorage.getItem("role");
+
+useEffect(() => {
+  if (getRole === "CUSTOMER"){
+    navigate("/")
+  }
+})
 
     useEffect(() => {
         getTicketsById();
@@ -55,19 +57,19 @@ function DetailTickets() {
       </div>
       <div class="form-group">
         <label for="exampleInputEmail1">Departure</label>
-        <input type="text" class="form-control" value={newDeparture} placeholder="null" disabled />
+        <input type="text" class="form-control" value={departureTime} placeholder="null" disabled />
       </div>
       <div class="form-group">
         <label for="exampleInputEmail1">Arrival Time</label>
-        <input type="text" class="form-control" value={newArrival} placeholder="null" disabled />
+        <input type="text" class="form-control" value={arrivalTime} placeholder="null" disabled />
       </div>
       <div class="form-group">
         <label for="exampleInputEmail1">Return Time</label>
-        <input type="text" class="form-control" value={newReturn} placeholder="null" disabled />
+        <input type="text" class="form-control" value={returnTime} placeholder="null" disabled />
       </div>
       <div class="form-group">
         <label for="exampleInputEmail1">Arrival Return Time</label>
-        <input type="text" class="form-control" value={newArrival2} placeholder="null" disabled />
+        <input type="text" class="form-control" value={arrival2Time} placeholder="null" disabled />
       </div>
       <div class="form-group">
         <label for="exampleInputEmail1">Price</label>

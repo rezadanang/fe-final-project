@@ -13,18 +13,8 @@ import Hero from './home/Hero';
 import WhyUs from './home/WhyUs';
 import axios from 'axios';
 import defaultProfile from '../assets/avatarr.png'
-
-const ButtonAdmin = styled.button`
-    background-color: #FFE15D;
-    color: #4600FF;
-    font-size: 1em;
-    font-weight: bold;
-    padding: 0.25em 1em;
-    border: 2px solid #FFE15D;
-    border-radius: 30px;
-    margin-right: 10px;
-    display: block;
-`;
+import { faGear } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const ButtonSignOut = styled.button`
     background-color: #FFE15D;
@@ -38,7 +28,19 @@ const ButtonSignOut = styled.button`
     display: block;
 `;
 
-function IndexAfterLogin() {
+const ButtonAdmin = styled.button`
+    background-color: #FFE15D;
+    color: #4600FF;
+    font-size: 1em;
+    font-weight: bold;
+    padding: 0.25em 1em;
+    border: 2px solid #FFE15D;
+    border-radius: 30px;
+    margin-right: 10px;
+    display: block;
+`;
+
+function IndexAdmin() {
   const getEmailUser = localStorage.getItem("emailUser");
   const getToken = localStorage.getItem("token");
   const idUser = localStorage.getItem("idUser");
@@ -53,9 +55,13 @@ function IndexAfterLogin() {
     window.location.reload()
   }
 
+  // const toAdmin = () => {
+  //   navigate("")
+  // }
+
   useEffect(() => {
-    if (getRole === "ADMIN"){
-      navigate("/admin/index")
+    if (getRole === "CUSTOMER"){
+      navigate("/")
     }
   })
 
@@ -115,7 +121,7 @@ const getProfileById = async () => {
                   <Nav.Link><Link to="/history-order" style={{textDecoration:"none"}}>Your Orders</Link></Nav.Link>
                 </Nav>
                 <Nav className="justify-content-center">
-                  
+                  <Link to="/admin"><ButtonAdmin><FontAwesomeIcon icon={faGear} /> ADMIN</ButtonAdmin></Link>
                   <Nav.Link><Link to={"user/" + idUser} style={{textDecoration:"none"}}><img src={photoProfile ? photoProfile : defaultProfile} style={{width:"25px", height:"25px", borderRadius:"50%"}} className="text-center" alt="profile image"/> Welcome back, {getEmailUser}</Link></Nav.Link>
                   <ButtonSignOut onClick={logOut}>LOG OUT</ButtonSignOut> 
                 </Nav>
@@ -134,4 +140,4 @@ const getProfileById = async () => {
   )
 }
 
-export default IndexAfterLogin
+export default IndexAdmin

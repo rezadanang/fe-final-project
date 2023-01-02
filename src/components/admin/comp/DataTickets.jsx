@@ -13,20 +13,21 @@ import { faInfo, faEdit, faTrash, faPlusCircle} from "@fortawesome/free-solid-sv
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import moment from "moment";
 
-function Dashboard() {
+function DataTickets() {
 
-const getToken = localStorage.getItem("token");
-const getRole=localStorage.getItem("role");
+const getToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NywibmFtZSI6IkFkbWluIiwiZW1haWwiOiJhZG1pbkBiaW5hci5jby5pZCIsInJvbGUiOnsiaWQiOjIsIm5hbWUiOiJBRE1JTiJ9LCJpYXQiOjE2NzE3MTc1MjF9.80QsMAPTPAuD7eyVawX_1VhD1tU-XJSNIkiN2wObOaM";
 const [loading, setLoading] = useState(false);
 const [tickets, setTickets] = useState([]);
 const navigate = useNavigate();
 const { id } = useParams();
 
+const getRole = localStorage.getItem("role");
+
 useEffect(() => {
-    if (getRole === "CUSTOMER"){
-      navigate("/")
-    }
-  })
+  if (getRole === "CUSTOMER"){
+    navigate("/")
+  }
+})
 
 const getTicketData = async () => {
     try{
@@ -44,6 +45,8 @@ function dateFormat(value, row, index) {
     return moment(value).format('HH:mm DD-MM-YYYY');
  }
 
+
+
 const columns = [
     {dataField: "id", text: "ID Ticket", sort: "true", headerStyle: () =>{
         return{ width: "5%"};
@@ -52,7 +55,7 @@ const columns = [
     {dataField: "airplane_name", text: "Airplane", sort: "true", headerStyle: () =>{
         return{ width: "7%"};
     },},
-    {dataField: "departure_time", formatter: dateFormat, text: "Departure", sort: "true", dateFormat},
+    {dataField: "departure_time",formatter: dateFormat, dateFormat, text: "Departure", sort: "true"},
     // {dataField: "return_time", text: "Return"},
     {dataField: "price", text: "Price", sort: "true", headerStyle: () =>{
         return{ width: "5%"};
@@ -71,20 +74,20 @@ const columns = [
     // },},
     // {dataField: "updatedBy", text: "Updated By", sort: "true"},
     // {dataField: "deletedAt", text: "Deleted At", sort: "true"},
-    {dataField: "createdAt", formatter: dateFormat, text: "Created At", sort: "true"},
-    {dataField: "updatedAt", formatter: dateFormat, text: "Updated At", sort: "true"},
+    {dataField: "createdAt",formatter: dateFormat, dateFormat, text: "Created At", sort: "true"},
+    {dataField: "updatedAt",formatter: dateFormat, dateFormat, text: "Updated At", sort: "true"},
     {
         dataField: "",
         text: "Action",
         formatter: (rowContent, row) => {
           return (
             <div>
-              <Link to={"detail/" + row.id}>
+              <Link to={"/admin/detail-ticket/" + row.id}>
                <button className="btn btn-dark mb-1"><FontAwesomeIcon icon={faInfo} /> Detail</button>
               </Link>
               
     
-              <Link to={"edit/" + row.id}>
+              <Link to={"/admin/edit-ticket/" + row.id}>
                   <button className="btn btn-dark mb-1"><FontAwesomeIcon icon={faEdit} /> Edit</button>
               </Link>    
              
@@ -114,8 +117,8 @@ useEffect(() => {
           <div className='container-fluid table-overflow'>
           {loading? (
            <>
-           <Link to={"add"}>
-           <button className="btn btn-dark mb-1"><FontAwesomeIcon icon={faPlusCircle} /> Add Ticket</button>
+           <Link to={"/admin/add-ticket"}>
+           <button className="btn btn-dark mb-1"><FontAwesomeIcon icon={faPlusCircle} /> Tambah</button>
             </Link>   
             
         <BootstrapTable bootstrap4 style={{fontSize: "20px"}} defaultSorted={defaultSortedBy} keyField='id' data={tickets} columns={columns} pagination={paginationFactory()} striped />
@@ -136,4 +139,4 @@ useEffect(() => {
   )
 }
 
-export default Dashboard
+export default DataTickets

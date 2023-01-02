@@ -3,11 +3,9 @@ import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
-import Moment from 'react-moment';
-import moment from 'moment'
 
 function EditTickets() {
-    const getToken = localStorage.getItem("token");
+    const getToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NywibmFtZSI6IkFkbWluIiwiZW1haWwiOiJhZG1pbkBiaW5hci5jby5pZCIsInJvbGUiOnsiaWQiOjIsIm5hbWUiOiJBRE1JTiJ9LCJpYXQiOjE2NzE3MTc1MjF9.80QsMAPTPAuD7eyVawX_1VhD1tU-XJSNIkiN2wObOaM";
 
     const [idTickets, setIdTickets] = useState("");
     const [airplane, setAirplane] = useState("");
@@ -16,15 +14,19 @@ function EditTickets() {
     const [returnTime, setReturnTime] = useState("");
     const [arrival2Time, setArrival2Time] = useState("");
     const [price, setPrice] = useState("");
+    const [category, setCategory] = useState("");
     const [origin, setOrigin] = useState("");
     const [destination, setDestination] = useState("");
     const navigate = useNavigate();
     const { id } = useParams();
 
-    const newDeparture = moment(departureTime).format('HH:mm MM/DD/YYYY');
-    const newArrival = moment(arrivalTime).format('HH:mm MM/DD/YYYY');
-    const newReturn = moment(returnTime).format('HH:mm MM/DD/YYYY');
-    const newArrival2 = moment(arrival2Time).format('HH:mm MM/DD/YYYY');
+    const getRole = localStorage.getItem("role");
+
+useEffect(() => {
+  if (getRole === "CUSTOMER"){
+    navigate("/")
+  }
+})
 
     useEffect(() => {
         getTicketsById();
@@ -36,6 +38,7 @@ function EditTickets() {
           await axios.put(`https://final-project-be-production-6de7.up.railway.app/api/v1/tickets/update/${id}`, {
             origin : origin,
             price: price,
+            category: category,
             destination: destination
           },
           {
@@ -43,7 +46,7 @@ function EditTickets() {
             Authorization: 'Bearer ' + getToken
           }
         })
-        navigate("/id/admin");
+        navigate("/");
         alert("berhasil update")
         }
         
@@ -56,7 +59,7 @@ function EditTickets() {
       e.preventDefault();
       try{
         await axios.delete(`https://final-project-be-production-6de7.up.railway.app/api/v1/tickets/delete/${id}`,{ headers: {"Authorization" : `Bearer ${getToken}`} });
-      navigate("/id/admin");
+      navigate("/");
       alert("berhasil delete")
       }
       catch (err) {
@@ -76,6 +79,7 @@ function EditTickets() {
         setReturnTime(response.data.data.return_time)
         setArrival2Time(response.data.data.arrival2_time)
         setPrice(response.data.data.price)
+        setCategory(response.data.data.category)
         setOrigin(response.data.data.origin)
         setDestination(response.data.data.destination)
       }catch (err){
@@ -98,23 +102,27 @@ function EditTickets() {
       </div>
       <div class="form-group">
         <label for="exampleInputEmail1">Departure</label>
-        <input type="text" class="form-control" value={newDeparture} placeholder="null" onChange={(e) => setDepartureTime(e.target.value)} />
+        <input type="text" class="form-control" value={departureTime} placeholder="null" onChange={(e) => setDepartureTime(e.target.value)} />
       </div>
       <div class="form-group">
         <label for="exampleInputEmail1">Arrival Time</label>
-        <input type="text" class="form-control" value={newArrival} placeholder="null" onChange={(e) => setArrivalTime(e.target.value)} />
+        <input type="text" class="form-control" value={arrivalTime} placeholder="null" onChange={(e) => setArrivalTime(e.target.value)} />
       </div>
       <div class="form-group">
         <label for="exampleInputEmail1">Return Time</label>
-        <input type="text" class="form-control" value={newReturn} placeholder="null" onChange={(e) => setReturnTime(e.target.value)} />
+        <input type="text" class="form-control" value={returnTime} placeholder="null" onChange={(e) => setReturnTime(e.target.value)} />
       </div>
       <div class="form-group">
         <label for="exampleInputEmail1">Arrival Return Time</label>
-        <input type="text" class="form-control" value={newArrival2} placeholder="null" onChange={(e) => setArrival2Time(e.target.value)} />
+        <input type="text" class="form-control" value={arrival2Time} placeholder="null" onChange={(e) => setArrival2Time(e.target.value)} />
       </div>
       <div class="form-group">
         <label for="exampleInputEmail1">Price</label>
         <input type="text" class="form-control" value={price} placeholder="null"  onChange={(e) => setPrice(e.target.value)}/>
+      </div>
+      <div class="form-group">
+        <label for="exampleInputEmail1">Category</label>
+        <input type="text" class="form-control" value={category} placeholder="null"  onChange={(e) => setCategory(e.target.value)}/>
       </div>
       <div class="form-group">
         <label for="exampleInputEmail1">Origin</label>
