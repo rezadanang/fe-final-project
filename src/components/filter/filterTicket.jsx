@@ -77,6 +77,7 @@ function FilterTicket() {
     const logOut = () => {
         localStorage.clear();
         window.location.reload()
+        navigate("/")
     }
 
     const [tickets, setTickets] = useState([]);

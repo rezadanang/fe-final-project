@@ -55,7 +55,9 @@ function App() {
         <Route path='/filterticket/order/:id' element={<Order/>} />
         <Route path='/all-flights' element={<TicketsBeforeLogin />} />
         <Route path='/allflights' element={<Tickets />} />
+        <Route path='/all-flights/wishlist/:id' element={<Wishlist />} />
         <Route path='/allflights/wishlist/:id' element={<Wishlist/>} />
+        <Route path='/all-flights/order/:id' element={<Order />} />
         <Route path='/allflights/order/:id' element={<Order/>} />
         <Route path='/user/:id' element={<UserProfile />} />
         <Route path='/allflights/user/:id' element={<UserProfile />} />

@@ -36,9 +36,11 @@ function UserProfile() {
     const getToken = localStorage.getItem("token");
     const getEmailUser = localStorage.getItem("emailUser");
     const idUser = localStorage.getItem("idUser");
+    const navigate = useNavigate();
+    
     const logOut = () => {
       localStorage.clear();
-      window.location.reload()
+      navigate("/")
   }
 
 
@@ -48,6 +50,7 @@ function UserProfile() {
     const [name, setName] = useState("");
     const [phone, setPhone] = useState("");
     const [email, setEmail] = useState("");
+    
 
     useEffect(() => {
         getProfileById();

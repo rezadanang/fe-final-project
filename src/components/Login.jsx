@@ -5,6 +5,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import IndexAfterLogin from './IndexAfterLogin';
 import styled from 'styled-components';
 import { FaGoogle } from 'react-icons/fa';
+import logoWhite from '../assets/logo-white.png'
 import {Helmet} from "react-helmet";
 
 const BodyLogin = styled.section`
@@ -131,6 +132,10 @@ function Login() {
             <div className='alert danger-alert' role='alert'>
                     <p className='text-danger text-center'>{error}</p>
             </div>
+            <div className='text-center'>
+                <img src={logoWhite} width={100} height={100}></img>
+            </div>
+           
             <TitleLogin style={{textAlign: "center"}}>Sign In</TitleLogin>
             <Form noValidate validated={validated} onSubmit={handleSubmit}>
                     <Form.Group className="mb-3" required>
@@ -146,7 +151,7 @@ function Login() {
                     </Form.Group>
                     <ButtonLogin className='mx-auto' style={{textAlign: "center"}} type="submit">Sign In</ButtonLogin>
                 </Form>
-                <ButtonLoginGoogle className='mx-auto mt-3' style={{textAlign: "center"}}>Login with Google <FaGoogle /></ButtonLoginGoogle>
+                {/* <ButtonLoginGoogle className='mx-auto mt-3' style={{textAlign: "center"}}>Login with Google <FaGoogle /></ButtonLoginGoogle> */}
                 <TextBottomLogin className='text-center mt-4'>If you dont have account, <Link to="/signup" style={{ color: '#FFF', textDecoration: 'none' }}>Sign Up Here</Link></TextBottomLogin>
             {/* <form onSubmit={handleSubmit}>
             <div className="form-group">

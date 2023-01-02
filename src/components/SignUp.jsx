@@ -6,6 +6,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import styled from 'styled-components';
 import { FaGoogle } from 'react-icons/fa';
 import {Helmet} from "react-helmet";
+import logoWhite from '../assets/logo-white.png'
 
 const BodySignUp = styled.section`
     background: #fff;
@@ -102,6 +103,9 @@ function SignUp() {
         <div className='alert danger-alert' role='alert'>
                 <p className='text-danger text-center'>{error}</p>
         </div>
+        <div className='text-center'>
+                <img src={logoWhite} width={100} height={100}></img>
+            </div>
         <TitleSignUp style={{textAlign: "center"}}>Sign Up</TitleSignUp>
         <Form noValidate validated={validated} onSubmit={handleSubmit}>
             <Form.Group className="mb-3" required>

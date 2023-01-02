@@ -3,7 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import styled from 'styled-components';
 import { Container, Col, Row, Form, Nav, Navbar, Offcanvas, InputGroup } from 'react-bootstrap';
 import Logo from "../assets/logo.png"  
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Login from '../components/Login';
 import axios from 'axios'
 import Moment from 'react-moment';
@@ -35,10 +35,11 @@ function History() {
     const getEmailUser = localStorage.getItem("emailUser");
     const getToken = localStorage.getItem("token");
     const idUser = localStorage.getItem("idUser");
-
+    const navigate = useNavigate();
+    
     const logOut = () => {
         localStorage.clear();
-        window.location.reload()
+        navigate("/")
     }
 
     const [tickets, setTickets] = useState('');

@@ -33,7 +33,7 @@ function WhyUs() {
                         <Accordion>
                             <Accordion.Item eventKey="0">
                                 <Accordion.Header>Apa saja syarat yang di butuhkan?</Accordion.Header>
-                                <Accordion.Body>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                                <Accordion.Body>Untuk melakukan pemesanan tiket pesawat anda hanya membutuhkan ktp untuk warga negara indonesia, apabila anda adalah warga negara asing maka dibutuhkan pasport.
                                 </Accordion.Body>
                             </Accordion.Item>
                             
@@ -41,28 +41,28 @@ function WhyUs() {
                         <Accordion className='mt-2'>
                         <Accordion.Item eventKey="1">
                                 <Accordion.Header>Apakah dapat melakukan refund?</Accordion.Header>
-                                <Accordion.Body>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                                <Accordion.Body>Refund dapat dilakukan apabila maskapai yang anda pesan mengizinkannya, karna ada beberapa maskapai yang tidak dapat melakukan refund.
                                 </Accordion.Body>
                             </Accordion.Item>
                         </Accordion>
                         <Accordion className='mt-2'>
                             <Accordion.Item eventKey="2">
                                 <Accordion.Header>Apakah akan dikenakan sanksi?</Accordion.Header>
-                                <Accordion.Body>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                                <Accordion.Body>Anda dapat dikenakan sanksi apabila akan melakukan penerbangan anda membawa senjata tajam, obat-obatan terlarang, dan juga melakukan tindak kriminal.
                                 </Accordion.Body>
                             </Accordion.Item>
                         </Accordion>
                         <Accordion className='mt-2'>
                             <Accordion.Item eventKey="3">
                                 <Accordion.Header>Bagaimana bila tertinggal penerbangan?</Accordion.Header>
-                                <Accordion.Body>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                                <Accordion.Body>Apabila anda tertinggal dalam penerbangan maka anda tidak dapat melakukan refund dan tiket akan hangus, Maka tetap perhatikan jadwal penerbangan anda.
                                 </Accordion.Body>
                             </Accordion.Item>
                         </Accordion>
                         <Accordion className='mt-2'>
                             <Accordion.Item eventKey="4">
                                 <Accordion.Header>Apakah penerbangan bisa di wakilkan?</Accordion.Header>
-                                <Accordion.Body>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                                <Accordion.Body>Penerbangan tidak dapat diwakilkan karna harus sesuai data yang ada di tiket.
                                 </Accordion.Body>
                             </Accordion.Item>
                         </Accordion>
