@@ -15,6 +15,7 @@ import axios from 'axios';
 import defaultProfile from '../assets/avatarr.png'
 import { faGear } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import Login from './Login';
 
 const ButtonSignOut = styled.button`
     background-color: #FFE15D;
@@ -95,49 +96,56 @@ const getProfileById = async () => {
 }
   
 };
+if (getToken) {
   return (
     <>
-          {['lg'].map((expand) => (
-        <Navbar key={expand} expand={expand} className="mb-3">
-          <Container fluid>
-              <img src={Logo} width={80} height={80} alt="logo" />
-            <Navbar.Brand href="#"></Navbar.Brand>
-            <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${expand}`} />
-            <Navbar.Offcanvas
-              id={`offcanvasNavbar-expand-${expand}`}
-              aria-labelledby={`offcanvasNavbarLabel-expand-${expand}`}
-              placement="end"
-            >
-              <Offcanvas.Header closeButton>
-                <Offcanvas.Title id={`offcanvasNavbarLabel-expand-${expand}`}>
-                 E-flights
-                </Offcanvas.Title>
-              </Offcanvas.Header>
-              <Offcanvas.Body>
-                <Nav className="justify-content-center flex-grow-1">
-                  <Nav.Link><Link to="/allflights" style={{textDecoration:"none"}}>All Flights</Link></Nav.Link>
-                  <Nav.Link><Link to="/wishlist-order" style={{textDecoration:"none"}}>Wishlist</Link></Nav.Link>
-                  <Nav.Link><Link to="/notification-order" style={{textDecoration:"none"}}>Notifications</Link></Nav.Link>
-                  <Nav.Link><Link to="/history-order" style={{textDecoration:"none"}}>Your Orders</Link></Nav.Link>
-                </Nav>
-                <Nav className="justify-content-center">
-                  <Link to="/admin"><ButtonAdmin><FontAwesomeIcon icon={faGear} /> ADMIN</ButtonAdmin></Link>
-                  <Nav.Link><Link to={"user/" + idUser} style={{textDecoration:"none"}}><img src={photoProfile ? photoProfile : defaultProfile} style={{width:"25px", height:"25px", borderRadius:"50%"}} className="text-center" alt="profile image"/> Welcome back, {getEmailUser}</Link></Nav.Link>
-                  <ButtonSignOut onClick={logOut}>LOG OUT</ButtonSignOut> 
-                </Nav>
-              </Offcanvas.Body>
-            </Navbar.Offcanvas>
-          </Container>
-        </Navbar>
-      ))}
-    {/* <div>hello, {getEmailUser}</div>
-    <button onClick={logOut}>LOG OUT</button> */}
-    <Hero />
-    <WhyUs />
-    <Benefits />
-    <Footer />
-    </>
+    {['lg'].map((expand) => (
+  <Navbar key={expand} expand={expand} className="mb-3">
+    <Container fluid>
+        <img src={Logo} width={80} height={80} alt="logo" />
+      <Navbar.Brand href="#"></Navbar.Brand>
+      <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${expand}`} />
+      <Navbar.Offcanvas
+        id={`offcanvasNavbar-expand-${expand}`}
+        aria-labelledby={`offcanvasNavbarLabel-expand-${expand}`}
+        placement="end"
+      >
+        <Offcanvas.Header closeButton>
+          <Offcanvas.Title id={`offcanvasNavbarLabel-expand-${expand}`}>
+           E-flights
+          </Offcanvas.Title>
+        </Offcanvas.Header>
+        <Offcanvas.Body>
+          <Nav className="justify-content-center flex-grow-1">
+            <Nav.Link><Link to="/allflights" style={{textDecoration:"none"}}>All Flights</Link></Nav.Link>
+            <Nav.Link><Link to="/wishlist-order" style={{textDecoration:"none"}}>Wishlist</Link></Nav.Link>
+            <Nav.Link><Link to="/notification-order" style={{textDecoration:"none"}}>Notifications</Link></Nav.Link>
+            <Nav.Link><Link to="/history-order" style={{textDecoration:"none"}}>Your Orders</Link></Nav.Link>
+          </Nav>
+          <Nav className="justify-content-center">
+            <Link to="/admin"><ButtonAdmin><FontAwesomeIcon icon={faGear} /> ADMIN</ButtonAdmin></Link>
+            <Nav.Link><Link to={"user/" + idUser} style={{textDecoration:"none"}}><img src={photoProfile ? photoProfile : defaultProfile} style={{width:"25px", height:"25px", borderRadius:"50%"}} className="text-center" alt="profile image"/> Welcome back, {getEmailUser}</Link></Nav.Link>
+            <ButtonSignOut onClick={logOut}>LOG OUT</ButtonSignOut> 
+          </Nav>
+        </Offcanvas.Body>
+      </Navbar.Offcanvas>
+    </Container>
+  </Navbar>
+))}
+{/* <div>hello, {getEmailUser}</div>
+<button onClick={logOut}>LOG OUT</button> */}
+<Hero />
+<WhyUs />
+<Benefits />
+<Footer />
+</>
+      )
+
+} else {
+  return (
+   <Login />
   )
+}
 }
 
 export default IndexAdmin
