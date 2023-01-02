@@ -69,4 +69,7 @@ ul#myRow .li-icon {
   .img-frame{
     width: 350px;
   }
+  .bg-blue-filter{
+    margin-top: 8px!important;
+  }
 }

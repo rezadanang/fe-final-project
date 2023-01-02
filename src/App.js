@@ -32,6 +32,7 @@ import AdminOrders from './components/admin/page/AdminOrders';
 import IndexAdmin from './components/IndexAdmin';
 import AddAirplanes from './components/admin/comp/AddAirplanes';
 import AddAirports from './components/admin/comp/AddAirports';
+import TicketsBeforeLogin from './components/TicketsBeforeLogin';
 
 function App() {
   return (
@@ -52,6 +53,7 @@ function App() {
         <Route path='/filter/order/:id' element={<Order/>} />
         <Route path='/filterticket/wishlist/:id' element={<Wishlist/>} />
         <Route path='/filterticket/order/:id' element={<Order/>} />
+        <Route path='/all-flights' element={<TicketsBeforeLogin />} />
         <Route path='/allflights' element={<Tickets />} />
         <Route path='/allflights/wishlist/:id' element={<Wishlist/>} />
         <Route path='/allflights/order/:id' element={<Order/>} />

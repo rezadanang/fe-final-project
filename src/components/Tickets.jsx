@@ -68,27 +68,11 @@ function Tickets() {
     }
       
     };
-    
-
-
-    // const getData = () => {
-    //   axios.get("https://final-project-be-production-6de7.up.railway.app/api/v1/tickets", { headers: {"Authorization" : `Bearer ${getToken}`} })
-    //   .then((response) => response.json())
-    //   .then((data) => {
-        
-    //     setData(data)
-    //     console.log(setData)
-    //   })
-    //   .catch((err) => {
-    //     console.log(err)
-    //   });
-    // }
 
     
     useEffect(() => {
       axios.get("https://final-project-be-production-6de7.up.railway.app/api/v1/tickets")
       .then(res => {
-        console.log(res.data.data);
         const datas = res.data.data;
         setTickets(datas);
      

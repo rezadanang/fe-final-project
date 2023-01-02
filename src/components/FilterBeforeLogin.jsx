@@ -189,7 +189,7 @@ function FilterBeforeLogin() {
       ))}
         <WrapperHero className='hero-wrapper-filter'>
             <Container>
-                <Wrapper>
+                <Wrapper className='bg-blue-filter'>
                   <Form>
                    <Row>
                         <Col xs={12} sm={6} md={3}>

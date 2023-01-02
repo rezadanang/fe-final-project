@@ -90,7 +90,6 @@ function Login() {
             password: values.password
         })
         .then(res => {
-            console.log(res.data);
             localStorage.setItem("token", res.data.accessToken);
             localStorage.setItem("emailUser", res.data.user);
             localStorage.setItem("idUser", res.data.id);

@@ -13,6 +13,7 @@ import Hero from './home/Hero';
 import WhyUs from './home/WhyUs';
 import axios from 'axios';
 import defaultProfile from '../assets/avatarr.png'
+import HeroAfterLogin from './home/HeroAfterLogin';
 
 const ButtonAdmin = styled.button`
     background-color: #FFE15D;
@@ -126,7 +127,7 @@ const getProfileById = async () => {
       ))}
     {/* <div>hello, {getEmailUser}</div>
     <button onClick={logOut}>LOG OUT</button> */}
-    <Hero />
+    <HeroAfterLogin />
     <WhyUs />
     <Benefits />
     <Footer />

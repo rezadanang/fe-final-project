@@ -48,7 +48,6 @@ const [photoProfile, setPhotoProfile] = useState('');
 useEffect(() => {
     axios.get("https://final-project-be-production-6de7.up.railway.app/api/v1/notifications", { headers: {"Authorization" : `Bearer ${getToken}`} })
     .then(res => {
-      console.log(res.data.data);
       const datas = res.data.data;
       setTickets(datas);
    

@@ -9,7 +9,6 @@ import IndexAfterLogin from './IndexAfterLogin';
 
 function Index() {
     const getToken = localStorage.getItem("token");
-    console.log(getToken)
     if (getToken) {
         return (
             <IndexAfterLogin />

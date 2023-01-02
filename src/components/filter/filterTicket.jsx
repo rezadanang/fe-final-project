@@ -15,6 +15,7 @@ import defaultProfile from '../../assets/avatarr.png'
 
 const WrapperHero = styled.section`
     height: 600px;
+    
 `;
 
 const Wrapper = styled.section`
@@ -169,7 +170,7 @@ function FilterTicket() {
       ))}
         <WrapperHero className='hero-wrapper-filter'>
             <Container>
-                <Wrapper>
+                <Wrapper className='bg-blue-filter'>
                   <Form>
                    <Row>
                         <Col xs={12} sm={6} md={3}>
