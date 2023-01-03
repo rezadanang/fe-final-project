@@ -263,7 +263,10 @@ function FilterBeforeLogin() {
                           </Form.Group>
                         </Col>
                         <Col xs={12} sm={6} md={3}>
-                  
+
+                        </Col>
+                        <Col xs={12} sm={6} md={3}>
+                        
                         </Col>
                         <Col xs={12} sm={6} md={3}>
                             {/* <button onClick={showTicketsData}>carii</button> */}
