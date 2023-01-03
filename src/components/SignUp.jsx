@@ -1,12 +1,14 @@
 import React, { useState } from 'react'
 import axios from 'axios'
 import { Link, useNavigate } from 'react-router-dom'
-import { Button, Form } from 'react-bootstrap';
+import { Button, Form, InputGroup } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import styled from 'styled-components';
 import { FaGoogle } from 'react-icons/fa';
 import {Helmet} from "react-helmet";
 import logoWhite from '../assets/logo-white.png'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEye } from '@fortawesome/free-solid-svg-icons';
 
 const BodySignUp = styled.section`
     background: #fff;
@@ -53,6 +55,7 @@ function SignUp() {
     const [error, setError] = useState('');
 
     const [validated, setValidated] = useState(false);
+    const [passwordShown, setPasswordShown] = useState(false);
     const [values, setValues] = useState({
         name: "",
         email: "",
@@ -85,12 +88,18 @@ function SignUp() {
         });
     }
 
-    const handlePasswordVisibility = () =>{
-        setValues({
-            ...values,
-            showPassword: !values.showPassword,
-        });
+    // const handlePasswordVisibility = () =>{
+    //     setValues({
+    //         ...values,
+    //         showPassword: !values.showPassword,
+    //     });
+    // };
+
+    const togglePassword = () => {
+        setPasswordShown(!passwordShown);
     };
+
+   
 
   return (
     <>
@@ -120,11 +129,11 @@ function SignUp() {
                 <Form.Control.Feedback type="invalid">Please fill the email!</Form.Control.Feedback>
                 <p style={{fontSize:"13px"}}>We'll never share your email with anyone else.</p>
             </Form.Group>
-            <Form.Group className="mb-3" required>
-                <Form.Label>Password</Form.Label>
-                <Form.Control type="password" placeholder="Input password" onChange={(e)=>setValues({...values,password:e.target.value})} controlId="password" required />
-                <Form.Control.Feedback type="invalid">Please fill the password!</Form.Control.Feedback>
-            </Form.Group>
+            <Form.Label>Password</Form.Label>
+                <InputGroup className="mb-3" required>
+                    <Form.Control aria-describedby="password" type={passwordShown ? "text" : "password"} placeholder="Input password" controlId="password" required onChange={(e)=>setValues({...values,password:e.target.value})} />
+                    <InputGroup.Text><FontAwesomeIcon icon={faEye} onClick={togglePassword} /></InputGroup.Text>
+                </InputGroup>
             <ButtonSignUp className='mx-auto' style={{textAlign: "center"}}>Sign Up</ButtonSignUp>
         </Form>
         
