@@ -11,6 +11,8 @@ import Footer from '../home/Footer';
 import { faCheckCircle, faCircleDollarToSlot, faCity, faClock, faHeart, faPlane, faPlaneArrival, faPlaneDeparture } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import defaultProfile from '../../assets/avatarr.png'
+import Lottie from 'react-lottie';
+import animationData from '../../lottie/no-data.json';
 import {Helmet} from "react-helmet";
 
 const WrapperHero = styled.section`
@@ -118,6 +120,15 @@ function FilterTicket() {
         console.log(err)
       });
   });
+
+  const lottieOptions = {
+    loop: true,
+    autoplay: true,
+    animationData: animationData,
+    rendererSettings: {
+      preserveAspectRatio: "xMidYMid slice"
+    }
+  };
 
 
 
@@ -227,13 +238,7 @@ function FilterTicket() {
                             <div className="form-check form-switch">
                               <input className="form-check-input" type="checkbox" id="flexCheckDefault" name="checkbox" value="round_trip"
                               onChange={(e) => setCategory(e.target.value)}
-                              // onChange={() => {
-                              //     if(checked){
-                              //     setText('')
-                              //   }
-                              //     setChecked(!checked)
-                              //   }
-                              // } 
+                             
                               />
                                <label className="form-check-label" htmlFor="flexCheckDefault" style={{color:"white"}}> Round Trip?</label>
                             </div>
@@ -241,34 +246,10 @@ function FilterTicket() {
                           </Form.Group>
                         </Col>
                         <Col xs={12} sm={6} md={3}>
-                        {/* <Form.Group className='mt-4'>
-                        <div className="form-check form-switch">
-                              <input className="form-check-input" type="checkbox" id="flexCheckDefault" name="checkbox" value="one_Way"
-                              onChange={(e) => setCategory(e.target.value)}
-                              // onChange={() => {
-                              //     if(checked){
-                              //     setText('')
-                              //   }
-                              //     setChecked(!checked)
-                              //   }
-                              // } 
-                              />
-                               <label className="form-check-label" htmlFor="flexCheckDefault" style={{color:"white"}}> One Way?</label>
-                            </div>
-                            </Form.Group> */}
-                        {/* <Form.Group>
-                            <Form.Label htmlFor="return" style={{color:"white"}}>Return Date</Form.Label>
-                            <Form.Control type="date" name="return" id="return" aria-describedby="return" disabled={!checked}  onChange={(e) => setReturnDate(e.target.value)}/>
-                        </Form.Group> */}
+                      
                         </Col>
                         <Col xs={12} sm={6} md={3}>
-                        {/* <Form.Group>
-                            <Form.Label htmlFor="returnTime" style={{color:"white"}}>Return Time</Form.Label>
-                            <Form.Control type="time" name="returnTime" id="returnTime" aria-describedby="returnTime" disabled={!checked}  onChange={(e) => setReturnTime(e.target.value)}/>
-                        </Form.Group> */}
-                        </Col>
-                        <Col xs={12} sm={6} md={3}>
-                            {/* <button onClick={showTicketsData}>carii</button> */}
+                           
                             <ButtonFilter className="mx-auto" onClick={showTicketsData}>Cari</ButtonFilter>
                         </Col>
                     </Row>
@@ -321,7 +302,9 @@ function FilterTicket() {
               </Container>
               
               </>
-              )) : <p className="text-center mt-5">Data Tidak Tersedia</p>
+              )) : <><h5 className="text-center mt-5">Data Tidak Tersedia</h5>
+              <Lottie options={lottieOptions} height={400} width={400}/>
+              </>
                 
             }
         <Footer />

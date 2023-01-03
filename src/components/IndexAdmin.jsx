@@ -9,13 +9,13 @@ import Offcanvas from 'react-bootstrap/Offcanvas';
 import Logo from "../assets/logo.png"  
 import Benefits from './home/Benefits';
 import Footer from './home/Footer';
-import Hero from './home/Hero';
 import WhyUs from './home/WhyUs';
 import axios from 'axios';
 import defaultProfile from '../assets/avatarr.png'
 import { faGear } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Login from './Login';
+import HeroAdmin from './home/HeroAdmin';
 
 const ButtonSignOut = styled.button`
     background-color: #FFE15D;
@@ -134,7 +134,7 @@ if (getToken) {
 ))}
 {/* <div>hello, {getEmailUser}</div>
 <button onClick={logOut}>LOG OUT</button> */}
-<Hero />
+<HeroAdmin />
 <WhyUs />
 <Benefits />
 <Footer />
