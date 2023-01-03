@@ -149,7 +149,7 @@ if (getToken) {
           <WrapperTicket>
             <Row>
               <Col xs={12} md={4} lg={4} className='text-center'>
-                <p><FontAwesomeIcon icon={faBookmark} /> Id Order: {item.orderId}</p>
+                <p><FontAwesomeIcon icon={faBookmark} /> No Order: {item.orderId}</p>
               </Col>
               <Col xs={12} md={4} lg={4} className='text-center'>
                 <p><FontAwesomeIcon icon={faCalendarDay} /> Create Order: <Moment format='HH:mm DD-MM-YYYY'>{item.createdAt}</Moment></p>
