@@ -1,8 +1,10 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import styled from 'styled-components';
 import { Container, Col, Row } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import AOS from 'aos';
+import "aos/dist/aos.css";
 
 const WrapperHero = styled.section`
     height: 500px;
@@ -25,10 +27,16 @@ const ButtonHero = styled.button`
     display: block;
 `;
 function Hero() {
+
+  useEffect(() => {
+    AOS.init();
+    AOS.refresh();
+  }, []);
+
   return (
     <WrapperHero className='hero-wrapper'>
         <WrapperButtonHero >
-        <Link to="/filterticket"><ButtonHero className='text-center mx-auto'>Start Booking</ButtonHero></Link>
+        <Link to="/filterticket"><ButtonHero className='text-center mx-auto' data-aos="fade-up">Start Booking</ButtonHero></Link>
         </WrapperButtonHero>    
     </WrapperHero>
   )

@@ -1,8 +1,10 @@
 import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Row, Container, Col, Accordion } from 'react-bootstrap';
 import styled from 'styled-components';
+import AOS from 'aos';
+import "aos/dist/aos.css";
 
 const TextLeft = styled.h1`
   font-size: 1.5em;
@@ -16,8 +18,14 @@ const Wrapper = styled.section`
 `;
 
 function WhyUs() {
+
+    useEffect(() => {
+        AOS.init();
+        AOS.refresh();
+      }, []);
+
   return (
-    <Container style={{marginTop:"-50px"}}>
+    <Container style={{marginTop:"-50px"}} data-aos="fade-down">
             <Wrapper>
                 <Row>
                     <Col lg={6}>

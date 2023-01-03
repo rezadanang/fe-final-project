@@ -11,6 +11,8 @@ import Footer from './home/Footer';
 import { faBell, faBookmark, faCalendarDay, faPlaneArrival, faPlaneDeparture } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import defaultProfile from '../assets/avatarr.png'
+import Lottie from 'react-lottie';
+import animationData from '../lottie/no-data.json';
 import {Helmet} from "react-helmet";
 
 function Notifications() {
@@ -32,6 +34,16 @@ const WrapperTicket = styled.div`
   background: #F5F6FA;
   border-radius: 10px;
 `;
+
+const lottieOptions = {
+  loop: true,
+  autoplay: true,
+  animationData: animationData,
+  rendererSettings: {
+    preserveAspectRatio: "xMidYMid slice"
+  }
+};
+
 
 const getEmailUser = localStorage.getItem("emailUser");
 const getToken = localStorage.getItem("token");
@@ -159,7 +171,11 @@ if (getToken) {
             </Row>
           </WrapperTicket>
           </Container>
-          )) : <p className="text-center">Data Tidak Tersedia</p>
+          )) : <><h5 className="text-center mt-5">Data Tidak Tersedia</h5>
+          <Lottie options={lottieOptions} height={400} width={400}/>
+          </>
+
+          
             
         } 
 

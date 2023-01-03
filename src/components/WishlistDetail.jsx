@@ -11,6 +11,8 @@ import Footer from './home/Footer';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCalendarDay, faHeart, faPlaneArrival, faPlaneDeparture, faTicket } from '@fortawesome/free-solid-svg-icons';
 import defaultProfile from '../assets/avatarr.png'
+import Lottie from 'react-lottie';
+import animationData from '../lottie/no-data.json';
 import {Helmet} from "react-helmet";
 
 const ButtonSignOut = styled.button`
@@ -77,8 +79,17 @@ function WishlistDetail() {
     }catch (err){
       console.log(err);
     }
-      
     };
+
+    const lottieOptions = {
+      loop: true,
+      autoplay: true,
+      animationData: animationData,
+      rendererSettings: {
+        preserveAspectRatio: "xMidYMid slice"
+      }
+    };
+  
     if (getToken) {
         return (
         <>
@@ -178,7 +189,9 @@ function WishlistDetail() {
                 </Row>
               </WrapperTicket>
               </Container>
-              )) : <p className="text-center">Data Tidak Tersedia</p>
+              )) : <><h5 className="text-center mt-5">Data Tidak Tersedia</h5>
+               <Lottie options={lottieOptions} height={400} width={400}/>
+              </>
                 
             } 
 

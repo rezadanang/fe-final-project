@@ -1,10 +1,12 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Frame1 from "../../assets/frame-1.png"
 import Frame2 from "../../assets/frame-2.png"
 import Frame3 from "../../assets/frame-3.png"
 import { Col, Container, Row } from 'react-bootstrap';
 import styled from 'styled-components';
+import AOS from 'aos';
+import "aos/dist/aos.css";
 
 
 const SectionBenefits = styled.section`
@@ -51,15 +53,21 @@ const DescBenefits = styled.p`
     padding-left: 20px;
 `;
 function Benefits() {
+
+    useEffect(() => {
+        AOS.init();
+        AOS.refresh();
+      }, []);
+      
   return (
     <>
     <Container>
      <SectionBenefits>
          <Row>
-             <Col lg={6}>
+             <Col lg={6} data-aos="fade-right">
                  <img src={Frame1} alt="frame 1" className='mx-auto img-frame'/>
              </Col>
-             <Col lg={6}>
+             <Col lg={6} data-aos="fade-left">
                  
                  <TitleBenefits>Pesan Tiket dan Rencanain Liburan Jadi Gampang</TitleBenefits>
                  <Scrollable>
@@ -76,7 +84,7 @@ function Benefits() {
      </SectionBenefits>
      <SectionBenefits>
          <Row>
-             <Col lg={6}>
+             <Col lg={6} data-aos="fade-right">
              <TitleBenefits>Pesan Tiket dan Rencanain Liburan Jadi Gampang</TitleBenefits>
                  <Scrollable>
                      <Blur></Blur>
@@ -88,17 +96,17 @@ function Benefits() {
                      <DescBenefits>Melalui pelayanan 24/7 Customer Care, kami akan selalu ada buat kamu. Dapatkan bantuan untuk pemesanan hotel dan tiketmu dengan pelayanan 24/7 Customer Care dari E-flight.</DescBenefits>
                  </Scrollable>
              </Col>
-             <Col lg={6}>
+             <Col lg={6} data-aos="fade-left">
                  <img src={Frame2} alt="frame 2" className='mx-auto img-frame'/>
              </Col>
          </Row>
      </SectionBenefits>
      <SectionBenefits>
          <Row>
-             <Col lg={6}>
+             <Col lg={6} data-aos="fade-right">
                  <img src={Frame3} alt="frame 3" className='mx-auto img-frame'/>
              </Col>
-             <Col lg={6}>
+             <Col lg={6} data-aos="fade-left">
                  <TitleBenefits>Dapatkan Harga Tiket Pesawat Murah ke Destinasi Favorit Anda</TitleBenefits>
                  <Scrollable>
                  <DescBoldBenefits>Banyak Promo Spesial.</DescBoldBenefits>
