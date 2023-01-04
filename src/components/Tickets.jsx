@@ -9,7 +9,7 @@ import axios from 'axios'
 import Moment from 'react-moment';
 import Footer from './home/Footer';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCheckCircle, faCity, faHeart, faLocationDot, faPlane, faPlaneArrival, faPlaneDeparture } from '@fortawesome/free-solid-svg-icons';
+import { faCheckCircle, faCircleDollarToSlot, faCity, faHeart, faLocationDot, faPlane, faPlaneArrival, faPlaneDeparture } from '@fortawesome/free-solid-svg-icons';
 import defaultProfile from '../assets/avatarr.png'
 import Lottie from 'react-lottie';
 import animationData from '../lottie/no-data.json';
@@ -179,7 +179,7 @@ function Tickets() {
                   <p><FontAwesomeIcon icon={faCity} /> To: {item.destination}</p>
                   </Col>
                   <Col sm={true} className='text-center'>
-                  <p>Rp.{item.price}</p>
+                  <p><FontAwesomeIcon icon={faCircleDollarToSlot} />Rp.{item.price}</p>
                   </Col>
                 </Row>
                 <Row className='mt-4'>
