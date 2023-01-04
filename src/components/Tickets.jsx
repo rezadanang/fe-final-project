@@ -179,7 +179,7 @@ function Tickets() {
                   <p><FontAwesomeIcon icon={faCity} /> To: {item.destination}</p>
                   </Col>
                   <Col sm={true} className='text-center'>
-                  <p><FontAwesomeIcon icon={faCircleDollarToSlot} />Rp.{item.price}</p>
+                  <p><FontAwesomeIcon icon={faCircleDollarToSlot} /> Rp.{item.price}</p>
                   </Col>
                 </Row>
                 <Row className='mt-4'>
