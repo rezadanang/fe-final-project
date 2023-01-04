@@ -101,7 +101,7 @@ function UserProfile() {
                   <Nav.Link><Link to="/history-order" style={{textDecoration:"none"}}>Your Orders</Link></Nav.Link>
                 </Nav>
                 <Nav className="justify-content-center">
-                  <Nav.Link><Link to={"user/" + idUser} style={{textDecoration:"none"}}><img src={photoProfile ? photoProfile : defaultProfile} style={{width:"25px", height:"25px", borderRadius:"50%"}} className="text-center" alt="profile image"/> {getEmailUser}</Link></Nav.Link>
+                  
                   <ButtonSignOut onClick={logOut}>LOG OUT</ButtonSignOut> 
                 </Nav>
               </Offcanvas.Body>
