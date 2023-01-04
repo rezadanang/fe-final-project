@@ -144,7 +144,7 @@ function DeleteWishlist() {
         </div>
         <div className='col lg-6'>
           <div className="field mt-3">
-           <ButtonDeleteWishlist onClick={deleteWishlistTicket}> Delete Wishlist</ButtonDeleteWishlist>
+           <ButtonDeleteWishlist onClick={deleteWishlistTicket}> Delete</ButtonDeleteWishlist>
           </div>
         </div>
       </div>

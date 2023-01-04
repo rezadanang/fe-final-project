@@ -17,9 +17,9 @@ const BodyLogin = styled.section`
 
 const WrapperFormLogin = styled.div`
     margin: 0;
-    position: absolute;
+    position: fixed;
     top: 50%;
-    left: 50%;
+    margin-left: 50%;
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
     background: #4600FF;
@@ -44,18 +44,6 @@ const TitleLogin = styled.h3`
     color: white;
 `;
 
-const ButtonLoginGoogle = styled.button`
-    background-color: #FFFFFF;
-    color: #000000;
-    font-size: 1em;
-    font-weight: bold;
-    padding: 0.25em 5em;
-    border: 2px solid #FFFFFF;
-    border-radius: 30px;
-    margin-right: 10px;
-    display: block;
-`;
-
 const TextBottomLogin = styled.p`
     font-size: 13px;
     color: #FFFFFF;
@@ -72,6 +60,7 @@ function Login() {
     const [error, setError] = useState('');
     const [validated, setValidated] = useState(false);
     const [passwordShown, setPasswordShown] = useState(false);
+    const {icons, setIcon} = useState('faEye');
     const [values, setValues] = useState({
         email: "",
         password: "",
@@ -154,7 +143,7 @@ function Login() {
                         <InputGroup.Text><FontAwesomeIcon icon={faEye} onClick={togglePassword} /></InputGroup.Text>
                     </InputGroup>
                     {/* <Form.Control.Feedback id="password" type="invalid"> Please fill the password!</Form.Control.Feedback> */}
-                    <ButtonLogin className='mx-auto' style={{textAlign: "center"}} type="submit">Sign In</ButtonLogin>
+                    <ButtonLogin className='mx-auto' style={{textAlign: "center"}} type="submit">Login</ButtonLogin>
                 </Form>
                 {/* <ButtonLoginGoogle className='mx-auto mt-3' style={{textAlign: "center"}}>Login with Google <FaGoogle /></ButtonLoginGoogle> */}
                 <TextBottomLogin className='text-center mt-4'>If you dont have account, <Link to="/signup" style={{ color: '#FFF', textDecoration: 'none' }}>Sign Up Here</Link></TextBottomLogin>

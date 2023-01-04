@@ -17,9 +17,9 @@ const BodySignUp = styled.section`
 
 const WrapperFormSignUp = styled.div`
     margin: 0;
-    position: absolute;
+    position: fixed;
     top: 50%;
-    left: 50%;
+    margin-left: 50%;
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
     background: #4600FF;
@@ -134,7 +134,7 @@ function SignUp() {
                     <Form.Control aria-describedby="password" type={passwordShown ? "text" : "password"} placeholder="Input password" controlId="password" required onChange={(e)=>setValues({...values,password:e.target.value})} />
                     <InputGroup.Text><FontAwesomeIcon icon={faEye} onClick={togglePassword} /></InputGroup.Text>
                 </InputGroup>
-            <ButtonSignUp className='mx-auto' style={{textAlign: "center"}}>Sign Up</ButtonSignUp>
+            <ButtonSignUp className='mx-auto' style={{textAlign: "center"}}>Register</ButtonSignUp>
         </Form>
         
         <TextBottomSignUp className='text-center mt-4'>Already have account?, <Link to="/login" style={{ color: '#FFF', textDecoration: 'none' }}>Sign In Here</Link></TextBottomSignUp>
