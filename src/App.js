@@ -57,6 +57,7 @@ function App() {
         <Route path='/allflights' element={<Tickets />} />
         <Route path='/all-flights/wishlist/:id' element={<Wishlist />} />
         <Route path='/allflights/wishlist/:id' element={<Wishlist/>} />
+        <Route path='/wishlist-order/order/:id' element={<Order/>} />
         <Route path='/all-flights/order/:id' element={<Order />} />
         <Route path='/allflights/order/:id' element={<Order/>} />
         <Route path='/user/:id' element={<UserProfile />} />

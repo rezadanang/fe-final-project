@@ -8,7 +8,7 @@ import Login from '../components/Login';
 import axios from 'axios'
 import Moment from 'react-moment';
 import Footer from './home/Footer';
-import { faBell, faBookmark, faCalendarDay, faPlaneArrival, faPlaneDeparture } from '@fortawesome/free-solid-svg-icons';
+import { faBell, faCalendarDay, faInfoCircle, faPlaneArrival, faPlaneDeparture } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import defaultProfile from '../assets/avatarr.png'
 import Lottie from 'react-lottie';
@@ -149,7 +149,7 @@ if (getToken) {
           <WrapperTicket>
             <Row>
               <Col xs={12} md={4} lg={4} className='text-center'>
-                <p><FontAwesomeIcon icon={faBookmark} /> No Order: {item.orderId}</p>
+                <p><FontAwesomeIcon icon={faInfoCircle} /> No Order: {item.orderId}</p>
               </Col>
               <Col xs={12} md={4} lg={4} className='text-center'>
                 <p><FontAwesomeIcon icon={faCalendarDay} /> Create Order: <Moment format='HH:mm DD-MM-YYYY'>{item.createdAt}</Moment></p>

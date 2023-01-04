@@ -310,12 +310,18 @@ function FilterBeforeLogin() {
                   <p><FontAwesomeIcon icon={faCheckCircle} style={{color:"green"}} /> Category: {item.category}</p>
                   </Col>
                   <Col sm={true}>
-                    <Link to={"order/" + item.id}>
-                    <ButtonBooking className='mx-auto'>Booking</ButtonBooking>
-                    </Link>
-                    <Link to={"wishlist/" + item.id}>
-                      <FontAwesomeIcon style={{color:"red"}} icon={faHeart} />
-                    </Link>
+                    <Row>
+                      <Col lg={6} className='text-center mt-2 mb-3'>
+                        <Link to={"wishlist/" + item.id}>
+                          <FontAwesomeIcon style={{color:"red"}} icon={faHeart} />
+                        </Link>
+                      </Col>
+                      <Col lg={6}>
+                        <Link to={"order/" + item.id}>
+                          <ButtonBooking className='mx-auto'>Booking</ButtonBooking>
+                        </Link>
+                      </Col>
+                    </Row>
                   </Col>
                 </Row>
               </WrapperTicket>

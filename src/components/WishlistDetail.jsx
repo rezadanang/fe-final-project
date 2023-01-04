@@ -44,6 +44,19 @@ const ButtonDeleteWishlist = styled.button`
     text-decoration: none;
 `;
 
+const ButtonBooking = styled.button`
+    background-color: #FFE15D;
+    color: #4600FF;
+    font-size: 1em;
+    font-weight: bold;
+    padding: 0.25em 1em;
+    border: 2px solid #FFE15D;
+    border-radius: 30px;
+    display: block;
+    text-decoration: none;
+`;
+
+
 function WishlistDetail() {
     const getEmailUser = localStorage.getItem("emailUser");
     const getToken = localStorage.getItem("token");
@@ -54,7 +67,7 @@ function WishlistDetail() {
         navigate("/")
     }
 
-    const [tickets, setTickets] = useState('');
+    const [wishlist, setWishlist] = useState('');
     const [searchTickets, setSearchTickets] = useState('');
     const [photoProfile, setPhotoProfile] = useState('');
 
@@ -62,7 +75,7 @@ function WishlistDetail() {
         axios.get("https://final-project-be-production-6de7.up.railway.app/api/v1/wishlists", { headers: {"Authorization" : `Bearer ${getToken}`} })
         .then(res => {
           const datas = res.data.data;
-          setTickets(datas);
+          setWishlist(datas);
        
         })
         .catch((err) => {
@@ -148,8 +161,8 @@ function WishlistDetail() {
         {/* <label>Search:</label>
         <input type="text" placeholder='Search Flights' onChange={(e) => setSearchTickets(e.target.value)} /> */}
               {   
-              tickets.length > 0 ? (
-              tickets.filter((value) => {
+              wishlist.length > 0 ? (
+              wishlist.filter((value) => {
                 if(searchTickets === ""){
             
                   return value
@@ -172,7 +185,9 @@ function WishlistDetail() {
                     <p><FontAwesomeIcon icon={faCalendarDay} /> Update Order: <Moment format='HH:mm DD-MM-YYYY'>{item.updatedAt}</Moment></p>
                   </Col>
                   <Col xs={12} md={4} lg={4} className='text-center'>
-                    {/* <p><FontAwesomeIcon icon={faCalendarDay} /> Update Order: <Moment format='HH:mm DD-MM-YYYY'>{item.updatedAt}</Moment></p> */}
+                  <Link to={"order/" + item.ticketId}>
+                          <ButtonBooking className='mx-auto'>Booking</ButtonBooking>
+                        </Link>
                   </Col>
                 </Row>
                 <Row className='mt-4'>
@@ -183,7 +198,7 @@ function WishlistDetail() {
                     <p><FontAwesomeIcon icon={faPlaneArrival} /> Arrival: <Moment format='HH:mm DD-MM-YYYY'>{item.arrival_time}</Moment></p>
                   </Col>
                   <Col xs={12} md={4} lg={4} className='text-center'>
-                    <Link to={"delete/" + item.id}><ButtonDeleteWishlist>Delete Wishlist</ButtonDeleteWishlist></Link>
+                    <Link to={"delete/" + item.id}><ButtonDeleteWishlist>Delete</ButtonDeleteWishlist></Link>
                   </Col>
                   
                 </Row>
