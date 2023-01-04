@@ -197,13 +197,13 @@ if (getToken) {
         <div className='col lg-6'>
           <div className='row'>
             <div className='col lg-6'>
-              <div className="field mt-3">
+              <div className="field mt-4">
                 <ButtonCancel className='mx-auto' onClick={cancel}>Cancel</ButtonCancel>
                 {/* <button className="btn btn-primary" onClick={orderTicket}> Order</button> */}
               </div>
             </div>
             <div className='col lg-6'>
-              <div className="field mt-3">
+              <div className="field mt-4">
                 <ButtonOrder className='mx-auto' onClick={orderTicket}>Order</ButtonOrder>
                 {/* <button className="btn btn-primary" onClick={orderTicket}> Order</button> */}
               </div>

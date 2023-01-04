@@ -171,8 +171,7 @@ function EditProfile() {
        </div>
        <div className='col lg-6'>
          <div className="field mt-4">
-            <ButtonSaveProfile onClick={updateProfile}>Save</ButtonSaveProfile>
-           {/* <Link to={"edit"}><ButtonUpdateProfile>Update</ButtonUpdateProfile></Link> */}
+            <ButtonSaveProfile className='mx-auto' onClick={updateProfile}>Save</ButtonSaveProfile>
          </div>
        </div>
      </div>

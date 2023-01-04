@@ -20,6 +20,19 @@ const ButtonDeleteWishlist = styled.button`
     display: block;
 `;
 
+const ButtonCancel = styled.button`
+    background-color: white;
+    color: #4600FF;
+    font-size: 1em;
+    font-weight: bold;
+    padding: 0.25em 1em;
+    border: 2px solid white;
+    border-radius: 30px;
+    margin-right: 10px;
+    display: block;
+`;
+
+
 function DeleteWishlist() {
     const getToken = localStorage.getItem("token");
     const [idWishlist, setIdWishlist] = useState("");
@@ -43,6 +56,9 @@ function DeleteWishlist() {
     const newCreatedAt = moment(createdAt).format('HH:mm MM/DD/YYYY');
     const newUpdatedAt = moment(updatedAt).format('HH:mm MM/DD/YYYY');
     
+    const cancel = () => {
+      navigate('/')
+    }
 
     useEffect(() => {
         getTicketsById();
@@ -140,10 +156,12 @@ function DeleteWishlist() {
       
       <div className='row'>
         <div className='col lg-6'>
-          
+          <div className="field mt-4">
+            <ButtonCancel className='mx-auto' onClick={cancel}>Cancel</ButtonCancel>
+          </div>
         </div>
         <div className='col lg-6'>
-          <div className="field mt-3">
+          <div className="field mt-4">
            <ButtonDeleteWishlist onClick={deleteWishlistTicket}> Delete</ButtonDeleteWishlist>
           </div>
         </div>
