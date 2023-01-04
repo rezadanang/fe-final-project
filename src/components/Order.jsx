@@ -124,90 +124,80 @@ if (getToken) {
     <>
   <Helmet>
                 <meta charSet="utf-8" />
-                <title>E-Flight | Order Tickets</title>
+                <title>E-Flight | Booking Tickets</title>
         </Helmet>
    
-    <h4 className='text-center mt-4'>Order Ticket</h4>
+    <h4 className='text-center mt-4'>Booking Ticket</h4>
     <div className='container' style={{backgroundColor:"#4600FF", borderRadius:"20px"}}>
     <div className='container p-5'>
     <form>
     <div className='row'>
         <div className='col lg-6'>
           <div class="form-group">
-            <label style={{color:"white"}}> Id Ticket</label>
-            <input type="text" class="form-control" value={idTickets} placeholder="null" disabled />
-          </div>
-        </div>
-        <div className='col lg-6'>
-          <div class="form-group">
             <label style={{color:"white"}}>Airplane</label>
             <input type="text" class="form-control" value={airplane} placeholder="null" disabled />
           </div>
         </div>
-      </div>
-      <div className='row'>
         <div className='col lg-6'>
           <div class="form-group">
             <label style={{color:"white"}}>Departure</label>
             <input type="text" class="form-control" value={newDeparture} placeholder="null" disabled />
           </div>
         </div>
+      </div>
+      <div className='row'>
         <div className='col lg-6'>
           <div class="form-group">
             <label style={{color:"white"}}>Arrival Time</label>
             <input type="text" class="form-control" value={newArrival} placeholder="null" disabled />
           </div>
         </div>
-      </div>
-      <div className='row'>
         <div className='col lg-6'>
-          <div class="form-group">
+        <div class="form-group">
             <label style={{color:"white"}}>Return Time</label>
             <input type="text" class="form-control" value={newReturn} placeholder="null" disabled />
           </div>
         </div>
+      </div>
+      <div className='row'>
         <div className='col lg-6'>
           <div class="form-group">
             <label style={{color:"white"}}>Arrival Return Time</label>
             <input type="text" class="form-control" value={newArrival2} placeholder="null" disabled />
           </div>
         </div>
-      </div>
-      <div className='row'>
         <div className='col lg-6'>
           <div class="form-group">
-          <label style={{color:"white"}}>Price</label>
-          <input type="text" class="form-control" value={price} placeholder="null" disabled />
+            <label style={{color:"white"}}>Price</label>
+            <input type="text" class="form-control" value={price} placeholder="null" disabled />
+          </div>
         </div>
-        </div>
+      </div>
+      <div className='row'>
         <div className='col lg-6'>
           <div class="form-group">
             <label style={{color:"white"}}>Origin</label>
             <input type="text" class="form-control" value={origin} placeholder="null" disabled />
           </div>
         </div>
-      </div>
-      <div className='row'>
         <div className='col lg-6'>
           <div class="form-group">
             <label style={{color:"white"}}>Destination</label>
             <input type="text" class="form-control" value={destination} placeholder="null" disabled />
           </div>
         </div>
+      </div>
+      <div className='row'>
         <div className='col lg-6'>
-          <div className='row'>
-            <div className='col lg-6'>
-              <div className="field mt-4">
+          <div className="field mt-4">
                 <ButtonCancel className='mx-auto' onClick={cancel}>Cancel</ButtonCancel>
-                {/* <button className="btn btn-primary" onClick={orderTicket}> Order</button> */}
+              
               </div>
-            </div>
-            <div className='col lg-6'>
-              <div className="field mt-4">
-                <ButtonOrder className='mx-auto' onClick={orderTicket}>Order</ButtonOrder>
-                {/* <button className="btn btn-primary" onClick={orderTicket}> Order</button> */}
-              </div>
-            </div>
+        </div>
+        <div className='col lg-6'>
+          <div className="field mt-4">
+                <ButtonOrder className='mx-auto' onClick={orderTicket}>Booking</ButtonOrder>
+     
           </div>
           
         </div>
