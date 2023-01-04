@@ -5,11 +5,13 @@ import Sidebar from '../comp/Sidebar';
 import DataOrders from '../comp/DataOrders';
 import { useNavigate } from 'react-router-dom';
 import {Helmet} from "react-helmet";
+import Login from '../../Login';
 
 
 
 function AdminOrders() {
   const getRole = localStorage.getItem("role");
+  const getToken = localStorage.getItem("token");
   const navigate = useNavigate();
 
 useEffect(() => {
@@ -17,6 +19,7 @@ useEffect(() => {
     navigate("/")
   }
 })
+if (getToken) {
   return (
     <>
      <Helmet>
@@ -38,6 +41,12 @@ useEffect(() => {
     
     </>
   )
+}
+else { 
+  return (
+    <Login />
+  )
+}
 }
 
 export default AdminOrders

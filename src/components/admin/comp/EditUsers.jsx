@@ -3,6 +3,7 @@ import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
+import Login from '../../Login';
 
 function EditUsers() {
     const getToken = localStorage.getItem("token");
@@ -74,7 +75,8 @@ function EditUsers() {
         
       };
     
-  return (
+      if (getToken) {
+        return (
 
     <div className='container mx-auto'>
       <form onSubmit={updateUsers}>
@@ -119,6 +121,12 @@ function EditUsers() {
     </div>
 
   )
+}
+else { 
+  return (
+    <Login />
+  )
+}
 }
 
 export default EditUsers

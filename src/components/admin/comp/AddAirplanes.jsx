@@ -5,6 +5,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
+import Login from '../../Login';
 
 function AddAirplanes() {
     const getToken = localStorage.getItem("token");
@@ -57,7 +58,8 @@ function AddAirplanes() {
               console.log(err)
           }
     }
-  return (
+    if (getToken) {
+      return (
     <>
       <h4 className='text-center mt-4'>Add Airplane</h4>
        <div className='container' style={{backgroundColor:"#4600FF", borderRadius:"20px"}}>
@@ -104,6 +106,12 @@ function AddAirplanes() {
     <ToastContainer />
     </>
   )
+}
+else { 
+  return (
+    <Login />
+  )
+}
 }
 
 export default AddAirplanes

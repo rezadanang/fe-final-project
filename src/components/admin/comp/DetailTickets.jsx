@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 import moment from 'moment';
+import Login from '../../Login';
 
 
 function DetailTickets() {
@@ -49,7 +50,8 @@ useEffect(() => {
         setDestination(response.data.data.destination)
       };
     
-  return (
+      if (getToken) {
+        return (
       <>
       <h4 className='text-center mt-4'>Detail Ticket</h4>
        <div className='container' style={{backgroundColor:"#4600FF", borderRadius:"20px"}}>
@@ -122,6 +124,12 @@ useEffect(() => {
 </>
 
   )
+}
+else { 
+  return (
+    <Login />
+  )
+}
 }
 
 export default DetailTickets

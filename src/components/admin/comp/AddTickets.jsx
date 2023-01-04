@@ -5,6 +5,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCirclePlus } from '@fortawesome/free-solid-svg-icons';
+import Login from '../../Login';
 
 function AddTickets() {
     const getToken = localStorage.getItem("token");
@@ -21,7 +22,6 @@ useEffect(() => {
     const [arrivalDate, setArrivalDate] = useState("");
     const [returnDate, setReturnDate] = useState("");
     const [arrivalReturnDate, setArrivalReturnDate] = useState("");
-    // const timeDeparture = new Date().toISOString(departureDate);
 
     const [values, setValues] = useState({
         airplane_name: "",
@@ -69,7 +69,8 @@ useEffect(() => {
               console.log(err)
           }
     }
-  return (
+    if (getToken) {
+      return (
     <>
     <h4 className='text-center mt-4'>Add Ticket</h4>  
      <div className='container' style={{backgroundColor:"#4600FF", borderRadius:"20px"}}>
@@ -160,6 +161,12 @@ useEffect(() => {
     <ToastContainer />
     </>
   )
+}
+else { 
+  return (
+    <Login />
+  )
+}
 }
 
 export default AddTickets

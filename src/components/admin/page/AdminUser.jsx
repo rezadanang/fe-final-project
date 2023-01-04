@@ -5,10 +5,12 @@ import Sidebar from '../comp/Sidebar';
 import DataUsers from '../comp/DataUsers';
 import { useNavigate } from 'react-router-dom';
 import {Helmet} from "react-helmet";
+import Login from '../../Login';
 
 
 function AdminUser() {
   const getRole = localStorage.getItem("role");
+  const getToken = localStorage.getItem("token");
   const navigate = useNavigate();
 
 useEffect(() => {
@@ -16,6 +18,8 @@ useEffect(() => {
     navigate("/")
   }
 })
+
+if (getToken) {
   return (
     <>
      <Helmet>
@@ -37,6 +41,12 @@ useEffect(() => {
     
     </>
   )
+}
+else { 
+  return (
+    <Login />
+  )
+}
 }
 
 export default AdminUser

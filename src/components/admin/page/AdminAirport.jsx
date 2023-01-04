@@ -5,12 +5,14 @@ import Sidebar from '../comp/Sidebar';
 import DataAirport from '../comp/DataAirport';
 import { useNavigate } from 'react-router-dom';
 import {Helmet} from "react-helmet";
+import Login from '../../Login';
 
 
 
 function AdminAirport() {
 
   const getRole = localStorage.getItem("role");
+  const getToken = localStorage.getItem("token");
   const navigate = useNavigate();
 
 useEffect(() => {
@@ -19,6 +21,7 @@ useEffect(() => {
   }
 })
 
+if (getToken) {
   return (
     <>
      <Helmet>
@@ -40,6 +43,12 @@ useEffect(() => {
     
     </>
   )
+}
+else { 
+  return (
+    <Login />
+  )
+}
 }
 
 export default AdminAirport

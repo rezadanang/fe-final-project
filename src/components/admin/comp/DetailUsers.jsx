@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 import defaultProfile from '../../../assets/avatarr.png'
+import Login from '../../Login';
 
 
 function DetailUsers() {
@@ -45,7 +46,8 @@ useEffect(() => {
         setEmail(response.data.data.email)
       };
     
-  return (
+      if (getToken) {
+        return (
       <>
       <h4 className='text-center mt-4'>Delete Wishlist</h4>  
     <div className='container' style={{backgroundColor:"#4600FF", borderRadius:"20px"}}>
@@ -118,5 +120,11 @@ useEffect(() => {
 </>
 
 )
+}
+else { 
+  return (
+    <Login />
+  )
+}
 }
 export default DetailUsers

@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Login from '../../Login';
 
 function EditTickets() {
     const getToken = localStorage.getItem("token");
@@ -116,7 +117,8 @@ useEffect(() => {
         
       };
     
-  return (
+      if (getToken) {
+        return (
     <>
       <h4 className='text-center mt-4'>Edit Ticket</h4>
       <div className='container' style={{backgroundColor:"#4600FF", borderRadius:"20px"}}>
@@ -208,6 +210,12 @@ useEffect(() => {
     <ToastContainer />
     </>
   )
+}
+else { 
+  return (
+    <Login />
+  )
+}
 }
 
 export default EditTickets

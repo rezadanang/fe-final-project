@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
+import Login from '../../Login';
 
 
 function DetailAirplanes() {
@@ -34,7 +35,8 @@ function DetailAirplanes() {
         setCountry(response.data.data.country)
       };
     
-  return (
+      if (getToken) {
+        return (
       <>
       <h4 className='text-center mt-4'>Detail Airplane</h4>
        <div className='container' style={{backgroundColor:"#4600FF", borderRadius:"20px"}}>
@@ -77,6 +79,12 @@ function DetailAirplanes() {
 </>
 
   )
+}
+else { 
+  return (
+    <Login />
+  )
+}
 }
 
 export default DetailAirplanes
