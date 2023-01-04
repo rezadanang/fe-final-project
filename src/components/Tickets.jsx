@@ -209,7 +209,7 @@ function Tickets() {
                 </Row>
               </WrapperTicket>
               </Container>
-              )) : <><h5 className="text-center mt-5">Data Tidak Tersedia</h5>
+              )) : <><h5 className="text-center mt-5">No Data Available</h5>
               <Lottie options={lottieOptions} height={400} width={400}/>
               </>
                 

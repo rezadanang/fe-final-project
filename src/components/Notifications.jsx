@@ -28,9 +28,9 @@ function Notifications() {
     display: block;
 `;
 
-const WrapperTicket = styled.div`
+const WrapperNotifications = styled.div`
   margin-top: 15px;
-  padding: 2em;
+  padding: 2em 1em;
   background: #F5F6FA;
   border-radius: 10px;
 `;
@@ -55,7 +55,7 @@ const logOut = () => {
     navigate("/")
 }
 
-const [tickets, setTickets] = useState('');
+const [notifications, setNotifications] = useState('');
 const [searchTickets, setSearchTickets] = useState('');
 const [photoProfile, setPhotoProfile] = useState('');
 
@@ -66,7 +66,7 @@ useEffect(() => {
     const datasFiltered = datas.filter(data => {
       return data.userId === parseInt(idUser)
     });
-    setTickets(datasFiltered);
+    setNotifications(datasFiltered);
   })
   .catch((err) => {
     console.log(err)
@@ -134,8 +134,8 @@ if (getToken) {
     
   
           {   
-          tickets.length > 0 ? (
-          tickets.filter((value) => {
+          notifications.length > 0 ? (
+            notifications.filter((value) => {
             if(searchTickets === ""){
         
               return value
@@ -149,32 +149,16 @@ if (getToken) {
           }).
           map((item) =>
           <Container>
-          <WrapperTicket>
-            <Row>
-              <Col xs={12} md={4} lg={4} className='text-center'>
-                <p><FontAwesomeIcon icon={faInfoCircle} /> No Order: {item.orderId}</p>
-              </Col>
-              <Col xs={12} md={4} lg={4} className='text-center'>
-                <p><FontAwesomeIcon icon={faCalendarDay} /> Create Order: <Moment format='HH:mm DD-MM-YYYY'>{item.createdAt}</Moment></p>
-              </Col>
-              <Col xs={12} md={4} lg={4} className='text-center'>
-                <p><FontAwesomeIcon icon={faCalendarDay} /> Update Order: <Moment format='HH:mm DD-MM-YYYY'>{item.updatedAt}</Moment></p>
-              </Col>
-            </Row>
-            <Row className='mt-4'>
-              <Col xs={12} md={4} lg={4} className='text-center'>
-                <p><FontAwesomeIcon icon={faPlaneDeparture} /> Derparture: <Moment format='HH:mm DD-MM-YYYY'>{item.departure_time}</Moment></p>
-              </Col>
-              <Col xs={12} md={4} lg={4} className='text-center'>
-                <p><FontAwesomeIcon icon={faPlaneArrival} /> Arrival: <Moment format='HH:mm DD-MM-YYYY'>{item.arrival_time}</Moment></p>
-              </Col>
-              <Col xs={12} md={4} lg={4} className='text-center'>
-                
-              </Col>
-            </Row>
-          </WrapperTicket>
+          <WrapperNotifications>
+            <div className='text-center'>
+            Dear {getEmailUser}, your book order at <Moment format='DD-MM-YYYY'>{item.createdAt}</Moment> already for boarding.
+            </div>
+            <div className='text-center'>
+            Please stand by before <Moment format='HH:mm'>{item.departure_time}</Moment> on gate. Have a safe and comfortable flight! 😊
+            </div>
+          </WrapperNotifications>
           </Container>
-          )) : <><h5 className="text-center mt-5">Data Tidak Tersedia</h5>
+          )) : <><h5 className="text-center mt-5">No Data Available</h5>
           <Lottie options={lottieOptions} height={400} width={400}/>
           </>
 
