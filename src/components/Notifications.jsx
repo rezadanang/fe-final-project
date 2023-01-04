@@ -60,17 +60,18 @@ const [searchTickets, setSearchTickets] = useState('');
 const [photoProfile, setPhotoProfile] = useState('');
 
 useEffect(() => {
-    axios.get("https://final-project-be-production-6de7.up.railway.app/api/v1/notifications", { headers: {"Authorization" : `Bearer ${getToken}`} })
-    .then(res => {
-      const datas = res.data.data;
-      setTickets(datas);
-   
-    })
-    .catch((err) => {
-      console.log(err)
+  axios.get("https://final-project-be-production-6de7.up.railway.app/api/v1/notifications", { headers: {"Authorization" : `Bearer ${getToken}`} })
+  .then(res => {
+    const datas = res.data.data;
+    const datasFiltered = datas.filter(data => {
+      return data.userId === parseInt(idUser)
     });
-});
-
+    setTickets(datasFiltered);
+  })
+  .catch((err) => {
+    console.log(err)
+  });
+}, [getToken, idUser]);
 useEffect(() => {
   getProfileById();
 }, []);
