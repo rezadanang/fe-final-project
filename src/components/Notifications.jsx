@@ -72,6 +72,8 @@ useEffect(() => {
     console.log(err)
   });
 }, [getToken, idUser]);
+
+
 useEffect(() => {
   getProfileById();
 }, []);
