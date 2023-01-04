@@ -191,9 +191,7 @@ function Wishlist() {
         </div>
         <div className='col lg-6'>
           <div className="field mt-3">
-            <ButtonWishlist className='mx-auto' onClick={wishListTicket}>Add Wishlist</ButtonWishlist>
-   
-           {/* <button className="btn btn-primary" onClick={wishListTicket}> Add Wishlist</button> */}
+            <ButtonWishlist className='mx-auto' onClick={wishListTicket}>Add</ButtonWishlist>
           </div>
         </div>
       </div>
