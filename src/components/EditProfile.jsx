@@ -19,6 +19,18 @@ const ButtonSaveProfile = styled.button`
     display: block;
 `;
 
+const ButtonCancel = styled.button`
+    background-color: #4600FF;
+    color: #FFE15D;
+    font-size: 1em;
+    font-weight: bold;
+    padding: 0.25em 1em;
+    border: 2px solid white;
+    border-radius: 30px;
+    margin-right: 10px;
+    display: block;
+`;
+
 function EditProfile() {
 
     const inputRef = useRef()
@@ -39,6 +51,11 @@ function EditProfile() {
         console.log(e.target.value)
         setPhotoProfile(e.target.value[0])
     }
+
+    const cancel = () => {
+      navigate('/')
+    }
+
 
     useEffect(() => {
         getProfileById();
@@ -148,7 +165,9 @@ function EditProfile() {
      </div>
      <div className='row'>
        <div className='col lg-6'>
-         
+        <div className="field mt-4">
+          <ButtonCancel className='mx-auto' onClick={cancel}>Cancel</ButtonCancel>
+        </div>
        </div>
        <div className='col lg-6'>
          <div className="field mt-4">

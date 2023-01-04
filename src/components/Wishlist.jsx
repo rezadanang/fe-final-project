@@ -33,6 +33,18 @@ const ButtonWishlist = styled.button`
     margin-right: 10px;
     display: block;
 `;
+
+const ButtonCancel = styled.button`
+    background-color: white;
+    color: #4600FF;
+    font-size: 1em;
+    font-weight: bold;
+    padding: 0.25em 1em;
+    border: 2px solid white;
+    border-radius: 30px;
+    margin-right: 10px;
+    display: block;
+`;
 function Wishlist() {
     const getToken = localStorage.getItem("token");
 
@@ -56,6 +68,10 @@ function Wishlist() {
     useEffect(() => {
         getTicketsById();
       }, []);
+
+      const cancel = () => {
+        navigate('/')
+      }
 
       const wishListTicket = async (e) => {
         e.preventDefault();
@@ -169,7 +185,9 @@ function Wishlist() {
       </div>
       <div className='row'>
         <div className='col lg-6'>
-          
+          <div className="field mt-3">
+          <ButtonCancel className='mx-auto' onClick={cancel}>Cancel</ButtonCancel>
+          </div>
         </div>
         <div className='col lg-6'>
           <div className="field mt-3">

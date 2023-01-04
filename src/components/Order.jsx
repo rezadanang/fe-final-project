@@ -34,6 +34,18 @@ const ButtonOrder = styled.button`
     display: block;
 `;
 
+const ButtonCancel = styled.button`
+    background-color: white;
+    color: #4600FF;
+    font-size: 1em;
+    font-weight: bold;
+    padding: 0.25em 1em;
+    border: 2px solid white;
+    border-radius: 30px;
+    margin-right: 10px;
+    display: block;
+`;
+
 function Order() {
 
     const getToken = localStorage.getItem("token");
@@ -59,6 +71,9 @@ function Order() {
         getTicketsById();
       }, []);
 
+      const cancel = () => {
+        navigate('/')
+      }
       const orderTicket = async (e) => {
         e.preventDefault();
         try{
@@ -180,10 +195,21 @@ if (getToken) {
           </div>
         </div>
         <div className='col lg-6'>
-          <div className="field mt-3">
-            <ButtonOrder className='mx-auto' onClick={orderTicket}>Order</ButtonOrder>
-            {/* <button className="btn btn-primary" onClick={orderTicket}> Order</button> */}
+          <div className='row'>
+            <div className='col lg-6'>
+              <div className="field mt-3">
+                <ButtonCancel className='mx-auto' onClick={cancel}>Cancel</ButtonCancel>
+                {/* <button className="btn btn-primary" onClick={orderTicket}> Order</button> */}
+              </div>
+            </div>
+            <div className='col lg-6'>
+              <div className="field mt-3">
+                <ButtonOrder className='mx-auto' onClick={orderTicket}>Order</ButtonOrder>
+                {/* <button className="btn btn-primary" onClick={orderTicket}> Order</button> */}
+              </div>
+            </div>
           </div>
+          
         </div>
       </div>
     </form>
