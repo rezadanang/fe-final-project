@@ -49,7 +49,7 @@ useEffect(() => {
       if (getToken) {
         return (
       <>
-      <h4 className='text-center mt-4'>Delete Wishlist</h4>  
+      <h4 className='text-center mt-4'>Detail User</h4>  
     <div className='container' style={{backgroundColor:"#4600FF", borderRadius:"20px"}}>
     <div className='container p-5'>
     <img src={photoProfile ? photoProfile : defaultProfile} style={{width:"250px", height:"250px", borderRadius:"50%"}} className="mx-auto d-block" alt="profile image"/>

@@ -50,6 +50,7 @@ function UserProfile() {
     const [name, setName] = useState("");
     const [phone, setPhone] = useState("");
     const [email, setEmail] = useState("");
+    const [gender, setGender] = useState("");
     
 
     useEffect(() => {
@@ -64,6 +65,7 @@ function UserProfile() {
         setName(response.data.data.name);
         setPhone(response.data.data.contact);
         setEmail(response.data.data.email);
+        setGender(response.data.data.gender);
         
       }catch (err){
         console.log(err);
@@ -143,6 +145,20 @@ function UserProfile() {
           <div class="form-group">
             <label for="exampleInputEmail1">Phone</label>
             <input type="text" class="form-control" value={phone} placeholder="null" onChange={(e) => setName(e.target.value)} disabled/>
+          </div>
+        </div>
+      </div>
+      <div className='row'>
+        <div className='col lg-6'>
+          <div class="form-group">
+            <label for="exampleInputEmail1">No KTP</label>
+            <input type="text" class="form-control" value={idKtp} placeholder="null" onChange={(e) => setName(e.target.value)} disabled/>
+          </div>
+        </div>
+        <div className='col lg-6'>
+          <div class="form-group">
+            <label for="exampleInputEmail1">Gender</label>
+            <input type="text" class="form-control" value={gender} placeholder="null" onChange={(e) => setGender(e.target.value)} disabled/>
           </div>
         </div>
       </div>

@@ -75,8 +75,10 @@ function WishlistDetail() {
         axios.get("https://final-project-be-production-6de7.up.railway.app/api/v1/wishlists", { headers: {"Authorization" : `Bearer ${getToken}`} })
         .then(res => {
           const datas = res.data.data;
-          setWishlist(datas);
-       
+          const datasFiltered = datas.filter(data => {
+            return data.userId === parseInt(idUser)
+          });
+          setWishlist(datasFiltered);
         })
         .catch((err) => {
           console.log(err)

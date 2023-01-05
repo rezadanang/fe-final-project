@@ -37,26 +37,21 @@ function Footer() {
   return (
             <WrapperFooter>
             <Container>
-                <Row>  
-                    <Col lg={6}>
-                    <img src={Logo} width={180} height={180} alt="logo" ></img>
+                <Row className='text-center'>  
+                    <Col lg={4} md={4} xs={12}>
+                        <img src={Logo} width={180} height={180} alt="logo" ></img>
                     </Col>
-                    <Col lg={6} className="text-center">
-                    <Row>
-                        <Col>
-                            <img src={GooglePlay} width={200} height={80} alt="Google Play" ></img>
-                        </Col>
-                    </Row>
-                    <Row>
-                        <Col>
-                        <ul id="myRow">
-                            <li className='li-icon'><FaInstagram style={styleIcons} /></li>
-                            <li className='li-icon'><FaTwitter style={styleIcons} /></li>
-                            <li className='li-icon'><FaLinkedin style={styleIcons} /></li>
-                            <li className='li-icon'><FaTiktok style={styleIcons} /></li>
-                        </ul>                        
-                        </Col>
-                    </Row>
+                    <Col lg={4} md={4} xs={12}>
+                        <ul className="mt-5 p-0">
+                            <li><a href="/all-flights" style={{textDecoration:"none"}}>All Flights</a></li>
+                            <li><a href="/wishlist-order" style={{textDecoration:"none"}}>Wishlist</a></li>
+                            <li><a href="/notification-order" style={{textDecoration:"none"}}>Notifications</a></li>
+                            <li><a href="/history-order" style={{textDecoration:"none"}}>Your Orders</a></li>
+                        </ul>
+                    </Col>
+                    <Col lg={4} md={4} xs={12} className="text-center mt-4">
+                        <img src={GooglePlay} width={200} height={80} alt="Google Play" ></img>
+                        <p><a target="_blank" href="https://www.instagram.com/"><FaInstagram style={styleIcons} /></a><a target="_blank" href="https://www.twitter.com/" ><FaTwitter style={styleIcons} /></a><a target="_blank" href="https://www.linkedin.com/"><FaLinkedin  style={styleIcons} /></a><a target="_blank" href="https://www.tiktok.com/" ><FaTiktok style={styleIcons} /></a></p>
                     </Col>
                 </Row> 
                 <Line />

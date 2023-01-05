@@ -44,6 +44,7 @@ function EditProfile() {
     const [name, setName] = useState("");
     const [phone, setPhone] = useState("");
     const [email, setEmail] = useState("");
+    const [gender, setGender] = useState("");
 
     const navigate = useNavigate();
 
@@ -76,7 +77,8 @@ function EditProfile() {
             noKtp: idKtp,
             username: username,
             contact: phone,
-            name: name
+            name: name,
+            gender: gender
           },
           {
           headers: {
@@ -116,6 +118,7 @@ function EditProfile() {
         setName(response.data.data.name);
         setPhone(response.data.data.contact);
         setEmail(response.data.data.email);
+        setGender(response.data.data.gender);
         
       }catch (err){
         console.log(err);
@@ -161,6 +164,24 @@ function EditProfile() {
            <label for="exampleInputEmail1">Phone</label>
            <input type="text" class="form-control" value={phone} placeholder="null" onChange={(e) => setPhone(e.target.value)}/>
          </div>
+       </div>
+     </div>
+     <div className='row'>
+       <div className='col lg-6'>
+         <div class="form-group">
+           <label for="exampleInputEmail1">No KTP</label>
+           <input type="text" class="form-control" value={idKtp} placeholder="null" onChange={(e) => setIdKtp(e.target.value)}/>
+         </div>
+       </div>
+       <div className='col lg-6'>
+        <div class="form-group">
+              <label>Gender</label>
+              <select class="form-select" name="gender" id="gender" onChange={(e) => setGender(e.target.value)}>
+                <option selected value="">select gender</option>
+                <option value="pria">Pria</option>
+                <option value="wanita">Wanita</option>
+              </select>
+            </div>
        </div>
      </div>
      <div className='row'>
