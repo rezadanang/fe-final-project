@@ -23,7 +23,7 @@ const { id } = useParams();
 
 
 function dateFormat(value, row, index) {
-    return moment(value).format('HH:mm DD-MM-YYYY');
+    return moment(value).format('DD-MM-YYYY');
   }
 
 const getUsersData = async () => {

@@ -4,6 +4,7 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import defaultProfile from '../assets/avatarr.png'
 import styled from 'styled-components';
 import { Container, Col, Row, Form, Nav, Navbar, Offcanvas, InputGroup } from 'react-bootstrap';
+import moment from 'moment';
 import Logo from "../assets/logo.png"  
 import {Helmet} from "react-helmet";
 
@@ -51,7 +52,9 @@ function UserProfile() {
     const [phone, setPhone] = useState("");
     const [email, setEmail] = useState("");
     const [gender, setGender] = useState("");
+    const [birth, setBirth] = useState("");
     
+    const newBirth = moment(birth).format('MM/DD/YYYY');
 
     useEffect(() => {
         getProfileById();
@@ -66,6 +69,7 @@ function UserProfile() {
         setPhone(response.data.data.contact);
         setEmail(response.data.data.email);
         setGender(response.data.data.gender);
+        setBirth(response.data.data.dateOfBirth);
         
       }catch (err){
         console.log(err);
@@ -122,10 +126,6 @@ function UserProfile() {
             <label for="exampleInputEmail1">Email</label>
             <input type="text" class="form-control" value={email} placeholder="null" onChange={(e) => setName(e.target.value)} disabled/>
           </div>
-          {/* <div class="form-group">
-            <label for="exampleInputEmail1">ID User</label>
-            <input type="text" class="form-control" value={idKtp} placeholder="null" onChange={(e) => setIdKtp(e.target.value)} disabled />
-          </div> */}
         </div>
         <div className='col lg-6'>
           <div class="form-group">
@@ -164,7 +164,10 @@ function UserProfile() {
       </div>
       <div className='row'>
         <div className='col lg-6'>
-          
+        <div class="form-group">
+            <label for="exampleInputEmail1">Date Birth</label>
+            <input type="text" class="form-control" value={newBirth} placeholder="null" onChange={(e) => setBirth(e.target.value)} disabled />
+          </div>
         </div>
         <div className='col lg-6'>
           <div className="field mt-4">

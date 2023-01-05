@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 import defaultProfile from '../../../assets/avatarr.png'
+import moment from 'moment';
 import Login from '../../Login';
 
 
@@ -20,6 +21,8 @@ function DetailUsers() {
     const { id } = useParams();
 
     const getRole = localStorage.getItem("role");
+    const newBirth = moment(dateOfBirth).format('MM/DD/YYYY');
+
 
 useEffect(() => {
   if (getRole === "CUSTOMER"){
@@ -97,7 +100,7 @@ useEffect(() => {
           <div className='col lg-4 md-4 xs-12'>
             <div class="form-group">
               <label style={{color:"white"}}>Date Of Birth</label>
-              <input type="text" class="form-control" value={dateOfBirth} placeholder="null" disabled />
+              <input type="text" class="form-control" value={newBirth} placeholder="null" disabled />
             </div>
           </div>
           <div className='col lg-4 md-4 xs-12'>

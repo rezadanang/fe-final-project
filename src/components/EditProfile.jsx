@@ -45,6 +45,7 @@ function EditProfile() {
     const [phone, setPhone] = useState("");
     const [email, setEmail] = useState("");
     const [gender, setGender] = useState("");
+    const [dateOfBirth, setDateOfBirth] = useState("");
 
     const navigate = useNavigate();
 
@@ -78,7 +79,8 @@ function EditProfile() {
             username: username,
             contact: phone,
             name: name,
-            gender: gender
+            gender: gender,
+            dateOfBirth, dateOfBirth
           },
           {
           headers: {
@@ -119,6 +121,7 @@ function EditProfile() {
         setPhone(response.data.data.contact);
         setEmail(response.data.data.email);
         setGender(response.data.data.gender);
+        setDateOfBirth(response.data.data.dateOfBirth);
         
       }catch (err){
         console.log(err);
@@ -169,7 +172,7 @@ function EditProfile() {
      <div className='row'>
        <div className='col lg-6'>
          <div class="form-group">
-           <label for="exampleInputEmail1">No KTP</label>
+           <label for="exampleInputEmail1">ID KTP</label>
            <input type="text" class="form-control" value={idKtp} placeholder="null" onChange={(e) => setIdKtp(e.target.value)}/>
          </div>
        </div>
@@ -182,6 +185,17 @@ function EditProfile() {
                 <option value="wanita">Wanita</option>
               </select>
             </div>
+       </div>
+     </div>
+     <div className='row'>
+       <div className='col lg-6'>
+         <div class="form-group">
+           <label for="exampleInputEmail1">Date Of Birth</label>
+           <input type="date" class="form-control" placeholder="null" onChange={(e) => setDateOfBirth(e.target.value)}/>
+         </div>
+       </div>
+       <div className='col lg-6'>
+        
        </div>
      </div>
      <div className='row'>
