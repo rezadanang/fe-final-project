@@ -32,7 +32,7 @@ useEffect(() => {
 const getAirplaneData = async () => {
     try{
         const data = await axios.get("https://final-project-be-production-6de7.up.railway.app/api/v1/airplanes", { headers: {"Authorization" : `Bearer ${getToken}`} });
-        console.log(data.data.data);
+       
         setAirplane(data.data.data);
         setLoading(true)
     }

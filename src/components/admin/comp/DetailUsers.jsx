@@ -37,7 +37,7 @@ useEffect(() => {
 
       const getUsersById = async () => {
         const response = await axios.get(`https://final-project-be-production-6de7.up.railway.app/api/v1/users/${id}`, { headers: {"Authorization" : `Bearer ${getToken}`} });
-       console.log(response);
+       
         setIdUsers(response.data.data.id);
         setNoKTP(response.data.data.noKtp);
         setUserName(response.data.data.username)

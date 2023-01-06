@@ -29,7 +29,7 @@ function dateFormat(value, row, index) {
 const getOrdersData = async () => {
     try{
         const data = await axios.get("https://final-project-be-production-6de7.up.railway.app/api/v1/orders", { headers: {"Authorization" : `Bearer ${getToken}`} });
-        console.log(data.data.data);
+       
         setOrders(data.data.data);
         setLoading(true)
     }

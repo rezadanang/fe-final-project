@@ -32,7 +32,7 @@ useEffect(() => {
 const getTicketData = async () => {
     try{
         const data = await axios.get("https://final-project-be-production-6de7.up.railway.app/api/v1/tickets", { headers: {"Authorization" : `Bearer ${getToken}`} });
-        console.log(data.data.data);
+      
         setTickets(data.data.data);
         setLoading(true)
     }
